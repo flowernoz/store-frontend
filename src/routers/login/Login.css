@@ -1,0 +1,132 @@
+.login {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-image: url(https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.login form {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  padding: 20px;
+  padding-bottom: 40px;
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+}
+
+.email_id {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.email_id > p {
+  margin-left: 23px;
+  margin-bottom: 5px;
+}
+
+.email_id > input {
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  outline: none;
+  text-indent: 15px;
+  box-shadow: 0 0 5px 1px gray;
+}
+
+.email_password {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+}
+
+.email_password > p {
+  margin-left: 23px;
+  margin-bottom: 5px;
+}
+
+.email_password > input {
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  outline: none;
+  text-indent: 15px;
+  box-shadow: 0 0 5px 1px gray;
+}
+
+.email_login {
+  width: 90%;
+  margin: 0 auto;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.email_login > button {
+  padding: 10px 55px;
+  border-radius: 23px;
+  border: 1px solid white;
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.37);
+  color: white;
+}
+
+.email_login > p {
+  color: white;
+  font-size: 14px;
+}
+
+.login form > button {
+  width: 50%;
+  height: 40px;
+  border-radius: 23px;
+  border-color: white;
+  color: white;
+  font-size: 15px;
+  background-color: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.email_google {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.email_google > p {
+  position: absolute;
+  background-color: rgba(31, 55, 96, 0.733);
+  top: -8px;
+  left: 42%;
+}
+
+.email_google > hr {
+  width: 90%;
+}

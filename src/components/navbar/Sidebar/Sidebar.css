@@ -1,0 +1,145 @@
+.Sidebar {
+  position: absolute;
+  z-index: 900;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100vh;
+  background: var(--textColorLight);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 40px;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.491);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  backdrop-filter: blur(2px);
+}
+
+.sidebar__head {
+  width: 100%;
+  height: 61px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3%;
+  background: var(--bgColor);
+}
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+}
+.sidebar__logo img {
+  width: 120px;
+  height: 40px;
+}
+
+.sidebarClose {
+  font-size: 33px;
+  color: var(--textColorLight);
+  transition: all 0.5s;
+}
+.sidebarClose:hover {
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+.sidebar__top,
+.sidebar__bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__call:hover .call__icon {
+  color: #b15092;
+}
+
+.sidebar__links svg,
+.sidebar__call svg,
+.sidebar__working__days svg {
+  font-size: 22px;
+}
+
+.sidebar__working__days svg {
+  color: crimson;
+}
+.sidebar__call svg {
+  color: rgb(20, 136, 20);
+}
+
+.service__icon {
+  color: #b15092;
+}
+
+.sidebar__links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__links a:hover {
+  background: #ccdff8ee;
+}
+.sidebar__call,
+.sidebar__working__days,
+.sidebar__links a {
+  padding: 15px 4%;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-family: "Roboto";
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar__call,
+.sidebar__links a:last-of-type {
+  border-bottom: 1px solid #e8e8e8;
+  padding-bottom: 25px;
+}
+
+.sidebar__networks {
+  padding: 15px 4%;
+  display: flex;
+  gap: 15px;
+}
+.sidebar__networks a {
+  color: var(--bgColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  padding: 10px;
+  box-shadow: var(--bgColor) 0px 1px 5px;
+  border-radius: 50%;
+}
+.sidebar__networks a:hover {
+  box-shadow: #b150929e 0px 1px 5px;
+  color: #b15092;
+}
+
+@media (max-width: 760px) {
+  .Sidebar {
+    width: 70%;
+  }
+}
+@media (max-width: 560px) {
+  .Sidebar {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1001px) {
+  .Sidebar {
+    transform: translateX(-100%);
+    transition: 0.5s;
+  }
+  .overlay {
+    display: none;
+  }
+}
