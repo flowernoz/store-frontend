@@ -1,18 +1,16 @@
 import { useRef, useState } from "react";
 import Webcam from "react-webcam";
-import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import "./barCodeReader.css";
-
+import { useZxing } from "react-zxing";
 const QRScanner = ({ setOpenQrScanner }) => {
   const webcamRef = useRef(null);
-  const [data, setData] = useState("");
-  const [stopStream, setStopStream] = useState(false);
-  console.log(data);
-  const dismissQrReader = () => {
-    setStopStream(true);
-    setTimeout(() => setOpenQrScanner(false), 1000);
-  };
-
+  const [result, setResult] = useState("");
+  const { ref } = useZxing({
+    onDecodeResult(result) {
+      setResult(result.getText());
+    },
+  });
+  console.log(result);
   return (
     <div className="barCodeReader">
       <Webcam
@@ -23,18 +21,11 @@ const QRScanner = ({ setOpenQrScanner }) => {
           facingMode: "environment",
         }}
       />
-      <BarcodeScannerComponent
-        width={500}
-        height={500}
-        onUpdate={(err, result) => {
-          if (result) setData(result.text);
-          else setData("not found");
-        }}
-        onError={(err) => console.log(err)}
-        stopStream={stopStream}
-      />
-      <p>{data}</p>
-      <button onClick={dismissQrReader}>Cancel</button>
+      <video ref={ref} />
+      <p>
+        <span>Last result:</span>
+        <span>{result}</span>
+      </p>
     </div>
   );
 };

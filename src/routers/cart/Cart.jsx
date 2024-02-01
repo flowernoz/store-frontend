@@ -6,7 +6,7 @@ function Cart() {
   return (
     <div className="cart">
       <div className="container">
-        <Code text="kitoblar" />
+        <Code text="65ba90da10beb56d8a6ad0a7" />
       </div>
     </div>
   );
