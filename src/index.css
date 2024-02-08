@@ -68,3 +68,8 @@ aside a:hover,
 aside a.active {
   color: rgb(165, 161, 161);
 }
+.layout main {
+  max-width: 1366px;
+  width: 100%;
+  margin: 0 auto;
+}
