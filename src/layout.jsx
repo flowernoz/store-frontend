@@ -3,6 +3,7 @@ import { BiGridAlt } from "react-icons/bi";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import {
   FaArrowAltCircleLeft,
+  FaArrowCircleLeft,
   FaArrowCircleRight,
   FaRegCalendarAlt,
   FaRegCalendarPlus,
@@ -18,10 +19,11 @@ function Layout() {
       <header>
         <Navbar />
       </header>
+
       <main className="strange">
         <aside style={!state ? { width: "100%" } : { width: "auto" }}>
           <button onClick={() => setState(!state)}>
-            {!state ? <FaArrowCircleRight /> : <FaArrowAltCircleLeft />}
+            {!state ? <FaArrowCircleLeft /> : <FaArrowCircleRight />}
           </button>
           <NavLink to={"/"}>
             <IoHomeOutline />
