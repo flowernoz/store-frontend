@@ -72,8 +72,9 @@
   color: rgb(20, 136, 20);
 }
 
-.service__icon {
-  color: #b15092;
+.sidebar__links a.active,
+.sidebar__links a:hover {
+  color: var(--bgColor);
 }
 
 .sidebar__links {
@@ -118,6 +119,7 @@
   box-shadow: var(--bgColor) 0px 1px 5px;
   border-radius: 50%;
 }
+
 .sidebar__networks a:hover {
   box-shadow: #b150929e 0px 1px 5px;
   color: #b15092;

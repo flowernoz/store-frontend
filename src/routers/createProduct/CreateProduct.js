@@ -43,14 +43,14 @@ const CreateProduct = () => {
       .post("/pro/create", data)
       .then((res) => {
         if (res.data?.innerData?.barcode) {
-          toast.success("Mahsulot bazaga qo'shildi !", {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: true,
-          });
           setLoader(false);
           setCategoryId(barcode);
           setOpenBarcode(true);
+          toast.success("Mahsulot bazaga qo'shildi !", {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
         }
       })
       .catch((err) => {

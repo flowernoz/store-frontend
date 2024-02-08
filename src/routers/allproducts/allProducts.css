@@ -8,6 +8,7 @@
 }
 
 .fl-table {
+  margin-bottom: 45px 0;
   font-weight: normal;
   border: none;
   border-collapse: collapse;
@@ -17,7 +18,8 @@
   background-color: rgb(255, 255, 255);
   box-shadow: #39536d8f 0px 0px 15px;
 }
-.fl-table caption {
+.heading {
+  text-align: center;
   padding-bottom: 20px;
   font-size: x-large;
   font-weight: 530;
@@ -76,6 +78,10 @@
   }
   .fl-table thead th:last-child {
     border-bottom: none;
+  }
+  .fl-table thead th {
+    border-bottom: 2px solid #063a828f;
+    border-right: none;
   }
   .fl-table thead {
     float: left;

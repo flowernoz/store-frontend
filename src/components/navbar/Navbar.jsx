@@ -3,15 +3,15 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Sidebar from "./Sidebar/Sidebar";
 import { LiaBarsSolid } from "react-icons/lia";
-import { FaBell } from "react-icons/fa";
+import { FaBell, FaRegCalendarAlt } from "react-icons/fa";
 import { PiBarcodeBold } from "react-icons/pi";
-import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoHomeOutline } from "react-icons/io5";
-import { MdOutlineManageSearch } from "react-icons/md";
-import { FaRegUser } from "react-icons/fa6";
 import SearchBar from "./Search";
 import logo from "../../assets/logo.png";
 import BarCodeReader from "../barCodeReader/BarCodeReader";
+import { BiGridAlt } from "react-icons/bi";
+import { HiOutlineViewGridAdd } from "react-icons/hi";
 
 function Navbar() {
   const [openSidebar, setOpenSidebar] = useState(false);
@@ -52,10 +52,6 @@ function Navbar() {
           </div>
           {/*  NAVBAR LINKS */}
           <div className="nav__links">
-            {/* <NavLink to={"/"}>Daromad</NavLink>
-            <NavLink to={"/product"}>Mahsulot</NavLink>
-            <NavLink to={"/nasiya"}>Nasiya</NavLink>
-            <NavLink to={"/cart"}>Cart</NavLink> */}
             <div className="nav__btns">
               <PiBarcodeBold
                 title="Shtrix kodni skanerlang"
@@ -71,22 +67,22 @@ function Navbar() {
           <IoHomeOutline />
           Home
         </NavLink>
-        <Link to={"/product"}>
-          <MdOutlineManageSearch />
+        <NavLink to={"/product"}>
+          <BiGridAlt />
           Mahsulot
-        </Link>
+        </NavLink>
+        <NavLink to={"/createProduct"}>
+          <HiOutlineViewGridAdd />
+          yaratish
+        </NavLink>
         <NavLink to={"/nasiya"}>
-          <AiOutlineShoppingCart />
+          <FaRegCalendarAlt />
           Nasiya
         </NavLink>
         <NavLink to={"/cart"}>
-          <AiOutlineHeart />
-          Cart
+          <AiOutlineShoppingCart />
+          Savat
         </NavLink>
-        <button>
-          <FaRegUser />
-          mahsulot qo'shish
-        </button>
       </div>
     </header>
   );

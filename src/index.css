@@ -35,12 +35,22 @@ svg {
   justify-content: space-between;
 }
 .strange aside {
-  width: 250px;
+  max-width: 220px;
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   border-right: 1px solid rgb(203, 203, 203);
+}
+
+aside button {
+  padding: 15px;
+  background: transparent;
+  font-size: 20px;
+  display: flex;
+  align-items: end;
+  background: var(--bgColorDark);
+  color: #fffaff;
 }
 
 aside a {
@@ -50,6 +60,10 @@ aside a {
   display: flex;
   gap: 7px;
 }
-aside a:hover {
-  color: #05397e;
+aside a svg {
+  font-size: 20px;
+}
+aside a:hover,
+aside a.active {
+  color: var(--bgColor);
 }

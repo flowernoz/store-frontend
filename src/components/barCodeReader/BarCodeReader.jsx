@@ -37,7 +37,6 @@ function BarCodeReader({ setOpenQrScanner }) {
     setTotalPrice(e * price);
     setTotalQuantity(data.quantity - e);
   }
-  console.log(data);
 
   // ADDING TO CART SELECTED ITEM
   function addToCart(cart) {

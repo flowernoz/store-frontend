@@ -1,16 +1,15 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import "./Sidebar.css";
 // ======== ICONS  ========= \\
-import { IoMdClose, IoIosStats } from "react-icons/io";
-import {
-  LiaPhoneVolumeSolid,
-  LiaFacebookF,
-  LiaTelegramPlane,
-} from "react-icons/lia";
-import { LuCalendarClock, LuInstagram } from "react-icons/lu";
-import { MdOutlineMedicalServices } from "react-icons/md";
-import { FcAbout, FcBusinessContact } from "react-icons/fc";
+import { IoMdClose } from "react-icons/io";
+import { LiaFacebookF, LiaTelegramPlane } from "react-icons/lia";
+import { LuInstagram } from "react-icons/lu";
+import { BiGridAlt } from "react-icons/bi";
+import { FaRegCalendarAlt, FaRegCalendarPlus } from "react-icons/fa";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { HiOutlineViewGridAdd } from "react-icons/hi";
+import { IoHomeOutline } from "react-icons/io5";
 
 function Sidebar({ closeSidebarFunc }) {
   return (
@@ -25,37 +24,30 @@ function Sidebar({ closeSidebarFunc }) {
 
         {/*  SIDEBAR LINKS */}
         <div className="sidebar__links">
-          <Link to={"/"}>
-            {" "}
-            <FcAbout />
-            Daromad
-          </Link>
-          <Link to={"/product"}>
-            <FcBusinessContact />
-            Mahsulot
-          </Link>
-
-          <Link to={"/nasiya"}>
-            <FcBusinessContact />
+          <NavLink to={"/"}>
+            <IoHomeOutline />
+            bosh sahifa
+          </NavLink>
+          <NavLink to={"/product"}>
+            <BiGridAlt />
+            Mahsulotlar
+          </NavLink>
+          <NavLink to={"/createProduct"}>
+            <HiOutlineViewGridAdd />
+            mahsulot qo'shish
+          </NavLink>
+          <NavLink to={"/nasiya"}>
+            <FaRegCalendarAlt />
             nasiya
-          </Link>
-          <Link to={"/cart"}>
-            <IoIosStats className="service__icon" />
-            Cart
-          </Link>
-        </div>
-        {/*======== SIDEBAR TOP ======= */}
-        <div className="sidebar__top">
-          <div className="sidebar__working__days">
-            <LuCalendarClock />
-            <span>
-              Dushanba-Yakshanba: 7<sup>00</sup> - 22<sup>00</sup>
-            </span>
-          </div>
-          <a className="sidebar__call" href="tel:+998932620323">
-            <LiaPhoneVolumeSolid className="call__icon" />
-            <span>+998(93)9119572</span>
-          </a>
+          </NavLink>
+          <NavLink to={"/nasiyacreate"}>
+            <FaRegCalendarPlus />
+            Nasiya qo'shish
+          </NavLink>
+          <NavLink to={"/cart"}>
+            <AiOutlineShoppingCart className="service__icon" />
+            Savat
+          </NavLink>
         </div>
         {/*========= SIDEBAR BOTTOM ======== */}
         <div className="sidebar__bottom">
