@@ -4,32 +4,29 @@ import "./Statistics.css";
 const Statistics = () => {
   return (
     <div className="statistics_page">
-      <header className="statistics_header">
-        <h2>Statistics</h2>
-      </header>
       <div className="statistics_container">
         <div className="box shadow">
           <div className="statistics_card">
-            <b>000</b>
-            <span>Dey</span>
+            <p>000</p>
+            <span>Kunlik</span>
           </div>
         </div>
         <div className="box shadow">
           <div className="statistics_card">
-            <b>000</b>
-            <span>Week</span>
+            <p>000</p>
+            <span>Haftalik</span>
           </div>
         </div>
         <div className="box shadow">
           <div className="statistics_card">
-            <b>000</b>
-            <span>Month</span>
+            <p>000</p>
+            <span>Oylik</span>
           </div>
         </div>
         <div className="box shadow">
           <div className="statistics_card">
-            <b>000</b>
-            <span>Year</span>
+            <p>000</p>
+            <span>Yillik</span>
           </div>
         </div>
       </div>

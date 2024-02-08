@@ -1,8 +1,10 @@
 .allproducts {
   width: 100%;
-  padding: 60px 0;
+  min-height: calc(100% - 60px);
+  padding: 60px 30px;
   background: #f1efef;
   overflow-x: auto;
+  /* position: relative; */
 }
 
 .fl-table {

@@ -7,10 +7,17 @@ export const addToCart = createSlice({
     AddToCart: (state, action) => {
       const newItem = action.payload;
       const id = newItem._id;
-      const find = state.find((item) => item.id === id);
+      const quantity = newItem.quantity;
+      const find = state.find((item) => item._id === id);
       const items = [...state, newItem];
       const newData = state.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+        item._id === id
+          ? {
+              ...item,
+              quantity: item.quantity + quantity,
+              totalPrice: item.totalPrice + newItem.totalPrice,
+            }
+          : item
       );
       localStorage.setItem("cart", JSON.stringify(find ? newData : items));
       return find ? newData : items;
@@ -22,6 +29,7 @@ export const addToCart = createSlice({
           return {
             ...item,
             quantity: item.quantity <= 1 ? 1 : item.quantity - 1,
+            totalPrice: item.totalPrice - item.price,
           };
         } else {
           return item;
@@ -38,6 +46,7 @@ export const addToCart = createSlice({
           return {
             ...item,
             quantity: item.quantity < 1 ? 1 : item.quantity + 1,
+            totalPrice: item.totalPrice + item.price,
           };
         } else {
           return item;
@@ -52,7 +61,6 @@ export const addToCart = createSlice({
       let id = action.payload;
       let res = (state = state.filter((i) => i._id !== id));
       localStorage.setItem("cart", JSON.stringify(res));
-
       return res;
     },
     ClearCart: (state, action) => {

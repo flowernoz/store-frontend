@@ -1,0 +1,92 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;800;900&display=swap);
+
+.statistics_page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--textColorLight);
+}
+
+.statistics_container {
+  width: 100%;
+  height: calc(100vh - 60px);
+  padding: 40px 2%;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 40px;
+  overflow: hidden;
+}
+
+.statistics_container .box {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: dodgerblue;
+}
+
+.statistics_container .box:nth-child(2) {
+  background-color: rgb(228, 74, 105);
+}
+
+.statistics_container .box:nth-child(3) {
+  background-color: rgb(104, 220, 84);
+}
+
+.statistics_container .box:nth-child(4) {
+  background-color: rgb(246, 213, 26);
+}
+
+.statistics_container .box .statistics_card {
+  padding: 20px 30px;
+  z-index: 1;
+  border: 1px solid #fff;
+  box-shadow: 0 0 3px #000;
+  background: #00000011;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.statistics_container .box .statistics_card p {
+  color: #fff;
+  font-size: 3.5em;
+  letter-spacing: 1.5px;
+}
+
+.statistics_container .box .statistics_card span {
+  color: #fff;
+  font-size: 1.2em;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 1.2px;
+}
+
+/* media */
+
+@media (max-width: 950px) {
+  .statistics_container {
+    grid-template-columns: repeat(1, auto);
+    gap: 30px;
+  }
+
+  .statistics_container .shadow {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .statistics_container .box .statistics_card p {
+    font-size: 1.5em;
+  }
+
+  .statistics_container .box .statistics_card span {
+    font-size: 1em;
+  }
+}

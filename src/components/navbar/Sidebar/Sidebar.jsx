@@ -30,13 +30,18 @@ function Sidebar({ closeSidebarFunc }) {
             <FcAbout />
             Daromad
           </Link>
-          <Link to={"/cart"}>
-            <IoIosStats className="service__icon" />
-            Statistika
+          <Link to={"/product"}>
+            <FcBusinessContact />
+            Mahsulot
           </Link>
+
           <Link to={"/nasiya"}>
             <FcBusinessContact />
             nasiya
+          </Link>
+          <Link to={"/cart"}>
+            <IoIosStats className="service__icon" />
+            Cart
           </Link>
         </div>
         {/*======== SIDEBAR TOP ======= */}

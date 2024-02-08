@@ -1,20 +1,39 @@
 import { Route, Routes } from "react-router";
-import { Auth, Cart, Home, Login, Nasiya, Product } from "./routers";
+import {
+  Auth,
+  Statistics,
+  Cart,
+  Login,
+  Nasiya,
+  AllCreditUsers,
+  CreateProduct,
+} from "./routers";
 import Layout from "./layout";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Allproducts from "./routers/allproducts/Allproducts";
 function Router() {
   return (
     <div className="router">
+      <ToastContainer />
       <Routes>
         <Route path="login" element={<Login />} />
         <Route element={<Auth />}>
           <Route path="/" element={<Layout />}>
-            <Route index path="/" element={<Home />} />
+            <Route index path="/" element={<Statistics />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/nasiya" element={<Nasiya />} />
-            <Route path="/product" element={<Product />} />
+            <Route path="/nasiya" element={<AllCreditUsers />} />
+            <Route path="/nasiyacreate" element={<Nasiya />} />
+            <Route path="/product" element={<Allproducts />} />
+            <Route path="/createProduct" element={<CreateProduct />} />
           </Route>
         </Route>
+        {/* <Route element={<ProductController />}>
+          <Route path="/product" element={<Products />}>
+            <Route path="/product" element={<CreateProduct />} />
+            <Route path="/product/allProduct" element={<Allproducts />} />
+          </Route>
+        </Route> */}
       </Routes>
     </div>
   );

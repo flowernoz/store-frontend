@@ -3,8 +3,8 @@ import "./BtnLoader.css";
 
 const BtnLoader = () => {
   return (
-    <div class="loadingio-spinner-spinner-ol7oyoizh2k">
-      <div class="ldio-rrodkx0ejwm">
+    <div className="loadingio-spinner-spinner-ol7oyoizh2k">
+      <div className="ldio-rrodkx0ejwm">
         <div></div>
         <div></div>
         <div></div>
