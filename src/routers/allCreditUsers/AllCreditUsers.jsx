@@ -64,7 +64,10 @@ function AllCreditUsers() {
           </div>
         </>
       ) : (
-        <img src={empty} alt="empty" className="empty" />
+        <div className="empty__cart">
+          <img src={empty} alt="empty" className="empty" />
+          Ma'lumot topilmadi
+        </div>
       )}
     </div>
   );
