@@ -31,6 +31,21 @@ svg {
   --textColorLight: #fffaff;
   --bgColorDark: #05397e;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #dedddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bgColorDark);
+  border-radius: 6px;
+}
+
 .strange {
   max-width: 1366px;
   width: 100%;

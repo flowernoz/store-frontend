@@ -21,7 +21,7 @@ function AllCreditUsers() {
     <div className="creditCart">
       {loader ? (
         <BtnLoader />
-      ) : data.length ? (
+      ) : data?.length ? (
         <>
           <h1 className="heading">Barcha qarzdorlar</h1>
           <div className="tb">

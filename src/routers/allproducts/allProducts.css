@@ -1,6 +1,6 @@
 .allproducts {
   width: 100%;
-  max-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
   padding: 60px 20px;
   background: #f1efef;
   overflow: auto;
