@@ -11,21 +11,26 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      await axios
-        .post("/user/login", { username, password })
-        .then((res) => {
-          console.log(res);
-          localStorage.setItem(
-            "userInfo",
-            JSON.stringify(res?.data?.innerdata)
-          );
-          navigate("/");
-        })
-        .catch((res) => console.log(res));
-    } catch (error) {
-      console.error("Login error:", error);
-    }
+    let data = {
+      username,
+      password,
+    };
+    localStorage.setItem("userInfo", data);
+    // try {
+    //   await axios
+    //     .post("/user/login", { username, password })
+    //     .then((res) => {
+    //       console.log(res);
+    //       localStorage.setItem(
+    //         "userInfo",
+    //         JSON.stringify(res?.data?.innerdata)
+    //       );
+    //       navigate("/");
+    //     })
+    //     .catch((res) => console.log(res));
+    // } catch (error) {
+    //   console.error("Login error:", error);
+    // }
   };
 
   return (
