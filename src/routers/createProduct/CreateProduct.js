@@ -6,8 +6,14 @@ import axios from "../../api";
 import { SiAddthis } from "react-icons/si";
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { toast } from "react-toastify";
+import {
+  useAddPostMutation,
+  useGetAllProductsQuery,
+} from "../..//redux/productApi";
 
 const CreateProduct = () => {
+  const { data, error } = useGetAllProductsQuery();
+  const [addPost] = useAddPostMutation();
   const [loader, setLoader] = useState(false);
   const [openBarcode, setOpenBarcode] = useState(false);
   const [categoryData, setCategoryData] = useState(null);
@@ -24,13 +30,10 @@ const CreateProduct = () => {
   let barcode = generateUniqueNumber();
 
   useEffect(() => {
-    axios
-      .get("/pro/allProducts")
-      .then((res) => setCategoryData(res.data?.innerData))
-      .catch((err) => console.log(err));
-  }, []);
+    setCategoryData(data?.innerData);
+  }, [data]);
 
-  const createPro = (e) => {
+  const createPro = async (e) => {
     e.preventDefault();
     let newData = new FormData(e.target);
     let data = Object.fromEntries(newData);
@@ -39,100 +42,97 @@ const CreateProduct = () => {
     data.quantity = +data.quantity;
     data.barcode = barcode;
     setLoader(true);
-    axios
-      .post("/pro/create", data)
+
+    await addPost(data)
       .then((res) => {
         if (res.data?.innerData?.barcode) {
+          toast.success("Mahsulot bazaga qo'shildi !", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+          });
           setLoader(false);
           setCategoryId(barcode);
           setOpenBarcode(true);
-          toast.success("Mahsulot bazaga qo'shildi !", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-          });
         }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
   return (
     <div className="create_product_page">
       {openBarcode && (
         <Code text={categoryId} setOpenBarcode={setOpenBarcode} />
       )}
-      <div className="container">
-        <div className="create_product_container">
-          <div className="create_product_header">
-            <h2>Mahsulot qo'shish</h2>
-          </div>
-          <div className="create_product_form_container">
-            <form onSubmit={createPro}>
-              <div className="form_container">
-                <input required type="text" placeholder="Nomi" name="title" />
-                <input type="text" placeholder="O'lchami" name="size" />
-                <input
-                  required
-                  type="number"
-                  placeholder="asl narxi"
-                  name="orgPrice"
-                  className="numberInput"
-                />
-                <input
-                  required
-                  type="number"
-                  placeholder="Sotiladigan narxi"
-                  name="price"
-                  className="numberInput"
-                />
-                <input
-                  required
-                  type="number"
-                  placeholder="miqdori"
-                  name="quantity"
-                  className="numberInput"
-                />
-                <input type="text" placeholder="rangi" name="color" />
-                <input type="text" placeholder="Brand" name="brand" />
-                <input
-                  type="text"
-                  placeholder="Sub kategoriyasi"
-                  name="subcategory"
-                />
-                <div className="select__box">
-                  {!addCategory && (
-                    <MdArrowDropDownCircle className="dropDown" />
-                  )}
-                  {!addCategory ? (
-                    <select name="category">
-                      {categoryData?.length ? (
-                        categoryData?.map((i, inx) => (
-                          <option key={inx} value={i?.category}>
-                            {i?.category}
-                          </option>
-                        ))
-                      ) : (
-                        <option>Hozircha category yo'q</option>
-                      )}
-                    </select>
-                  ) : (
-                    <input
-                      type="text"
-                      placeholder="Yangi kategoriya qo'shish"
-                      name="category"
-                    />
-                  )}
-                  <span onClick={(e) => setAddCategory(!addCategory)}>
-                    <SiAddthis />
-                  </span>
-                </div>
+      <div className="create_product_container">
+        <div className="create_product_header">
+          <h2>Mahsulot qo'shish</h2>
+        </div>
+        <div className="create_product_form_container">
+          <form onSubmit={createPro}>
+            <div className="form_container">
+              <input required type="text" placeholder="Nomi" name="title" />
+              <input type="text" placeholder="O'lchami" name="size" />
+              <input
+                required
+                type="number"
+                placeholder="asl narxi"
+                name="orgPrice"
+                className="numberInput"
+              />
+              <input
+                required
+                type="number"
+                placeholder="Sotiladigan narxi"
+                name="price"
+                className="numberInput"
+              />
+              <input
+                required
+                type="number"
+                placeholder="miqdori"
+                name="quantity"
+                className="numberInput"
+              />
+              <input type="text" placeholder="rangi" name="color" />
+              <input type="text" placeholder="Brand" name="brand" />
+              <input
+                type="text"
+                placeholder="Sub kategoriyasi"
+                name="subcategory"
+              />
+              <div className="select__box">
+                {!addCategory && <MdArrowDropDownCircle className="dropDown" />}
+                {!addCategory ? (
+                  <select name="category">
+                    {categoryData?.length ? (
+                      categoryData?.map((i, inx) => (
+                        <option key={inx} value={i?.category}>
+                          {i?.category}
+                        </option>
+                      ))
+                    ) : (
+                      <option>Hozircha category yo'q</option>
+                    )}
+                  </select>
+                ) : (
+                  <input
+                    type="text"
+                    placeholder="Yangi kategoriya qo'shish"
+                    name="category"
+                  />
+                )}
+                <span onClick={(e) => setAddCategory(!addCategory)}>
+                  <SiAddthis />
+                </span>
               </div>
-              <div className="form_btn">
-                <button>{loader && <BtnLoader />} Create</button>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div className="form_btn">
+              <button>{loader && <BtnLoader />} Create</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

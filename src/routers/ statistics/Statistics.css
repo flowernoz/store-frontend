@@ -10,8 +10,8 @@
 
 .statistics_container {
   width: 100%;
-  height: calc(100vh - 60px);
-  padding: 40px 2%;
+  min-height: calc(100vh - 60px);
+  padding: 40px 4%;
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -71,11 +71,6 @@
 /* media */
 
 @media (max-width: 950px) {
-  .statistics_container {
-    grid-template-columns: repeat(1, auto);
-    gap: 30px;
-  }
-
   .statistics_container .shadow {
     padding: 40px 0;
   }
@@ -85,7 +80,12 @@
   .statistics_container .box .statistics_card p {
     font-size: 1.5em;
   }
-
+  .statistics_container {
+    grid-template-columns: repeat(1, auto);
+  }
+  .statistics_container .box {
+    height: 200px;
+  }
   .statistics_container .box .statistics_card span {
     font-size: 1em;
   }

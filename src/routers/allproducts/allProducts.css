@@ -1,26 +1,26 @@
 .allproducts {
   width: 100%;
-  min-height: calc(100% - 60px);
-  padding: 60px 30px;
+  max-height: calc(100vh - 60px);
+  padding: 60px 20px;
   background: #f1efef;
-  overflow-x: auto;
-  /* position: relative; */
+  overflow: auto;
 }
-
+.tb {
+  width: 100%;
+  overflow-x: auto;
+}
 .fl-table {
-  margin-bottom: 45px 0;
+  max-width: 100%;
   font-weight: normal;
   border: none;
   border-collapse: collapse;
-  width: 100%;
-  max-width: 100%;
   white-space: nowrap;
   background-color: rgb(255, 255, 255);
   box-shadow: #39536d8f 0px 0px 15px;
 }
 .heading {
   text-align: center;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
   font-size: x-large;
   font-weight: 530;
   color: #333;
@@ -50,6 +50,8 @@
 .fl-table td {
   border-right: 4px solid #f1efef;
   font-size: 15px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .fl-table :where(td, th, tr):last-of-type {
@@ -59,17 +61,23 @@
 /* Responsive */
 
 @media (max-width: 767px) {
+  .empty {
+    width: 270px;
+    height: 120px;
+  }
+
   .fl-table {
     display: block;
     max-width: 100%;
   }
-  .table-wrapper:before {
-    content: "Scroll horizontally >";
-    display: block;
-    text-align: right;
-    font-size: 11px;
-    color: white;
-    padding: 0 0 10px;
+  .heading {
+    position: sticky;
+    top: -60px;
+    background: #042654;
+    border-bottom: 2px solid #063a828f;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
   }
   .fl-table thead,
   .fl-table tbody,

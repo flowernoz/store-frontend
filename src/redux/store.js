@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import cart from "./cart";
-import proEdit from "./proEdit";
-
+import { productsApi } from "./productApi";
 export const store = configureStore({
   reducer: {
     cart,
-    proEdit,
+    [productsApi.reducerPath]: productsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(productsApi.middleware),
 });
+setupListeners(store.dispatch);

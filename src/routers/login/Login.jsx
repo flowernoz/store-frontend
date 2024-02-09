@@ -1,35 +1,60 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "../../api";
 import "./Login.css";
-import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Login = () => {
-  function LOGIN(e) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    let formData = new FormData(e.target);
-    let value = Object.fromEntries(formData);
-    localStorage.setItem("userInfo", JSON.stringify(value));
-    window.location = "/";
-  }
+    try {
+      await axios
+        .post("/user/login", { username, password })
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem(
+            "userInfo",
+            JSON.stringify(res?.data?.innerdata)
+          );
+          navigate("/");
+        })
+        .catch((res) => console.log(res));
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
   return (
     <div className="login">
-      <form onSubmit={LOGIN}>
+      <form onSubmit={handleLogin}>
         <h1>Login</h1>
         <div className="email_id">
-          <p>Email ID</p>
+          <p>Username</p>
           <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             name="username"
             autoFocus
             required
             type="text"
-            placeholder="Email id"
+            placeholder="username"
+            autoComplete="username"
           />
         </div>
         <div className="email_password">
           <p>Password</p>
           <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             name="password"
             required
             type="password"
             placeholder="Password"
+            autoComplete="current-password"
           />
         </div>
         <div className="email_login">
@@ -38,12 +63,8 @@ const Login = () => {
         </div>
         <div className="email_google">
           <hr />
-          <p>Login with</p>
+          <Link to={"/registration"}>Register</Link>
         </div>
-        <button>
-          <FcGoogle />
-          Sign in with Google
-        </button>
       </form>
     </div>
   );

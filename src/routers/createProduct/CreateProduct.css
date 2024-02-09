@@ -4,6 +4,7 @@
   width: 100%;
   background: cornflowerblue;
   padding: 50px 2%;
+  overflow-y: auto;
 }
 
 .create_product_container {
@@ -174,6 +175,9 @@
 @media screen and (max-width: 675px) {
   .form_btn button {
     width: 100%;
+  }
+  .create_product_page {
+    padding-bottom: 80px;
   }
 }
 
