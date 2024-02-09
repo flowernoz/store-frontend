@@ -15,7 +15,9 @@ const Login = () => {
       username,
       password,
     };
-    localStorage.setItem("userInfo", data);
+    localStorage.setItem("userInfo", JSON.stringify(data));
+    navigate("/");
+
     // try {
     //   await axios
     //     .post("/user/login", { username, password })
