@@ -29,7 +29,7 @@ function Allproducts() {
 
   useEffect(() => {
     if (error) {
-      toast.error("Malumot toqilmadi");
+      toast.error("Ma'lumot topilmadi");
     }
   }, [error]);
 
