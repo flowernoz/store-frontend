@@ -93,9 +93,10 @@
   border-radius: 5px;
 }
 
-.input_btns_container button {
-  padding: 5px;
+.input_btns_container .count_btn {
+  padding: 3px 5px;
   border-radius: 5px;
+  background: #0000009e;
 }
 
 .input_btns_container span {

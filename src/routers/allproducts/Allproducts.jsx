@@ -1,22 +1,24 @@
 import "./allProducts.css";
 import { useState, useEffect, memo } from "react";
-import axios from "../../api";
 import Loader from "../../components/btnLoader/BtnLoader";
 import { FaTrash, FaEdit, FaMinus } from "react-icons/fa";
-import ProEdit from "../../components/proEdit/ProEdit";
+import ProEdit from "../../components/proEdit /ProEdit";
 import {
   useGetAllProductsQuery,
-  useUpdatePostMutation,
-  useDeletePostMutation,
+  useProductUpdateMutation,
+  useDeleteOneProductMutation,
+  useSearchPostMutation,
+  useDeleteAllProductsMutation,
 } from "../../redux/productApi";
-import empty from "../../assets/empty.png";
+import empty from "../../assets/empty1.png";
 import { toast } from "react-toastify";
 
 function Allproducts() {
   const { data, error } = useGetAllProductsQuery();
-  const [updatePost] = useUpdatePostMutation();
-  const [deletePost] = useDeletePostMutation();
-
+  const [productUpdate] = useProductUpdateMutation();
+  const [deleteOneProduct, { isSuccess }] = useDeleteOneProductMutation();
+  const [searchPost] = useSearchPostMutation();
+  const [deleteAllProducts] = useDeleteAllProductsMutation();
   const [updateData, setUpdateData] = useState("");
   const [openProEdit, setOpenProEdit] = useState(false);
   const [dataItem, setDataItem] = useState([]);
@@ -27,33 +29,52 @@ function Allproducts() {
     setLoading(false);
   }, [data]);
 
-  useEffect(() => {
-    if (error) {
-      toast.error("Ma'lumot topilmadi");
-    }
-  }, [error]);
+  async function deleteAll() {
+    let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
 
-  function deleteAll() {
-    let warning = window.confirm("Bazani tozalashni xohlaysizmi?");
-    if (warning) {
-      axios.delete("/pro/deleteAllData");
-    }
+    clientConfirm &&
+      (await deleteAllProducts()
+        .then((res) => setDataItem(res))
+        .catch((err) => console.log(err)));
   }
 
   async function deleteOne(id) {
-    await deletePost(id)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
+    let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
+
+    clientConfirm &&
+      (await deleteOneProduct(id)
+        .then((res) => {
+          if (res?.data?.msg === "product is deleted") {
+            isSuccess &&
+              toast.success("Malumot muofaqiyatli o'chirildi", {
+                autoClose: 1500,
+                closeButton: false,
+                hideProgressBar: true,
+              });
+            setDataItem(res);
+          }
+        })
+        .catch((err) => console.log(err)));
   }
 
   async function proEdit(data) {
-    await updatePost(data)
+    await productUpdate(data)
       .then((res) => {
         if (res?.data?.status) {
           setUpdateData(res?.data?.innerData);
           setOpenProEdit(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
+  async function SearchValue(e) {
+    let value = e.trimStart();
+
+    await searchPost({ value })
+      .then((res) => {
+        if (res?.data?.status === "success") {
+          setDataItem(res?.data?.innerData);
         }
       })
       .catch((err) => console.log(err));
@@ -102,7 +123,7 @@ function Allproducts() {
                     <td>{i?.size ? i.size : <FaMinus />}</td>
                     <td>{i?.brand ? i.brand : <FaMinus />}</td>
                     <td>{i?.color ? i.color : <FaMinus />}</td>
-                    <td onClick={() => proEdit(i?._id)}>
+                    <td onClick={() => proEdit(i)}>
                       <FaEdit />
                     </td>
                     <td onClick={() => deleteOne(i?._id)}>

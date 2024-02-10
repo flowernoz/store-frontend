@@ -1,31 +1,28 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { api } from "./api";
 
-export const productsApi = createApi({
-  reducerPath: "productsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000" }),
-  tagTypes: ["GETPRODUCT"],
+export const productsApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    // product API => get api
     getAllProducts: builder.query({
-      query: () => "/pro/allProducts",
+      query: () => "pro/allProducts",
       providesTags: ["GETPRODUCT"],
     }),
-
-    addPost: builder.mutation({
+    addProduct: builder.mutation({
       query(body) {
         return {
-          url: `/pro/create`,
+          url: `pro/create`,
           method: "POST",
           body,
         };
       },
       invalidatesTags: ["GETPRODUCT"],
     }),
-
-    updatePost: builder.mutation({
+    // product update api =>
+    productUpdate: builder.mutation({
       query(data) {
         const { updateData } = data;
         return {
-          url: `/pro/update/${data?._id}`,
+          url: `pro/update/${data?._id}`,
           method: "PUT",
           body: updateData,
         };
@@ -33,22 +30,51 @@ export const productsApi = createApi({
       invalidatesTags: ["GETPRODUCT"],
     }),
 
-    deletePost: builder.mutation({
+    // product delete api =>
+
+    deleteOneProduct: builder.mutation({
       query(id) {
         return {
-          url: `/pro/delete/${id}`,
+          url: `pro/delete/${id}`,
           method: "DELETE",
         };
       },
 
-      invalidatesTags: (result, error, id) => [{ type: "Posts", id }],
+      invalidatesTags: ["GETPRODUCT"],
+    }),
+
+    // delete all product api =>
+
+    deleteAllProducts: builder.mutation({
+      query() {
+        return {
+          url: `pro/deleteAllData`,
+          method: "DELETE",
+        };
+      },
+
+      invalidatesTags: ["GETPRODUCT"],
+    }),
+
+    // POST => SEARCH PRODICT DATA
+    searchPost: builder.mutation({
+      query(body) {
+        return {
+          url: `pro/search`,
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["GETPRODUCT"],
     }),
   }),
 });
 
 export const {
   useGetAllProductsQuery,
-  useUpdatePostMutation,
-  useDeletePostMutation,
-  useAddPostMutation,
+  useAddProductMutation,
+  useProductUpdateMutation,
+  useDeleteOneProductMutation,
+  useDeleteAllProductsMutation,
+  useSearchPostMutation,
 } = productsApi;

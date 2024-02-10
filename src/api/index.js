@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const mainURL = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://store-backend-pi-fawn.vercel.app/",
 });
 
 export default mainURL;

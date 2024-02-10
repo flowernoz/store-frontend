@@ -1,27 +1,81 @@
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import "./ProEdit.css";
 import { MdClose } from "react-icons/md";
 import { FiPlus, FiMinus } from "react-icons/fi";
+// PRODUCT API =>
+import { useProductUpdateMutation } from "../../redux/productApi";
+import { toast, ToastContainer } from "react-toastify";
 
 const ProEdit = ({ close, data }) => {
+  const [productUpdate] = useProductUpdateMutation();
+
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
   const [color, setColor] = useState("");
   const [orgPrice, setOrgPrice] = useState(0);
   const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState(0);
-  const [size, setSize] = useState(Number());
+  const [quantity, setQuantity] = useState("");
+  const [size, setSize] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [title, setTitle] = useState("");
   const [count, setCount] = useState(0);
-  console.log(data);
-  let plusCount = () => {};
-  let minusCount = () => {};
+
+  useEffect(() => {
+    setBrand(data.brand);
+    setCategory(data.category);
+    setColor(data.color);
+    setOrgPrice(data.orgPrice);
+    setPrice(data.price);
+    setSize(data.size);
+    setSubcategory(data.category);
+    setTitle(data.title);
+    setCount(data.quantity);
+  }, [data]);
+
+  let plusCount = () => {
+    setCount(count + 1);
+  };
+  let minusCount = () => {
+    if (count <= 0) {
+      return setCount(0);
+    }
+    setCount(count - 1);
+  };
+
+  const proFormData = async (e) => {
+    e.preventDefault();
+    let proData = {
+      brand,
+      category,
+      color,
+      orgPrice: +orgPrice,
+      price: +price,
+      size,
+      subcategory,
+      title,
+      quantity: count,
+    };
+
+    await productUpdate({ _id: data?._id, updateData: proData })
+      .then((res) => {
+        if (res?.data?.status) {
+          toast.success("Muofaqiyatli o'zgartirish kiritildi", {
+            autoClose: 2000,
+            closeButton: false,
+            hideProgressBar: true,
+          });
+          close(false);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="pro_edit_page">
+      <ToastContainer />
       <div className="container">
         <div className="pro_edit_container">
-          <form>
+          <form onSubmit={proFormData}>
             <div className="form_title">
               <h2>Malumotlarni tahrirlash</h2>
               <button onClick={() => close(false)}>
@@ -98,15 +152,20 @@ const ProEdit = ({ close, data }) => {
                 <label>miqdori</label>
                 <div className="inputs_container">
                   <div className="input_btns_container">
-                    <button>
+                    <div className="count_btn" onClick={minusCount}>
                       <FiMinus />
-                    </button>
+                    </div>
                     <span>{count}</span>
-                    <button>
+                    <div className="count_btn" onClick={plusCount}>
                       <FiPlus />
-                    </button>
+                    </div>
                   </div>
-                  <input placeholder="Miqdor qoshish" type="text" />
+                  <input
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    placeholder="Miqdor qoshish"
+                    type="text"
+                  />
                 </div>
               </div>
             </div>

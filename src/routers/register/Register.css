@@ -1,0 +1,84 @@
+.register {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  padding: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-image: url(https://images.unsplash.com/photo-1553095066-5014bc7b7f2d?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2FsbCUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.register form {
+  width: 400px;
+  min-height: 520px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 20px;
+  padding-bottom: 40px;
+  backdrop-filter: blur(15px);
+  border-radius: 10px;
+}
+.register form p {
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  padding: 0 0 0 15px;
+}
+input {
+  width: 90%;
+  margin: auto;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  outline: none;
+  text-indent: 15px;
+  box-shadow: 0 0 5px 1px gray;
+}
+form .select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 95%;
+  padding: 0 0 0 18px;
+}
+form select {
+  width: 50%;
+  margin: auto;
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 5px 1px gray;
+  color: #222;
+  text-indent: 10px;
+  text-align: center;
+  font-size: 17px;
+  cursor: pointer;
+  appearance: none;
+}
+.register form button {
+  width: 90%;
+  height: 45px;
+  border-radius: 23px;
+  border-color: white;
+  color: white;
+  font-size: 15px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0 0 19px;
+ cursor: pointer;
+}

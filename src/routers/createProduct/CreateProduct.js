@@ -7,13 +7,13 @@ import { SiAddthis } from "react-icons/si";
 import { MdArrowDropDownCircle } from "react-icons/md";
 import { toast } from "react-toastify";
 import {
-  useAddPostMutation,
+  useAddProductMutation,
   useGetAllProductsQuery,
 } from "../..//redux/productApi";
 
 const CreateProduct = () => {
   const { data, error } = useGetAllProductsQuery();
-  const [addPost] = useAddPostMutation();
+  const [addPost] = useAddProductMutation();
   const [loader, setLoader] = useState(false);
   const [openBarcode, setOpenBarcode] = useState(false);
   const [categoryData, setCategoryData] = useState(null);

@@ -12,9 +12,13 @@ import axios from "../../api";
 import { toast } from "react-toastify";
 import { FaHandPointRight } from "react-icons/fa";
 import empty from "../../assets/empty.png";
+import CriditRegister from "../../components/criditRegister/CriditRegister";
+import { useState } from "react";
+
 function Cart() {
   const cart = useCart();
   const dispatch = useDispatch();
+  const [openRgister, setOpenRgister] = useState(false);
 
   // delete item
   function handleDelete(id) {
@@ -53,6 +57,10 @@ function Cart() {
 
   function checkout() {
     axios
+      .post("/soldPro/create")
+      .then((res) => console.log(res))
+      .catch((res) => console.log(res));
+    axios
       .patch("/pro/updateQty", cart)
       .then((res) => {
         console.log(res.data.status);
@@ -68,6 +76,15 @@ function Cart() {
       .catch((err) => console.log(err));
   }
 
+  // cridit register function
+  const register = () => {
+    setOpenRgister(true);
+  };
+
+  openRgister
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
+
   return (
     <div className="main_cart_home">
       {!cart.length ? (
@@ -77,18 +94,20 @@ function Cart() {
         </div>
       ) : (
         <>
-          <h1 className="heading">Sotiladigan Tovarlar</h1>
-          <div className="tb">
-            <table className="fl-table buy_table">
+          {openRgister && <CriditRegister close={setOpenRgister} />}
+          <div className="cart_table_container">
+            <table>
+              <caption>Sotiladigan Tovarlar</caption>
               <thead>
                 <tr>
-                  <th>№</th>
-                  <th>nomi</th>
-                  <th>narx</th>
-                  <th>razmer</th>
-                  <th>rangi</th>
-                  <th>Nechta</th>
-                  <th>Umumiy narx</th>
+                  <th>#</th>
+                  <th>Nomi</th>
+                  <th>Narxi</th>
+                  <th>Razmeri</th>
+                  <th>Rangi</th>
+                  <th>Umumiy narxi</th>
+                  <th>Bazadagi soni</th>
+                  <th>Sotiladigan soni</th>
                   <th onClick={clearCart}>
                     <FaTrash />
                   </th>
@@ -98,39 +117,42 @@ function Cart() {
                 {cart?.map((i, inx) => (
                   <tr key={inx}>
                     <td>{inx + 1}</td>
-                    <td>{i?.title}</td>
-                    <td>{i?.price}</td>
-                    <td>{i?.size}</td>
-                    <td>{i?.color}</td>
+                    <td>{i?.title ? i?.title : <FaMinus />}</td>
+                    <td>{i?.price ? i?.price + " ming" : 0}</td>
+                    <td>{i?.size ? i?.size : <FaMinus />}</td>
+                    <td>{i?.color ? i?.color : <FaMinus />}</td>
+                    <td>{i?.totalPrice + " so'm"}</td>
+                    <td>{i?.quantity ? i?.quantity + " ta" : 0}</td>
                     <td>
-                      <button
-                        className="plus_minus"
-                        disabled={i?.quantity == 1}
-                        onClick={() => decrementCart(i?._id)}
-                      >
-                        <FaMinus />
-                      </button>
-                      <span>{i.quantity}</span>
-                      <button
-                        className="plus_minus"
-                        onClick={() => incrementCart(i?._id)}
-                      >
-                        <FaPlus />
-                      </button>
+                      <div className="table_butons">
+                        <button
+                          className="plus_minus"
+                          disabled={i?.quantity == 1}
+                          onClick={() => decrementCart(i?._id)}
+                        >
+                          <FaMinus />
+                        </button>
+                        <span>{i.quantity}</span>
+                        <button
+                          className="plus_minus"
+                          onClick={() => incrementCart(i?._id)}
+                        >
+                          <FaPlus />
+                        </button>
+                      </div>
                     </td>
-                    <td>{i?.totalPrice}</td>
                     <td>
                       <button
-                        className="delete_cart"
+                        className="table_trash"
                         onClick={() => handleDelete(i?._id)}
                       >
-                        delete
+                        <FaTrash />
                       </button>
                     </td>
                   </tr>
                 ))}
               </tbody>
-              <tfoot>
+              {/* <tfoot>
                 <tr>
                   <td colSpan={"2"}>Mahsulotlarni Sotish</td>
                   <td>
@@ -150,8 +172,33 @@ function Cart() {
                     Naxtga Sotish
                   </td>
                 </tr>
-              </tfoot>
+              </tfoot> */}
             </table>
+            <div className="cart_tfoot">
+              <div className="cart_tfoot_title">
+                <h2>Sotib olingan mahulotlar</h2>
+              </div>
+              <div className="cart_tfoot_totall">
+                <ul>
+                  <li>
+                    <span>Jami:</span>
+                    <h2>
+                      {cart?.length} <span>mahsulot sotib olindi</span>
+                    </h2>
+                  </li>
+                  <li>
+                    <span>Umumiy narxi:</span>
+                    <h2>
+                      {subtotal} <span> so'm</span>
+                    </h2>
+                  </li>
+                </ul>
+              </div>
+              <div className="cart_tfoot_btn">
+                <button onClick={checkout}>Naxtga sotib olish</button>
+                <button onClick={register}>Nasiyaga sotib olish</button>
+              </div>
+            </div>
           </div>
         </>
       )}
