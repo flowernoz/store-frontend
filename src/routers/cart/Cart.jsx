@@ -10,8 +10,7 @@ import { useDispatch } from "react-redux";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import axios from "../../api";
 import { toast } from "react-toastify";
-import { FaHandPointRight } from "react-icons/fa";
-import empty from "../../assets/empty.png";
+import empty from "../../assets/notFoundImg.jpeg";
 import CriditRegister from "../../components/criditRegister/CriditRegister";
 import { useState } from "react";
 
