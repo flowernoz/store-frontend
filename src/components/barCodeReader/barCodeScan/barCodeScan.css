@@ -1,11 +1,3 @@
 .barCodeScan {
   width: 500px;
-  height: auto;
-}
-.scanned {
-  width: 100%;
-  height: 100vh;
-  background: pink;
-  display: flex;
-  flex-direction: column;
 }

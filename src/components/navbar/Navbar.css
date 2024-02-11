@@ -1,16 +1,13 @@
 @import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@100;200;300;400;500;600;800&display=swap);
 @import url(https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;800;900&display=swap);
 header {
-  position: relative;
-  top: 0;
-  left: 0;
+  z-index: 9000;
 }
 
 .Navbar {
   width: 100%;
   background-color: var(--bgColor);
   box-shadow: #959da52a 0px 8px 20px;
-  z-index: 9999;
 }
 
 .navbar {
@@ -69,7 +66,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background: var(--bgColorDark);
-  z-index: 9999;
+  z-index: 999;
 }
 
 .header__searchbar input {
@@ -177,11 +174,7 @@ input[type="search"]::-webkit-search-cancel-button {
   font-size: 14px;
   position: relative;
 }
-.header__sub a .likedNumber {
-  top: 0;
-  width: 15px;
-  height: 15px;
-}
+
 .header__sub button svg,
 .header__sub a svg {
   font-size: 22px;
@@ -255,9 +248,9 @@ input[type="search"]::-webkit-search-cancel-button {
     display: none !important;
   }
   .statistics_container,
-  .allProducts,
+  .allproducts,
   .creditCart {
-    padding-bottom: 100px;
+    padding-bottom: 100px !important;
   }
 }
 @media (max-width: 610px) {
@@ -272,10 +265,13 @@ input[type="search"]::-webkit-search-cancel-button {
   .header__searchbar {
     order: 3;
   }
+  .barCodeReader {
+    top: 110px !important;
+  }
   .allproducts,
   .main_cart_home,
   .creditCart {
-    height: calc(100vh - 110px);
+    min-height: calc(100vh - 110px);
   }
 }
 @media (max-width: 520px) {

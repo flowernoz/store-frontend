@@ -23,7 +23,7 @@ function Navbar() {
   function closeSidebarFunc() {
     setOpenSidebar(false);
   }
-  openSidebar
+  openSidebar || openQrScanner
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
 

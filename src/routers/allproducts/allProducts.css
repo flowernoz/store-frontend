@@ -3,6 +3,7 @@
   height: calc(100vh - 60px);
   padding: 30px 20px;
   background: #f1efef;
+  overflow: auto;
 }
 .tb {
   width: 100%;
@@ -40,6 +41,9 @@
   border-bottom: 4px solid #f1efef;
 }
 
+.fl-table :where(td, th, tr):last-of-type {
+  border: none;
+}
 .fl-table td,
 .fl-table th {
   text-align: center;
@@ -53,9 +57,6 @@
   text-overflow: ellipsis;
 }
 
-.fl-table :where(td, th, tr):last-of-type {
-  border: none;
-}
 .change {
   display: flex;
   gap: 7px;
@@ -72,7 +73,11 @@
   color: crimson;
 }
 /* Responsive */
-
+@media (min-width: 767px) {
+  .fl-table tbody tr:nth-child(even) {
+    background: #f8f8f8;
+  }
+}
 @media (max-width: 767px) {
   .empty {
     width: 270px;
@@ -82,16 +87,9 @@
   .fl-table {
     display: block;
     max-width: 100%;
+    border-top: 3px dashed #042654;
   }
-  .heading {
-    position: sticky;
-    top: -60px;
-    background: #042654;
-    border-bottom: 2px solid #063a828f;
-    color: #ffffff;
-    margin: 0;
-    padding: 20px;
-  }
+
   .fl-table thead,
   .fl-table tbody,
   .fl-table thead th {
@@ -119,8 +117,8 @@
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
-    width: 120px;
-    font-size: 13px;
+    width: 100px;
+    font-size: 12px !important;
     text-overflow: ellipsis;
   }
   .fl-table thead th {

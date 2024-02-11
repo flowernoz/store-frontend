@@ -7,9 +7,10 @@
   min-height: 100vh;
   background: rgba(50, 50, 50, 0.608);
   display: flex;
+  padding-top: 20px;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   backdrop-filter: blur(2px);
 }
 .scanned {
