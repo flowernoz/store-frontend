@@ -16,7 +16,7 @@ function Layout() {
   const [state, setState] = useState(false);
   return (
     <div className="layout">
-      <header>
+      <header className="head">
         <Navbar />
       </header>
 
