@@ -1,7 +1,7 @@
 .allproducts {
   width: 100%;
   height: calc(100vh - 60px);
-  padding: 60px 20px;
+  padding: 30px 20px;
   background: #f1efef;
   overflow: auto;
 }
@@ -20,7 +20,7 @@
 }
 .heading {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: x-large;
   font-weight: 530;
   color: #333;

@@ -4,7 +4,7 @@ header {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1999;
+  z-index: 9999;
 }
 
 .Navbar {
@@ -69,6 +69,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background: var(--bgColorDark);
+  z-index: 9999;
 }
 
 .header__searchbar input {
@@ -107,7 +108,7 @@ input[type="search"]::-webkit-search-cancel-button {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  z-index: 999;
+  z-index: 1999;
   background-color: var(--bgColorDark);
   /* box-shadow: 0 10px 10px rgba(102, 102, 102, 0.819); */
   border-radius: 0 0 23px 23px;
