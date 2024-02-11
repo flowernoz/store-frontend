@@ -6,13 +6,13 @@
   overflow: auto;
 }
 .tb {
-  width: 100%;
+  width: auto;
   display: flex;
-  justify-content: center;
+  background: #000;
   overflow-x: auto;
 }
 .fl-table {
-  max-width: 100%;
+  width: 100%;
   font-weight: normal;
   border: none;
   border-collapse: collapse;
