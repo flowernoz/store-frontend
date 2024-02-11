@@ -7,6 +7,8 @@
 }
 .tb {
   width: 100%;
+  display: flex;
+  justify-content: center;
   overflow-x: auto;
 }
 .fl-table {
