@@ -30,7 +30,7 @@
 .fl-table thead th {
   color: #ffffff;
   background: #042654;
-  font-size: 16px;
+  font-size: 15px;
   text-transform: capitalize;
   border-right: 4px solid #063a828f;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -57,7 +57,21 @@
 .fl-table :where(td, th, tr):last-of-type {
   border: none;
 }
-
+.change {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: space-around;
+}
+.change button {
+  background: none;
+}
+.change button:first-child {
+  color: rgb(214, 145, 16);
+}
+.change button:last-child {
+  color: crimson;
+}
 /* Responsive */
 
 @media (max-width: 767px) {

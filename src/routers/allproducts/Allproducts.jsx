@@ -99,15 +99,14 @@ function Allproducts() {
                   <th>#</th>
                   <th>Nomi</th>
                   <th>Asl narxi</th>
-                  <th>Sotiladigan narxi</th>
+                  <th>Sotuv narxi</th>
                   <th>Soni</th>
-                  <th>Kategoriyasi</th>
-                  <th>Subkategoriyasi</th>
+                  <th>Kategoriya</th>
+                  <th>Subkategoriya</th>
                   <th>O'lchami</th>
                   <th>Brendi</th>
                   <th>rangi</th>
-                  <th>Tahrirlash</th>
-                  <th onClick={deleteAll}>O'chirish</th>
+                  <th>o'zgartirish</th>
                 </tr>
               </thead>
               <tbody>
@@ -123,11 +122,13 @@ function Allproducts() {
                     <td>{i?.size ? i.size : <FaMinus />}</td>
                     <td>{i?.brand ? i.brand : <FaMinus />}</td>
                     <td>{i?.color ? i.color : <FaMinus />}</td>
-                    <td onClick={() => proEdit(i)}>
-                      <FaEdit />
-                    </td>
-                    <td onClick={() => deleteOne(i?._id)}>
-                      <FaTrash />
+                    <td className="change">
+                      <button onClick={() => proEdit(i)}>
+                        <FaEdit />
+                      </button>
+                      <button onClick={() => deleteOne(i?._id)}>
+                        <FaTrash />
+                      </button>
                     </td>
                   </tr>
                 ))}
