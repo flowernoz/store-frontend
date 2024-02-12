@@ -2,14 +2,13 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiGridAlt } from "react-icons/bi";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import {
-  FaArrowAltCircleLeft,
   FaArrowCircleLeft,
   FaArrowCircleRight,
   FaRegCalendarAlt,
   FaRegCalendarPlus,
 } from "react-icons/fa";
 import { IoHomeOutline } from "react-icons/io5";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
 function Layout() {

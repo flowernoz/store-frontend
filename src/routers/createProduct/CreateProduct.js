@@ -30,7 +30,13 @@ const CreateProduct = () => {
   let barcode = generateUniqueNumber();
 
   useEffect(() => {
-    setCategoryData(data?.innerData);
+    const uniqueCategories = [];
+    const filteredProducts = data?.innerData?.filter((product) => {
+      if (!uniqueCategories.includes(product.category)) {
+        return uniqueCategories.push(product.category);
+      }
+    });
+    setCategoryData(uniqueCategories);
   }, [data]);
 
   const createPro = async (e) => {
@@ -110,12 +116,12 @@ const CreateProduct = () => {
                   <select name="category">
                     {categoryData?.length ? (
                       categoryData?.map((i, inx) => (
-                        <option key={inx} value={i?.category}>
-                          {i?.category}
+                        <option key={inx} value={i}>
+                          {i}
                         </option>
                       ))
                     ) : (
-                      <option>Hozircha category yo'q</option>
+                      <option>Hozircha kategoriya yo'q</option>
                     )}
                   </select>
                 ) : (
@@ -131,7 +137,7 @@ const CreateProduct = () => {
               </div>
             </div>
             <div className="form_btn">
-              <button>{loader && <BtnLoader />} Create</button>
+              <button>{loader && <BtnLoader />} Qo'shish</button>
             </div>
           </form>
         </div>

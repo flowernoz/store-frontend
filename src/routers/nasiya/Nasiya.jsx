@@ -55,6 +55,7 @@ function Nasiya() {
             <input name="address" type="text" placeholder="Manzili" />
             <input name="phone" type="number" placeholder="Telefon raqami" />
             <input name="passport" type="text" placeholder="Passport raqami" />
+            <input type="date" name="date" />
           </div>
           <button type="submit">Saqlash</button>
         </form>

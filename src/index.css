@@ -52,7 +52,6 @@ svg {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  z-index: -1;
 }
 .strange aside {
   position: sticky;
@@ -62,7 +61,6 @@ svg {
   height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgb(203, 203, 203);
   background: var(--bgColorDark);
 }
 
@@ -86,8 +84,10 @@ aside a {
 aside a svg {
   font-size: 20px;
 }
-aside a:hover,
+aside a:hover {
+  background: #033d88;
+}
+
 aside a.active {
-  /* color: rgb(165, 161, 161); */
   background: var(--bgColor);
 }

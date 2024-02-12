@@ -62,6 +62,7 @@ function Navbar() {
           </div>
         </div>
       </div>
+      {/* SUB HEADER */}
       <div className="header__sub">
         <NavLink to={"/"}>
           <IoHomeOutline />

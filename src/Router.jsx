@@ -28,12 +28,6 @@ function Router() {
             <Route path="/createProduct" element={<CreateProduct />} />
           </Route>
         </Route>
-        {/* <Route element={<ProductController />}>
-          <Route path="/product" element={<Products />}>
-            <Route path="/product" element={<CreateProduct />} />
-            <Route path="/product/allProduct" element={<Allproducts />} />
-          </Route>
-        </Route> */}
       </Routes>
     </div>
   );
