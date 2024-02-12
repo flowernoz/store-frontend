@@ -11,7 +11,7 @@ import {
   useDeleteAllProductsMutation,
 } from "../../redux/productApi";
 import empty from "../../assets/empty1.png";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function Allproducts() {
   const { data, error } = useGetAllProductsQuery();
@@ -46,7 +46,7 @@ function Allproducts() {
         .then((res) => {
           if (res?.data?.msg === "product is deleted") {
             isSuccess &&
-              toast.success("Malumot muofaqiyatli o'chirildi", {
+              toast.success("Malumot muvaffaqiyatli o'chirildi", {
                 autoClose: 1500,
                 closeButton: false,
                 hideProgressBar: true,
@@ -91,6 +91,7 @@ function Allproducts() {
         <Loader />
       ) : dataItem?.length ? (
         <>
+          <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>
           <div className="tb">
             <table className="fl-table">

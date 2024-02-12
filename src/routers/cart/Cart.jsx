@@ -9,7 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
 import axios from "../../api";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import empty from "../../assets/empty1.png";
 import CriditRegister from "../../components/criditRegister/CriditRegister";
 import { useState } from "react";
@@ -56,7 +56,7 @@ function Cart() {
 
   function checkout() {
     axios
-      .post("/soldPro/create")
+      .post("/soldPro/create", cart)
       .then((res) => console.log(res))
       .catch((res) => console.log(res));
     axios
@@ -93,6 +93,7 @@ function Cart() {
         </div>
       ) : (
         <>
+          <ToastContainer />
           {openRgister && <CriditRegister close={setOpenRgister} />}
           <div className="cart_table_container">
             <table>
@@ -149,27 +150,6 @@ function Cart() {
                   </tr>
                 ))}
               </tbody>
-              {/* <tfoot>
-                <tr>
-                  <td colSpan={"2"}>Mahsulotlarni Sotish</td>
-                  <td>
-                    <marquee direction="right">
-                      <FaHandPointRight className="right_animation" />
-                    </marquee>
-                  </td>
-                  <td colSpan={"2"}>
-                    <p>{subtotal + " UZS"}</p>
-                  </td>
-                  <td className="nasiya_sotish_btn">Nasiyaga Sotish</td>
-                  <td
-                    className="naxtga_sotish"
-                    colSpan={"2"}
-                    onClick={checkout}
-                  >
-                    Naxtga Sotish
-                  </td>
-                </tr>
-              </tfoot> */}
             </table>
             <div className="cart_tfoot">
               <div className="cart_tfoot_title">

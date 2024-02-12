@@ -2,11 +2,10 @@ import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "https://store-backend-pi-fawn.vercel.app/",
-  // baseUrl: "https://yasmina-backend.vercel.app/",
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("token");
     if (token) {
-      headers.set("authentication", `Bearer ${token}`);
+      headers.set("authentification", `Bearer ${token}`);
     }
     return headers;
   },

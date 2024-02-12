@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import "./CreateProduct.css";
 import Code from "../../components/code/Code";
 import BtnLoader from "../../components/btnLoader/BtnLoader";
-import axios from "../../api";
 import { SiAddthis } from "react-icons/si";
 import { MdArrowDropDownCircle } from "react-icons/md";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import {
   useAddProductMutation,
   useGetAllProductsQuery,
@@ -73,6 +72,8 @@ const CreateProduct = () => {
       {openBarcode && (
         <Code text={categoryId} setOpenBarcode={setOpenBarcode} />
       )}
+
+      <ToastContainer />
       <div className="create_product_container">
         <div className="create_product_header">
           <h2>Mahsulot qo'shish</h2>

@@ -4,7 +4,7 @@ import "./barCodeReader.css";
 import BarCodeScan from "./barCodeScan/BarCodeScan";
 import { IoMdClose } from "react-icons/io";
 import { AddToCart } from "../../redux/cart";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useGetScanerDataMutation } from "../../redux/scanerApi";
 
 function BarCodeReader({ setOpenQrScanner }) {
@@ -58,6 +58,7 @@ function BarCodeReader({ setOpenQrScanner }) {
 
   return (
     <div className="barCodeReader">
+      <ToastContainer />
       <IoMdClose onClick={() => setOpenQrScanner(false)} className="barClose" />
       {!data ? (
         <BarCodeScan
