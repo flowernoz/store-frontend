@@ -3,29 +3,29 @@ import { useDispatch } from "react-redux";
 import "./barCodeReader.css";
 import BarCodeScan from "./barCodeScan/BarCodeScan";
 import { IoMdClose } from "react-icons/io";
-import axios from "../../api";
 import { AddToCart } from "../../redux/cart";
 import { toast } from "react-toastify";
+import { useGetScanerDataMutation } from "../../redux/scanerApi";
 
 function BarCodeReader({ setOpenQrScanner }) {
+  const [getScanerData] = useGetScanerDataMutation();
   const dispatch = useDispatch();
-  let [data, setData] = useState(null);
-  let [id, setId] = useState("");
-  let [price, setPrice] = useState("");
-  let [totalquantity, setTotalQuantity] = useState("");
-  let [quantity, setQuantity] = useState(1);
-  let [totalPrice, setTotalPrice] = useState("");
+  const [data, setData] = useState(null);
+  const [id, setId] = useState("");
+  const [price, setPrice] = useState("");
+  const [totalquantity, setTotalQuantity] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const [totalPrice, setTotalPrice] = useState("");
   const onNewScanResult = (decodedText, decodedResult) => {
     setId(decodedText);
   };
   useEffect(() => {
-    axios
-      .post("/pro/scan", { barcode: id })
+    getScanerData({ barcode: id })
       .then((res) => {
-        setData(res.data.innerData);
-        setPrice(res.data.innerData.price);
-        setTotalQuantity(res.data.innerData.quantity);
-        setTotalPrice(res.data.innerData.price);
+        setData(res?.data?.innerData);
+        setPrice(res?.data?.innerData?.price);
+        setTotalQuantity(res?.data?.innerData?.quantity);
+        setTotalPrice(res?.data?.innerData?.price);
       })
       .catch((res) => console.log(res));
   }, [id.length]);
@@ -35,15 +35,18 @@ function BarCodeReader({ setOpenQrScanner }) {
   function calculatePrice(e) {
     setQuantity(e);
     setTotalPrice(e * price);
-    setTotalQuantity(data.quantity - e);
+    setTotalQuantity(data?.quantity - e);
   }
 
   // ADDING TO CART SELECTED ITEM
   function addToCart(cart) {
-    cart.quantity = +quantity;
-    cart.price = +price;
-    cart.totalPrice = +totalPrice;
-    dispatch(AddToCart(cart));
+    const updatedCart = {
+      ...cart,
+      quantity: +quantity,
+      price: +price,
+      totalPrice: +totalPrice,
+    };
+    dispatch(AddToCart(updatedCart));
     toast.success("Mahsulot Savatga qo'shildi !", {
       position: "top-center",
       autoClose: 1500,
@@ -81,10 +84,10 @@ function BarCodeReader({ setOpenQrScanner }) {
               }}
             />
           </div>
-          <div>
-            <label>Bazadagi miqdori:</label>
-            <input className="totalqnty" type="text" value={totalquantity} />
-          </div>
+          <span>
+            Bazadagi miqdori:
+            <b> {totalquantity}</b>
+          </span>
           <div>
             <label>Sotiladigan miqdori:</label>
             <input
@@ -96,17 +99,19 @@ function BarCodeReader({ setOpenQrScanner }) {
               }}
             />
           </div>
-          <div>
-            <label>Umumiy narxi:</label>
-            <input
-              type="text"
-              value={totalPrice}
-              onChange={(e) => setTotalPrice(e.target.value)}
-              className="totalprice"
-            />
-          </div>
+          <span>
+            Umumiy narxi:
+            <b>{totalPrice}</b>
+          </span>
           <div className="scanned__btns">
-            <button onClick={() => setData("")}>bekor qilish</button>
+            <button
+              onClick={() => {
+                setData(null);
+                setId("");
+              }}
+            >
+              bekor qilish
+            </button>
             <button onClick={() => addToCart(data)}>Qo'shish</button>
           </div>
         </div>

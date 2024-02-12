@@ -18,11 +18,7 @@ const createConfig = (props) => {
   if (props.disableFlip !== undefined) {
     config.disableFlip = props.disableFlip;
   }
-  if (props.id.length) {
-    Html5QrcodeScanner.stop()
-      .then((ignore) => {})
-      .catch((err) => {});
-  }
+
   return config;
 };
 

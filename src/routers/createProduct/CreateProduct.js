@@ -137,7 +137,7 @@ const CreateProduct = () => {
               </div>
             </div>
             <div className="form_btn">
-              <button>{loader && <BtnLoader />} Qo'shish</button>
+              <button>{loader && <BtnLoader />} Saqlash</button>
             </div>
           </form>
         </div>

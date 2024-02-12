@@ -12,9 +12,10 @@
   align-items: center;
   justify-content: start;
   backdrop-filter: blur(2px);
+  gap: 7px;
 }
 .scanned {
-  max-width: 400px !important;
+  width: 400px !important;
   height: 400px !important;
   border-radius: 10px;
   display: flex;
@@ -27,7 +28,7 @@
   background: var(--bgColor) !important;
   font-size: 16px;
   color: #fff;
-  margin: auto;
+  /* margin: auto; */
 }
 .scanned span {
   width: 100%;
@@ -37,23 +38,14 @@
   font-size: 20px;
   text-align: center;
 }
-.scanned input:not(.totalqnty, .totalprice) {
+.scanned input {
+  width: 90px;
+  height: 30px;
+  font-size: 16px;
+  border-radius: 3px;
   background: white;
   color: #333;
   text-indent: 5px;
-}
-.totalqnty,
-.totalprice {
-  pointer-events: none;
-}
-
-.scanned input {
-  font-size: 16px;
-  min-width: 50px;
-  height: 30px;
-  border-radius: 3px;
-  background: transparent;
-  color: #fff;
 }
 
 input::-webkit-outer-spin-button,
@@ -81,8 +73,10 @@ input::-webkit-inner-spin-button {
 }
 .barClose {
   width: 100%;
+  height: 30px;
   font-size: 25px;
   display: flex;
+  justify-content: right;
   padding-top: 5px;
   color: #fff;
 }

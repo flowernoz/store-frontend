@@ -105,7 +105,6 @@ function Cart() {
                   <th>Razmeri</th>
                   <th>Rangi</th>
                   <th>Umumiy narxi</th>
-                  <th>Bazadagi soni</th>
                   <th>Sotiladigan soni</th>
                   <th onClick={clearCart}>
                     <FaTrash />
@@ -121,7 +120,6 @@ function Cart() {
                     <td>{i?.size ? i?.size : <FaMinus />}</td>
                     <td>{i?.color ? i?.color : <FaMinus />}</td>
                     <td>{i?.totalPrice + " so'm"}</td>
-                    <td>{i?.quantity ? i?.quantity + " ta" : 0}</td>
                     <td>
                       <div className="table_butons">
                         <button
