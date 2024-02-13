@@ -1,0 +1,86 @@
+.eye_page {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background: #0000009a;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+}
+
+.eye_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.eye_border {
+  /* width: 400px; */
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #0000009a;
+  backdrop-filter: blur(10px);
+}
+
+.eye_header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #fff;
+  position: relative;
+}
+
+.eye_header h2 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #fff;
+}
+
+.eye_header svg {
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.eye_border table {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+}
+
+.eye_border table thead {
+  width: 100%;
+  height: 40px;
+}
+
+.eye_border table thead tr th {
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.eye_border table tbody {
+  width: 100%;
+  height: 35px;
+}
+
+.eye_border table tbody tr td {
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0 5px;
+}
+
+.eye_border table tbody tr td:nth-child(1) {
+  text-align: center;
+}
