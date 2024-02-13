@@ -56,6 +56,19 @@ export const productApi = api.injectEndpoints({
       },
       invalidatesTags: ["GETALLCRIDIT"],
     }),
+
+    // PUT => UPDATE CREDIT USER
+
+    updateCreditUser: builder.mutation({
+      query(body) {
+        let { id } = body;
+        return {
+          url: `creditUser/updateCreditUser/${id}`,
+          method: "PUT",
+          body,
+        };
+      },
+    }),
   }),
 });
 
@@ -65,4 +78,5 @@ export const {
   useCreditUserDeleteOneMutation,
   useSoldCriditFintUserMutation,
   useGetAllCriditDataQuery,
+  useUpdateCreditUserMutation,
 } = productApi;

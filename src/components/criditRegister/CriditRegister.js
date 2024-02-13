@@ -14,6 +14,7 @@ const CriditRegister = ({ close, totalPrice }) => {
   const cart = useCart();
   const dispatch = useDispatch();
 
+  const [regLoader, setRegLoader] = useState(false);
   const [idNumber, setIdNumber] = useState("");
   const [register, setRegister] = useState(false);
 
@@ -34,7 +35,7 @@ const CriditRegister = ({ close, totalPrice }) => {
     let value = Object.fromEntries(creditData);
     value.phone = +value.phone;
     value.passport = idNumber;
-
+    setRegLoader(true);
     await creditCreateUser(value)
       .then((res) => {
         if (res?.data?.status === "success") {
@@ -42,6 +43,7 @@ const CriditRegister = ({ close, totalPrice }) => {
             "userCreditInfo",
             JSON.stringify(res?.data?.innerData)
           );
+          setRegLoader(false);
           toast.success("Malumotlar muofaqiyatli qo'shildi", {
             autoClose: 2000,
             closeButton: false,
@@ -128,7 +130,9 @@ const CriditRegister = ({ close, totalPrice }) => {
                       placeholder="Telefon raqami"
                     />
                   </div>
-                  <button>{isLoading ? "Qidirilmoqda..." : "Qidirish"}</button>
+                  <button disabled={isLoading}>
+                    {isLoading ? "Qidirilmoqda..." : "Qidirish"}
+                  </button>
                 </form>
               </div>
             ) : (
@@ -170,7 +174,9 @@ const CriditRegister = ({ close, totalPrice }) => {
                     />
                     <input required type="date" name="givingDay" />
                   </div>
-                  <button type="submit">Saqlash</button>
+                  <button disabled={regLoader} type="submit">
+                    {regLoader ? "Saqlanmoqda" : "Saqlash"}
+                  </button>
                 </form>
               </div>
             )}

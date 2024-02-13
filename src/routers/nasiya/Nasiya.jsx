@@ -45,45 +45,38 @@ function Nasiya() {
 
   return (
     <div className="nasiya">
-      <div className="container">
-        <ToastContainer position="top-center" />
-        <div className="nasiya_cart">
-          <form onSubmit={sendData}>
-            <h1>Nasiya savdo</h1>
-            <div className="form_inputs">
-              <input required name="firstname" type="text" placeholder="Ismi" />
-              <input
-                required
-                name="lastname"
-                type="text"
-                placeholder="Familiyasi"
-              />
-              <input
-                required
-                name="address"
-                type="text"
-                placeholder="Manzili"
-              />
-              <input
-                required
-                name="phone"
-                type="number"
-                placeholder="Telefon raqami"
-              />
-              <input
-                required
-                name="passport"
-                type="text"
-                placeholder="Passport raqami"
-                onChange={(e) => handleInputChange(e)}
-              />
-              <input required type="date" name="givingDay" />
-            </div>
-            <button disabled={isLoading} type="submit">
-              {isLoading ? "Saqlanmoqda..." : "Saqlash"}
-            </button>
-          </form>
-        </div>
+      <ToastContainer position="top-center" />
+      <div className="nasiya_cart">
+        <form onSubmit={sendData}>
+          <h1>Nasiya savdo</h1>
+          <div className="form_inputs">
+            <input required name="firstname" type="text" placeholder="Ismi" />
+            <input
+              required
+              name="lastname"
+              type="text"
+              placeholder="Familiyasi"
+            />
+            <input required name="address" type="text" placeholder="Manzili" />
+            <input
+              required
+              name="phone"
+              type="number"
+              placeholder="Telefon raqami"
+            />
+            <input
+              required
+              name="passport"
+              type="text"
+              placeholder="Passport raqami"
+              onChange={(e) => handleInputChange(e)}
+            />
+            <input required type="date" name="givingDay" />
+          </div>
+          <button disabled={isLoading} type="submit">
+            {isLoading ? "Saqlanmoqda..." : "Saqlash"}
+          </button>
+        </form>
       </div>
     </div>
   );

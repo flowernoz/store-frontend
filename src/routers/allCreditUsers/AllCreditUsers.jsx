@@ -16,19 +16,23 @@ import {
   useCreditUserDeleteOneMutation,
   useGetAllCriditDataQuery,
   useSoldCriditFintUserMutation,
+  useUpdateCreditUserMutation,
 } from "../../redux/criditApi";
 import { toast, ToastContainer, Zoom } from "react-toastify";
 import CriditEye from "../../components/criditEye/CriditEye";
 import Empty from "../../components/empty/Empty";
+import CreditEdit from "../../components/creditEdit/CreditEdit";
 
 function AllCreditUsers() {
   const { data } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
+  const [updateCreditUser] = useUpdateCreditUserMutation();
 
   let [dataItem, setDataItem] = useState([]);
   const [openCriditEye, setOpenCriditEye] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [openUserDataEdit, setOpenUserDataEdit] = useState(false);
 
   useEffect(() => {
     setDataItem(data?.innerData);
@@ -65,7 +69,21 @@ function AllCreditUsers() {
       .catch((err) => console.log(err));
   };
 
+  const creditEdit = async (id) => {
+    await updateCreditUser({ id })
+      .then((res) => {
+        if (res?.data?.status === "success") {
+          setOpenUserDataEdit(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   openCriditEye
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
+
+  openUserDataEdit
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
 
@@ -74,6 +92,7 @@ function AllCreditUsers() {
       {openCriditEye && (
         <CriditEye closeCreditEya={setOpenCriditEye} userData={userData} />
       )}
+      {openUserDataEdit && <CreditEdit creditEditClose={setOpenUserDataEdit} />}
       {data?.innerData?.length ? (
         <>
           <h1 className="heading">Barcha qarzdorlar</h1>
@@ -124,7 +143,7 @@ function AllCreditUsers() {
                       <FaRegEye onClick={() => clickEye(i?._id)} />
                     </td>
                     <td>
-                      <FaPencilAlt />
+                      <FaPencilAlt onClick={() => creditEdit(i?._id)} />
                     </td>
                     <td>
                       <FaTrashCan onClick={() => criditUserDeleteOne(i?._id)} />

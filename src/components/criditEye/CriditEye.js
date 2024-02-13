@@ -38,9 +38,7 @@ const CriditEye = ({ closeCreditEya, userData }) => {
                     {i?.products?.map((item, inx) => (
                       <td key={inx}>{item?.quantity}</td>
                     ))}
-                    {i?.products?.map((item, inx) => (
-                      <td key={inx}>{item?.price + " ming so'm"}</td>
-                    ))}
+                    <td>{i?.totalPrice}</td>
                   </tr>
                 ))}
               </tbody>

@@ -1,0 +1,77 @@
+.credit_edit {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.825);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.credit_edit_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.credit_edit_container form {
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.credit_edit_container .form_header {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #fff;
+  position: relative;
+}
+
+.credit_edit_container .form_header h2 {
+  font-size: 22px;
+  flex: 1;
+  color: #fff;
+  text-align: center;
+}
+
+.credit_edit_container .form_header svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 22px;
+  color: #fff;
+}
+
+.credit_edit_container .form_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.credit_edit_container .form_container input {
+  width: 100%;
+  height: 40px;
+  margin: 0;
+}
+
+.credit_edit_container .form_container button {
+  margin-top: 0;
+  width: 100%;
+  border-radius: 10px;
+  height: 45px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.credit_edit_container .form_container button:hover {
+  background: #e5dfdf;
+}
