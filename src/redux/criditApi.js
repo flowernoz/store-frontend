@@ -5,7 +5,7 @@ export const productApi = api.injectEndpoints({
     //  GET => CREDIT DATA
     getAllCriditData: builder.query({
       query: () => "creditUser/creditUsers",
-      providesTags: ["GET_ALL_CRIDIT"],
+      providesTags: ["GETALLCRIDIT"],
     }),
 
     // CRIDIT CREATE USER
@@ -18,19 +18,18 @@ export const productApi = api.injectEndpoints({
           body,
         };
       },
-      invalidatesTags: ["GET_ALL_CRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT"],
     }),
 
-    // DELETE => CRIDIT DELETE ONE USER
     creditUserDeleteOne: builder.mutation({
       query(id) {
         return {
-          url: `creditUser/creditDeleteOneUser/${id}`,
+          url: `creditUser/delete/${id}`,
           method: "DELETE",
         };
       },
 
-      invalidatesTags: ["GET_ALL_CRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT"],
     }),
 
     //   POST => CREDIT FIND USER
@@ -43,7 +42,7 @@ export const productApi = api.injectEndpoints({
           body,
         };
       },
-      invalidatesTags: ["GET_ALL_CRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT"],
     }),
 
     //  POST => CREDIT REGISTER FIND USER
@@ -55,7 +54,20 @@ export const productApi = api.injectEndpoints({
           body,
         };
       },
-      invalidatesTags: ["GET_ALL_CRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT"],
+    }),
+
+    // PUT => UPDATE CREDIT USER
+
+    updateCreditUser: builder.mutation({
+      query(body) {
+        let { id } = body;
+        return {
+          url: `creditUser/updateCreditUser/${id}`,
+          method: "PUT",
+          body,
+        };
+      },
     }),
   }),
 });
@@ -66,4 +78,5 @@ export const {
   useCreditUserDeleteOneMutation,
   useSoldCriditFintUserMutation,
   useGetAllCriditDataQuery,
+  useUpdateCreditUserMutation,
 } = productApi;

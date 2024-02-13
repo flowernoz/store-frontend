@@ -10,23 +10,23 @@ import {
   useSearchPostMutation,
   useDeleteAllProductsMutation,
 } from "../../redux/productApi";
-import empty from "../../assets/empty1.png";
 import { toast, ToastContainer } from "react-toastify";
+import Empty from "../../components/empty/Empty";
 
 function Allproducts() {
-  const { data, error } = useGetAllProductsQuery();
+  const { data } = useGetAllProductsQuery();
   const [productUpdate] = useProductUpdateMutation();
-  const [deleteOneProduct, { isSuccess }] = useDeleteOneProductMutation();
+  const [deleteOneProduct] = useDeleteOneProductMutation();
   const [searchPost] = useSearchPostMutation();
   const [deleteAllProducts] = useDeleteAllProductsMutation();
   const [updateData, setUpdateData] = useState("");
   const [openProEdit, setOpenProEdit] = useState(false);
   const [dataItem, setDataItem] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setDataItem(data?.innerData);
-    setLoading(false);
+    // setLoading(false);
   }, [data]);
 
   async function deleteAll() {
@@ -45,13 +45,12 @@ function Allproducts() {
       (await deleteOneProduct(id)
         .then((res) => {
           if (res?.data?.msg === "product is deleted") {
-            isSuccess &&
-              toast.success("Malumot muvaffaqiyatli o'chirildi", {
-                autoClose: 1500,
-                closeButton: false,
-                hideProgressBar: true,
-              });
-            setDataItem(res);
+            toast.success("Malumot muofaqiyatli o'chirildi", {
+              autoClose: 1500,
+              closeButton: false,
+              hideProgressBar: true,
+            });
+            setDataItem(res?.data?.innerData);
           }
         })
         .catch((err) => console.log(err)));
@@ -90,9 +89,7 @@ function Allproducts() {
   return (
     <div className="allproducts">
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
-      {loading ? (
-        <Loader />
-      ) : dataItem?.length ? (
+      {data?.innerData?.length ? (
         <>
           <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>
@@ -141,9 +138,8 @@ function Allproducts() {
           </div>
         </>
       ) : (
-        <div className="empty__cart">
-          <img src={empty} alt="empty" className="empty" />
-          Mahsulot topilmadi
+        <div className="empty">
+          <Empty />
         </div>
       )}
     </div>

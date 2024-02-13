@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import "./CriditRegister.css";
 import { Zoom, toast, ToastContainer } from "react-toastify";
-import axios from "../../api";
+import { useCart } from "../../redux/selectors";
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { useCreditFindRegisterMutation } from "../../redux/criditApi";
+import {
+  useCreditCreateUserMutation,
+  useCreditFindRegisterMutation,
+} from "../../redux/criditApi";
+import { ClearCart } from "../../redux/cart";
+import { useDispatch } from "react-redux";
 
-const CriditRegister = ({ close }) => {
+const CriditRegister = ({ close, totalPrice }) => {
+  const cart = useCart();
+  const dispatch = useDispatch();
+
+  const [regLoader, setRegLoader] = useState(false);
   const [idNumber, setIdNumber] = useState("");
   const [register, setRegister] = useState(false);
 
-  const [creditFindRegister, { isLoading, isSuccess }] =
-    useCreditFindRegisterMutation();
+  const [creditFindRegister, { isLoading }] = useCreditFindRegisterMutation();
+  const [creditCreateUser] = useCreditCreateUserMutation();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -20,45 +29,68 @@ const CriditRegister = ({ close }) => {
     }
   };
 
-  function sendData(e) {
+  async function sendData(e) {
     e.preventDefault();
     let creditData = new FormData(e.target);
     let value = Object.fromEntries(creditData);
     value.phone = +value.phone;
     value.passport = idNumber;
-
-    axios
-      .post("/creditUser/create", value)
+    setRegLoader(true);
+    await creditCreateUser(value)
       .then((res) => {
-        console.log(res);
-        if (res?.data?.innerData) {
+        if (res?.data?.status === "success") {
           localStorage.setItem(
             "userCreditInfo",
             JSON.stringify(res?.data?.innerData)
           );
-          toast.success(res?.data?.innerData.status, {
-            autoClose: 1500,
+          setRegLoader(false);
+          toast.success("Malumotlar muofaqiyatli qo'shildi", {
+            autoClose: 2000,
+            closeButton: false,
             hideProgressBar: true,
           });
-          // return setTimeout(() => window.location.reload(), 2500);
+          e.target.reset();
         }
       })
       .catch((res) => console.log(res));
-    localStorage.setItem("userCreditInfo", JSON.stringify(creditData));
   }
 
   //   criditFind
 
-  const criditFind = async (e) => {
+  async function criditFind(e) {
     e.preventDefault();
 
     let creditData = new FormData(e.target);
     let value = Object.fromEntries(creditData);
 
-    await creditFindRegister(value)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-  };
+    let userData = { criditUser: value, totalPrice, criditData: cart };
+
+    await creditFindRegister(userData)
+      .then((res) => {
+        if (res?.data?.status === "success") {
+          toast.success("Malumotlar muofaqiyatli qo'shildi", {
+            autoClose: 2000,
+            closeButton: false,
+            hideProgressBar: true,
+          });
+          e.target.reset();
+          dispatch(ClearCart());
+          close(false);
+        }
+      })
+      .catch((err) => {
+        if (!err?.data?.status) {
+          toast.warn(
+            `Bazada bunaqa malumot topilmadi nomer:${err?.data?.msg?.phone} passport: ${err?.data?.msg?.passport}`,
+            {
+              autoClose: 2000,
+              closeButton: false,
+              hideProgressBar: true,
+            }
+          );
+        }
+      });
+  }
 
   return (
     <div className="cridit_register_page">
@@ -98,7 +130,9 @@ const CriditRegister = ({ close }) => {
                       placeholder="Telefon raqami"
                     />
                   </div>
-                  <button>Qidirish</button>
+                  <button disabled={isLoading}>
+                    {isLoading ? "Qidirilmoqda..." : "Qidirish"}
+                  </button>
                 </form>
               </div>
             ) : (
@@ -138,9 +172,11 @@ const CriditRegister = ({ close }) => {
                       placeholder="Passport raqami"
                       onChange={(e) => handleInputChange(e)}
                     />
-                    <input required type="date" name="data" />
+                    <input required type="date" name="givingDay" />
                   </div>
-                  <button type="submit">Saqlash</button>
+                  <button disabled={regLoader} type="submit">
+                    {regLoader ? "Saqlanmoqda" : "Saqlash"}
+                  </button>
                 </form>
               </div>
             )}

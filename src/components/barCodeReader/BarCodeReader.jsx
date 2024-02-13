@@ -60,7 +60,7 @@ function BarCodeReader({ setOpenQrScanner }) {
     <div className="barCodeReader">
       <ToastContainer />
       <IoMdClose onClick={() => setOpenQrScanner(false)} className="barClose" />
-      {!data ? (
+      {/* {!data ? (
         <BarCodeScan
           fps={10}
           qrbox={450}
@@ -116,7 +116,68 @@ function BarCodeReader({ setOpenQrScanner }) {
             <button onClick={() => addToCart(data)}>Qo'shish</button>
           </div>
         </div>
+      )} */}
+
+      {!data ? (
+        <BarCodeScan
+          fps={10}
+          qrbox={450}
+          disableFlip={false}
+          qrCodeSuccessCallback={onNewScanResult}
+          id={id}
+        />
+      ) : (
+        <div className="scanned">
+          <p>nomi: {data?.title}</p>
+          <div className="scaner_item">
+            <label>asl narxi:</label>
+            <span>{data?.orgPrice + " so'm"}</span>
+          </div>
+          <div className="scaner_item">
+            <label>Sotiladigan narxi:</label>
+            <input
+              type="text"
+              value={price}
+              onChange={(e) => {
+                setPrice(e.target.value);
+                setTotalPrice(e.target.value * quantity);
+              }}
+            />
+          </div>
+          <div className="scaner_item">
+            <label>Bazadagi miqdori:</label>
+            <input type="text" value={totalquantity} />
+          </div>
+          <div className="scaner_item">
+            <label>kategoriyasi:</label>
+            <span>{data?.category}</span>
+          </div>
+          <div className="scaner_item">
+            <label>Sotiladigan miqdori:</label>
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => {
+                calculatePrice(e.target.value);
+              }}
+            />
+          </div>
+          <div className="scaner_item">
+            <label>Umumiy narxi:</label>
+            <input
+              type="text"
+              value={totalPrice}
+              onChange={(e) => setTotalPrice(e.target.value)}
+            />
+          </div>
+
+          <div className="scanned__btns">
+            <button onClick={() => setData(null)}>bekor qilish</button>
+            <button onClick={() => addToCart(data)}>Qo'shish</button>
+          </div>
+        </div>
       )}
+
       <h1>{id}</h1>
     </div>
   );

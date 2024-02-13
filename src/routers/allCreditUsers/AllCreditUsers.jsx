@@ -13,63 +13,87 @@ import { IoTrashBinOutline } from "react-icons/io5";
 import { GiMoneyStack } from "react-icons/gi";
 // CREDIT API =>
 import {
-  useCreditCreateUserMutation,
-  useCreditFindRegisterMutation,
   useCreditUserDeleteOneMutation,
   useGetAllCriditDataQuery,
   useSoldCriditFintUserMutation,
+  useUpdateCreditUserMutation,
 } from "../../redux/criditApi";
 import { toast, ToastContainer, Zoom } from "react-toastify";
-import emptyData from "../../assets/empty1.png";
+import CriditEye from "../../components/criditEye/CriditEye";
+import Empty from "../../components/empty/Empty";
+import CreditEdit from "../../components/creditEdit/CreditEdit";
 
 function AllCreditUsers() {
-  const { data, isLoading } = useGetAllCriditDataQuery();
-  const [findCriditUset] = useCreditFindRegisterMutation();
+  const { data } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
+  const [soldCriditFintUser] = useSoldCriditFintUserMutation();
+  const [updateCreditUser] = useUpdateCreditUserMutation();
 
   let [dataItem, setDataItem] = useState([]);
+  const [openCriditEye, setOpenCriditEye] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [openUserDataEdit, setOpenUserDataEdit] = useState(false);
 
-  const criditUserDeleteOne = async (id) => {
+  useEffect(() => {
+    setDataItem(data?.innerData);
+  }, [data]);
+
+  async function criditUserDeleteOne(id) {
     let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
-
     clientConfirm &&
       (await creditUserDeleteOne(id)
         .then((res) => {
+          console.log(res);
           if (res?.data?.status) {
-            toast.success("malumor o'chirildi", {
+            console.log(res);
+            toast.success("malumot o'chirildi", {
               transition: Zoom,
               autoClose: 2000,
               closeButton: false,
               hideProgressBar: true,
             });
+            return setDataItem(res?.data?.innerData);
           }
         })
         .catch((err) => console.log(err)));
-  };
-
-  useEffect(() => {
-    if (data?.status === "success") {
-      setDataItem(data?.innerData);
-    }
-  }, [data]);
+  }
 
   const clickEye = async (id) => {
-    await findCriditUset({ id })
-      .then((res) => console.log(res))
+    await soldCriditFintUser({ id })
+      .then((res) => {
+        if (res?.data?.status === "success") {
+          setUserData(res?.data?.innerData);
+          setOpenCriditEye(!openCriditEye);
+        }
+      })
       .catch((err) => console.log(err));
   };
 
-  let addData = new Date().toLocaleString();
-  let split = addData.split(" ");
+  const creditEdit = async (id) => {
+    await updateCreditUser({ id })
+      .then((res) => {
+        if (res?.data?.status === "success") {
+          setOpenUserDataEdit(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  openCriditEye
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
+
+  openUserDataEdit
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
 
   return (
     <div className="creditCart">
-      {!data?.length ? (
-        <div className="empty__cart">
-          <img className="empty" src={emptyData} alt="" />
-          Ma'lumot topilmadi
-        </div>
-      ) : (
+      {openCriditEye && (
+        <CriditEye closeCreditEya={setOpenCriditEye} userData={userData} />
+      )}
+      {openUserDataEdit && <CreditEdit creditEditClose={setOpenUserDataEdit} />}
+      {data?.innerData?.length ? (
         <>
           <ToastContainer />
           <h1 className="heading">Barcha qarzdorlar</h1>
@@ -114,13 +138,13 @@ function AllCreditUsers() {
                     <td>{i?.passport}</td>
 
                     <td></td>
-                    <td>{split[0]}</td>
-                    <td>{split[0]}</td>
+                    <td>{i?.addedTime.split(" ")[0]}</td>
+                    <td>{i?.givingDay}</td>
                     <td>
                       <FaRegEye onClick={() => clickEye(i?._id)} />
                     </td>
                     <td>
-                      <FaPencilAlt />
+                      <FaPencilAlt onClick={() => creditEdit(i?._id)} />
                     </td>
                     <td>
                       <FaTrashCan onClick={() => criditUserDeleteOne(i?._id)} />
@@ -131,6 +155,10 @@ function AllCreditUsers() {
             </table>
           </div>
         </>
+      ) : (
+        <div className="empty">
+          <Empty />
+        </div>
       )}
     </div>
   );

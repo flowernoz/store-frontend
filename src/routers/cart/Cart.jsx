@@ -13,6 +13,7 @@ import { toast, ToastContainer } from "react-toastify";
 import empty from "../../assets/empty1.png";
 import CriditRegister from "../../components/criditRegister/CriditRegister";
 import { useState } from "react";
+import Empty from "../../components/empty/Empty";
 
 function Cart() {
   const cart = useCart();
@@ -86,15 +87,11 @@ function Cart() {
 
   return (
     <div className="main_cart_home">
-      {!cart.length ? (
-        <div className="empty__cart">
-          <img src={empty} alt="empty" className="empty" />
-          Savat bo'sh
-        </div>
-      ) : (
+      {cart.length ? (
         <>
-          <ToastContainer />
-          {openRgister && <CriditRegister close={setOpenRgister} />}
+          {openRgister && (
+            <CriditRegister close={setOpenRgister} totalPrice={subtotal} />
+          )}
           <div className="cart_table_container">
             <table>
               <caption>Sotiladigan Tovarlar</caption>
@@ -158,13 +155,13 @@ function Cart() {
               <div className="cart_tfoot_totall">
                 <ul>
                   <li>
-                    <span>Jami:</span>
+                    <span className="li_title">Malumotlar soni:</span>
                     <h2>
-                      {cart?.length} <span>mahsulot sotib olindi</span>
+                      {cart?.length} <span>Ta</span>
                     </h2>
                   </li>
                   <li>
-                    <span>Umumiy narxi:</span>
+                    <span className="li_title">Umumiy narxi:</span>
                     <h2>
                       {subtotal} <span> so'm</span>
                     </h2>
@@ -178,6 +175,10 @@ function Cart() {
             </div>
           </div>
         </>
+      ) : (
+        <div className="empty_cart">
+          <img src={empty} alt="" />
+        </div>
       )}
     </div>
   );

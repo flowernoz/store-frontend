@@ -28,7 +28,7 @@
   background: var(--bgColor) !important;
   font-size: 16px;
   color: #fff;
-  /* margin: auto; */
+  margin: auto;
 }
 .scanned span {
   width: 100%;
@@ -80,6 +80,93 @@ input::-webkit-inner-spin-button {
   padding-top: 5px;
   color: #fff;
 }
+.scanned__btns {
+  display: flex;
+  gap: 7px;
+}
+*/
+
+/* add code css */
+
+.barCodeReader {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  min-height: 100vh;
+  background: azure;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.scanned {
+  width: 400px !important;
+  height: 550px !important;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 40px;
+  gap: 15px;
+  box-shadow: 1px 0 8px rgb(10, 107, 203);
+  border: 1px solid rgba(58, 140, 223, 0.774);
+  background: var(--bgColor) !important;
+  font-size: 16px;
+  color: #fff;
+}
+.scanned p {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+.scaner_item {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #fff;
+  padding: 7px 10px;
+  align-items: center;
+  border-radius: 10px;
+  gap: 5px;
+}
+
+.scaner_item input[type="number"]::-webkit-inner-spin-button,
+.scaner_item input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+.scaner_item input {
+  height: 100%;
+  border: none;
+  text-indent: 10px;
+  font-size: 13px;
+  border-radius: 5px;
+}
+
+.scanned button {
+  width: 50%;
+  height: 40px;
+  background: rgb(10, 107, 203);
+  color: #fff;
+  margin: 0 auto;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.scanned button:hover {
+  background: rgb(52, 139, 225);
+}
+.barClose {
+  width: 100%;
+  font-size: 25px;
+  display: flex;
+  padding-top: 5px;
+  color: #fff;
+}
+
 .scanned__btns {
   display: flex;
   gap: 7px;
