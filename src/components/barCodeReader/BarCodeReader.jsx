@@ -28,7 +28,7 @@ function BarCodeReader({ setOpenQrScanner }) {
         setTotalPrice(res?.data?.innerData?.price);
       })
       .catch((res) => console.log(res));
-  }, [id.length]);
+  }, [id]);
 
   // COUNTING TOTALPRICE
 
@@ -60,63 +60,6 @@ function BarCodeReader({ setOpenQrScanner }) {
     <div className="barCodeReader">
       <ToastContainer />
       <IoMdClose onClick={() => setOpenQrScanner(false)} className="barClose" />
-      {/* {!data ? (
-        <BarCodeScan
-          fps={10}
-          qrbox={450}
-          disableFlip={false}
-          qrCodeSuccessCallback={onNewScanResult}
-          id={id}
-        />
-      ) : (
-        <div className="scanned">
-          <p>{data?.title}</p>
-          <span>
-            asl narxi: <b>{data?.orgPrice}</b>
-          </span>
-          <div>
-            <label>Sotiladigan narxi:</label>
-            <input
-              type="text"
-              value={price}
-              onChange={(e) => {
-                setPrice(e.target.value);
-                setTotalPrice(e.target.value * quantity);
-              }}
-            />
-          </div>
-          <span>
-            Bazadagi miqdori:
-            <b> {totalquantity}</b>
-          </span>
-          <div>
-            <label>Sotiladigan miqdori:</label>
-            <input
-              min={1}
-              type="number"
-              value={quantity}
-              onChange={(e) => {
-                calculatePrice(e.target.value);
-              }}
-            />
-          </div>
-          <span>
-            Umumiy narxi:
-            <b>{totalPrice}</b>
-          </span>
-          <div className="scanned__btns">
-            <button
-              onClick={() => {
-                setData(null);
-                setId("");
-              }}
-            >
-              bekor qilish
-            </button>
-            <button onClick={() => addToCart(data)}>Qo'shish</button>
-          </div>
-        </div>
-      )} */}
 
       {!data ? (
         <BarCodeScan

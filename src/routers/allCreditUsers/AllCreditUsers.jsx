@@ -38,7 +38,7 @@ function AllCreditUsers() {
     setDataItem(data?.innerData);
   }, [data]);
 
-  async function criditUserDeleteOne(id) {
+  async function criditUserDelete(id) {
     let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
     clientConfirm &&
       (await creditUserDeleteOne(id)
@@ -147,7 +147,7 @@ function AllCreditUsers() {
                       <FaPencilAlt onClick={() => creditEdit(i?._id)} />
                     </td>
                     <td>
-                      <FaTrashCan onClick={() => criditUserDeleteOne(i?._id)} />
+                      <FaTrashCan onClick={() => criditUserDelete(i?._id)} />
                     </td>
                   </tr>
                 ))}

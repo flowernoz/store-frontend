@@ -67,21 +67,18 @@ function Allproducts() {
       .catch((err) => console.log(err));
   }
 
-  async function SearchValue(e) {
-    let value = e.trimStart();
+  // async function SearchValue(e) {
+  //   let value = e.trimStart();
 
-    await searchPost({ value })
-      .then((res) => {
-        if (res?.data?.status === "success") {
-          setDataItem(res?.data?.innerData);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
-  function filterData(e) {
-    let value = e.target.value;
-    console.log(value);
-  }
+  //   await searchPost({ value })
+  //     .then((res) => {
+  //       if (res?.data?.status === "success") {
+  //         setDataItem(res?.data?.innerData);
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
   openProEdit
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
@@ -89,7 +86,7 @@ function Allproducts() {
   return (
     <div className="allproducts">
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
-      {data?.innerData?.length ? (
+      {dataItem?.length ? (
         <>
           <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>

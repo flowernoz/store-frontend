@@ -24,7 +24,7 @@ export const productApi = api.injectEndpoints({
     creditUserDeleteOne: builder.mutation({
       query(id) {
         return {
-          url: `creditUser/delete/${id}`,
+          url: `creditUser/creditDeleteOneUser/delete/${id}`,
           method: "DELETE",
         };
       },
