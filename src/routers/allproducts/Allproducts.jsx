@@ -79,7 +79,10 @@ function Allproducts() {
       })
       .catch((err) => console.log(err));
   }
-
+  function filterData(e) {
+    let value = e.target.value;
+    console.log(value);
+  }
   openProEdit
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
