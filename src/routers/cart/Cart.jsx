@@ -18,7 +18,7 @@ function Cart() {
   const cart = useCart();
   const dispatch = useDispatch();
   const [openRgister, setOpenRgister] = useState(false);
-
+  console.log(cart);
   // delete item
   function handleDelete(id) {
     let warning = window.confirm("Savatni bo'shatishni xohlaysizmi?");
@@ -123,14 +123,14 @@ function Cart() {
                         <button
                           className="plus_minus"
                           disabled={i?.quantity === 1}
-                          onClick={() => decrementCart(i?._id)}
+                          onClick={() => decrementCart(i?.barcode)}
                         >
                           <FaMinus />
                         </button>
                         <span>{i.quantity}</span>
                         <button
                           className="plus_minus"
-                          onClick={() => incrementCart(i?._id)}
+                          onClick={() => incrementCart(i?.barcode)}
                         >
                           <FaPlus />
                         </button>
@@ -139,7 +139,7 @@ function Cart() {
                     <td>
                       <button
                         className="table_trash"
-                        onClick={() => handleDelete(i?._id)}
+                        onClick={() => handleDelete(i?.barcode)}
                       >
                         <FaTrash />
                       </button>

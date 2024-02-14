@@ -7,6 +7,12 @@ export const productsApi = api.injectEndpoints({
       query: () => "pro/allProducts",
       providesTags: ["GETPRODUCT"],
     }),
+
+    getPopularProducts: builder.query({
+      query: () => "soldPro/popular",
+      providesTags: ["GETPRODUCT"],
+    }),
+
     addProduct: builder.mutation({
       query(body) {
         return {
@@ -77,4 +83,5 @@ export const {
   useDeleteOneProductMutation,
   useDeleteAllProductsMutation,
   useSearchPostMutation,
+  useGetPopularProductsQuery,
 } = productsApi;

@@ -46,7 +46,8 @@ function BarCodeReader({ setOpenQrScanner }) {
       price: +price,
       totalPrice: +totalPrice,
     };
-    dispatch(AddToCart(updatedCart));
+    const { _id, ...sendCart } = updatedCart;
+    dispatch(AddToCart(sendCart));
     toast.success("Mahsulot Savatga qo'shildi !", {
       position: "top-center",
       autoClose: 1500,

@@ -9,12 +9,14 @@ import {
   useDeleteOneProductMutation,
   useSearchPostMutation,
   useDeleteAllProductsMutation,
+  useGetPopularProductsQuery,
 } from "../../redux/productApi";
 import { toast, ToastContainer } from "react-toastify";
 import Empty from "../../components/empty/Empty";
 
 function Allproducts() {
   const { data } = useGetAllProductsQuery();
+  const popular = useGetPopularProductsQuery().data;
   const [productUpdate] = useProductUpdateMutation();
   const [deleteOneProduct] = useDeleteOneProductMutation();
   const [searchPost] = useSearchPostMutation();
@@ -23,7 +25,6 @@ function Allproducts() {
   const [openProEdit, setOpenProEdit] = useState(false);
   const [dataItem, setDataItem] = useState([]);
   // const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     setDataItem(data?.innerData);
     // setLoading(false);
@@ -90,6 +91,18 @@ function Allproducts() {
         <>
           <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>
+          <div className="btns__filter">
+            <button onClick={() => setDataItem(data?.innerData)}>
+              barchasi
+            </button>
+            <button
+              onClick={() =>
+                setDataItem(popular?.length ? popular : data?.innerData)
+              }
+            >
+              ommabop
+            </button>
+          </div>
           <div className="tb">
             <table className="fl-table">
               <thead>
