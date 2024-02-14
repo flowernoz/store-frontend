@@ -2,7 +2,7 @@ import "./allProducts.css";
 import { useState, useEffect, memo } from "react";
 import Loader from "../../components/btnLoader/BtnLoader";
 import { FaTrash, FaEdit, FaMinus } from "react-icons/fa";
-import ProEdit from "../../components/proEdit /ProEdit";
+import ProEdit from "../../components/proEdit/ProEdit";
 import {
   useGetAllProductsQuery,
   useProductUpdateMutation,

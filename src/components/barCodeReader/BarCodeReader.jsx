@@ -28,7 +28,7 @@ function BarCodeReader({ setOpenQrScanner }) {
         setTotalPrice(res?.data?.innerData?.price);
       })
       .catch((res) => console.log(res));
-  }, [id]);
+  }, [id.length]);
 
   // COUNTING TOTALPRICE
 
