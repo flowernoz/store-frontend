@@ -10,6 +10,7 @@ import { FaRegCalendarAlt, FaRegCalendarPlus } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import { IoHomeOutline } from "react-icons/io5";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 function Sidebar({ closeSidebarFunc }) {
   return (
@@ -31,6 +32,10 @@ function Sidebar({ closeSidebarFunc }) {
           <NavLink to={"/product"}>
             <BiGridAlt />
             Mahsulotlar
+          </NavLink>
+          <NavLink to={"/popular"}>
+            <FaMoneyBillTrendUp />
+            ommabop Mahsulotlar
           </NavLink>
           <NavLink to={"/createProduct"}>
             <HiOutlineViewGridAdd />

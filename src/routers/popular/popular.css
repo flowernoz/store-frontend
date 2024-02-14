@@ -75,6 +75,17 @@
   color: crimson;
 }
 
+.btns__filter {
+  display: flex;
+  margin-bottom: 10px;
+  gap: 9px;
+}
+.btns__filter button {
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1px solid #042654;
+  border-radius: 8px;
+}
 /* Responsive */
 @media (min-width: 767px) {
   .fl-table tbody tr:nth-child(even) {
