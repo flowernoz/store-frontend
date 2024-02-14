@@ -25,31 +25,31 @@ function Sidebar({ closeSidebarFunc }) {
 
         {/*  SIDEBAR LINKS */}
         <div className="sidebar__links">
-          <NavLink to={"/"}>
+          <NavLink onClick={closeSidebarFunc} to={"/"}>
             <IoHomeOutline />
             bosh sahifa
           </NavLink>
-          <NavLink to={"/product"}>
+          <NavLink onClick={closeSidebarFunc} to={"/product"}>
             <BiGridAlt />
             Mahsulotlar
           </NavLink>
-          <NavLink to={"/popular"}>
+          <NavLink onClick={closeSidebarFunc} to={"/popular"}>
             <FaMoneyBillTrendUp />
             ommabop Mahsulotlar
           </NavLink>
-          <NavLink to={"/createProduct"}>
+          <NavLink onClick={closeSidebarFunc} to={"/createProduct"}>
             <HiOutlineViewGridAdd />
             mahsulot qo'shish
           </NavLink>
-          <NavLink to={"/nasiya"}>
+          <NavLink onClick={closeSidebarFunc} to={"/nasiya"}>
             <FaRegCalendarAlt />
             nasiya
           </NavLink>
-          <NavLink to={"/nasiyacreate"}>
+          <NavLink onClick={closeSidebarFunc} to={"/nasiyacreate"}>
             <FaRegCalendarPlus />
             Nasiya qo'shish
           </NavLink>
-          <NavLink to={"/cart"}>
+          <NavLink onClick={closeSidebarFunc} to={"/cart"}>
             <AiOutlineShoppingCart className="service__icon" />
             Savat
           </NavLink>
