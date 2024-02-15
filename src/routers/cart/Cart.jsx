@@ -18,7 +18,7 @@ function Cart() {
   const cart = useCart();
   const dispatch = useDispatch();
   const [openRgister, setOpenRgister] = useState(false);
-  console.log(cart);
+
   // delete item
   function handleDelete(id) {
     let warning = window.confirm("Savatni bo'shatishni xohlaysizmi?");
@@ -103,7 +103,7 @@ function Cart() {
                   <th>Razmeri</th>
                   <th>Rangi</th>
                   <th>Umumiy narxi</th>
-                  <th>Sotiladigan soni</th>
+                  <th>Soni</th>
                   <th onClick={clearCart}>
                     <FaTrash />
                   </th>
