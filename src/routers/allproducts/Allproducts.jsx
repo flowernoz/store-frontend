@@ -2,7 +2,7 @@ import "./allProducts.css";
 import { useState, useEffect, memo } from "react";
 import Loader from "../../components/btnLoader/BtnLoader";
 import { FaTrash, FaEdit, FaMinus } from "react-icons/fa";
-import ProEdit from "../../components/proEdit /ProEdit";
+import ProEdit from "../../components/proEdit/ProEdit";
 import {
   useGetAllProductsQuery,
   useProductUpdateMutation,
@@ -23,7 +23,6 @@ function Allproducts() {
   const [openProEdit, setOpenProEdit] = useState(false);
   const [dataItem, setDataItem] = useState([]);
   // const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     setDataItem(data?.innerData);
     // setLoading(false);
@@ -67,21 +66,18 @@ function Allproducts() {
       .catch((err) => console.log(err));
   }
 
-  async function SearchValue(e) {
-    let value = e.trimStart();
+  // async function SearchValue(e) {
+  //   let value = e.trimStart();
 
-    await searchPost({ value })
-      .then((res) => {
-        if (res?.data?.status === "success") {
-          setDataItem(res?.data?.innerData);
-        }
-      })
-      .catch((err) => console.log(err));
-  }
-  function filterData(e) {
-    let value = e.target.value;
-    console.log(value);
-  }
+  //   await searchPost({ value })
+  //     .then((res) => {
+  //       if (res?.data?.status === "success") {
+  //         setDataItem(res?.data?.innerData);
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
   openProEdit
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
@@ -89,7 +85,7 @@ function Allproducts() {
   return (
     <div className="allproducts">
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
-      {data?.innerData?.length ? (
+      {dataItem?.length ? (
         <>
           <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>

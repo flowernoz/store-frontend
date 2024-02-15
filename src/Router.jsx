@@ -12,6 +12,7 @@ import Layout from "./layout";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Allproducts from "./routers/allproducts/Allproducts";
+import Popular from "./routers/popular/Popular";
 function Router() {
   return (
     <div className="router">
@@ -26,6 +27,7 @@ function Router() {
             <Route path="/nasiyacreate" element={<Nasiya />} />
             <Route path="/product" element={<Allproducts />} />
             <Route path="/createProduct" element={<CreateProduct />} />
+            <Route path="/popular" element={<Popular />} />
           </Route>
         </Route>
       </Routes>

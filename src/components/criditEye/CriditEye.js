@@ -4,6 +4,7 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { GiMoneyStack } from "react-icons/gi";
 
 const CriditEye = ({ closeCreditEya, userData }) => {
+  console.log(userData);
   return (
     <div className="eye_page">
       <div className="container">
@@ -13,36 +14,40 @@ const CriditEye = ({ closeCreditEya, userData }) => {
               <h2>Tarix</h2>
               <IoIosCloseCircleOutline onClick={() => closeCreditEya(false)} />
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nomi</th>
-                  <th>Sana</th>
-                  <th>Vaqti</th>
-                  <th>Soni</th>
-                  <th>
-                    <GiMoneyStack />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {userData?.stories?.map((i, index) => (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    {i?.products?.map((item, inx) => (
-                      <td key={inx}>{item?.title}</td>
-                    ))}
-                    <td>{i?.boughtTime.split(" ")[0]}</td>
-                    <td>{i?.boughtTime.split(" ")[1]}</td>
-                    {i?.products?.map((item, inx) => (
-                      <td key={inx}>{item?.quantity}</td>
-                    ))}
-                    <td>{i?.totalPrice}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="table_container">
+              {userData?.stories?.map((story) => (
+                <div className="table_container_border" key={story?._id}>
+                  <p>
+                    <strong>Olingan sanasi:</strong> {story?.boughtTime}
+                  </p>
+                  <p>
+                    <strong>Umumiy narxi:</strong> {story?.totalPrice}
+                  </p>
+                  <table border="1">
+                    <thead>
+                      <tr>
+                        <th>Nomi</th>
+                        <th>Soni</th>
+                        <th>
+                          <GiMoneyStack />
+                        </th>
+                        <th>Umumiy narxi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {story?.products?.map((product) => (
+                        <tr key={product?._id}>
+                          <td>{product?.title}</td>
+                          <td>{product?.quantity}</td>
+                          <td>{product?.price}</td>
+                          <td>{product?.totalPrice}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

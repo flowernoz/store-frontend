@@ -11,6 +11,7 @@ import { IoHomeOutline } from "react-icons/io5";
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 function Layout() {
   const [state, setState] = useState(false);
   return (
@@ -31,6 +32,10 @@ function Layout() {
           <NavLink to={"/product"}>
             <BiGridAlt />
             {!state ? "mahsulotlar" : ""}
+          </NavLink>
+          <NavLink to={"/popular"}>
+            <FaMoneyBillTrendUp />
+            {!state ? "ommabop" : ""}
           </NavLink>
           <NavLink to={"/createProduct"}>
             <HiOutlineViewGridAdd />

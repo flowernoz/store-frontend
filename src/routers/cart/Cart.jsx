@@ -13,7 +13,6 @@ import { toast, ToastContainer } from "react-toastify";
 import empty from "../../assets/empty1.png";
 import CriditRegister from "../../components/criditRegister/CriditRegister";
 import { useState } from "react";
-import Empty from "../../components/empty/Empty";
 
 function Cart() {
   const cart = useCart();
@@ -89,6 +88,7 @@ function Cart() {
     <div className="main_cart_home">
       {cart.length ? (
         <>
+          <ToastContainer />
           {openRgister && (
             <CriditRegister close={setOpenRgister} totalPrice={subtotal} />
           )}
@@ -122,15 +122,15 @@ function Cart() {
                       <div className="table_butons">
                         <button
                           className="plus_minus"
-                          disabled={i?.quantity == 1}
-                          onClick={() => decrementCart(i?._id)}
+                          disabled={i?.quantity === 1}
+                          onClick={() => decrementCart(i?.barcode)}
                         >
                           <FaMinus />
                         </button>
                         <span>{i.quantity}</span>
                         <button
                           className="plus_minus"
-                          onClick={() => incrementCart(i?._id)}
+                          onClick={() => incrementCart(i?.barcode)}
                         >
                           <FaPlus />
                         </button>
@@ -139,7 +139,7 @@ function Cart() {
                     <td>
                       <button
                         className="table_trash"
-                        onClick={() => handleDelete(i?._id)}
+                        onClick={() => handleDelete(i?.barcode)}
                       >
                         <FaTrash />
                       </button>

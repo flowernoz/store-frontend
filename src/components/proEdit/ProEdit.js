@@ -59,7 +59,7 @@ const ProEdit = ({ close, data }) => {
     await productUpdate({ _id: data?._id, updateData: proData })
       .then((res) => {
         if (res?.data?.status) {
-          toast.success("Muofaqiyatli o'zgartirish kiritildi", {
+          toast.success("Muvaffaqiyatli o'zgartirish kiritildi", {
             autoClose: 2000,
             closeButton: false,
             hideProgressBar: true,
@@ -72,7 +72,6 @@ const ProEdit = ({ close, data }) => {
 
   return (
     <div className="pro_edit_page">
-      <ToastContainer />
       <div className="container">
         <div className="pro_edit_container">
           <form onSubmit={proFormData}>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CriditRegister.css";
-import { Zoom, toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useCart } from "../../redux/selectors";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import {
@@ -36,7 +36,10 @@ const CriditRegister = ({ close, totalPrice }) => {
     value.phone = +value.phone;
     value.passport = idNumber;
     setRegLoader(true);
-    await creditCreateUser(value)
+
+    let userData = { criditUser: value, totalPrice, criditData: cart };
+
+    await creditCreateUser(userData)
       .then((res) => {
         if (res?.data?.status === "success") {
           localStorage.setItem(
@@ -49,7 +52,9 @@ const CriditRegister = ({ close, totalPrice }) => {
             closeButton: false,
             hideProgressBar: true,
           });
+          dispatch(ClearCart());
           e.target.reset();
+          close(false);
         }
       })
       .catch((res) => console.log(res));
@@ -95,7 +100,6 @@ const CriditRegister = ({ close, totalPrice }) => {
   return (
     <div className="cridit_register_page">
       <div className="container">
-        <ToastContainer />
         <div
           style={{
             width: register ? "350px" : "",

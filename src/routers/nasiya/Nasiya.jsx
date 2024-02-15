@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Nasiya.css";
-import { toast, ToastContainer, Zoom } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // CRIDIT API => CREATE CRIDIT USER
 import { useCreditCreateUserMutation } from "../../redux/criditApi";

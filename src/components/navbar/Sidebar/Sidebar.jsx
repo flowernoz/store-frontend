@@ -10,6 +10,7 @@ import { FaRegCalendarAlt, FaRegCalendarPlus } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import { IoHomeOutline } from "react-icons/io5";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 function Sidebar({ closeSidebarFunc }) {
   return (
@@ -24,27 +25,31 @@ function Sidebar({ closeSidebarFunc }) {
 
         {/*  SIDEBAR LINKS */}
         <div className="sidebar__links">
-          <NavLink to={"/"}>
+          <NavLink onClick={closeSidebarFunc} to={"/"}>
             <IoHomeOutline />
             bosh sahifa
           </NavLink>
-          <NavLink to={"/product"}>
+          <NavLink onClick={closeSidebarFunc} to={"/product"}>
             <BiGridAlt />
             Mahsulotlar
           </NavLink>
-          <NavLink to={"/createProduct"}>
+          <NavLink onClick={closeSidebarFunc} to={"/popular"}>
+            <FaMoneyBillTrendUp />
+            ommabop Mahsulotlar
+          </NavLink>
+          <NavLink onClick={closeSidebarFunc} to={"/createProduct"}>
             <HiOutlineViewGridAdd />
             mahsulot qo'shish
           </NavLink>
-          <NavLink to={"/nasiya"}>
+          <NavLink onClick={closeSidebarFunc} to={"/nasiya"}>
             <FaRegCalendarAlt />
             nasiya
           </NavLink>
-          <NavLink to={"/nasiyacreate"}>
+          <NavLink onClick={closeSidebarFunc} to={"/nasiyacreate"}>
             <FaRegCalendarPlus />
             Nasiya qo'shish
           </NavLink>
-          <NavLink to={"/cart"}>
+          <NavLink onClick={closeSidebarFunc} to={"/cart"}>
             <AiOutlineShoppingCart className="service__icon" />
             Savat
           </NavLink>

@@ -37,9 +37,9 @@ function AllCreditUsers() {
 
   useEffect(() => {
     setDataItem(data?.innerData);
-  }, [data]);
+  }, [userUpdateData, data, dataItem]);
 
-  async function criditUserDeleteOne(id) {
+  async function criditUserDelete(id) {
     let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
     clientConfirm &&
       (await creditUserDeleteOne(id)
@@ -70,8 +70,8 @@ function AllCreditUsers() {
       .catch((err) => console.log(err));
   };
 
-  const creditEdit = async (id) => {
-    await updateCreditUser({ id })
+  const creditEdit = async (editData) => {
+    await updateCreditUser(editData)
       .then((res) => {
         if (res?.data?.status === "success") {
           setOpenUserDataEdit(true);
@@ -80,6 +80,8 @@ function AllCreditUsers() {
       })
       .catch((err) => console.log(err));
   };
+
+  // console.log(userUpdateData);
 
   openCriditEye
     ? (document.body.style.overflow = "hidden")
@@ -98,6 +100,7 @@ function AllCreditUsers() {
         <CreditEdit
           creditEditClose={setOpenUserDataEdit}
           updateUserData={userUpdateData}
+          setDataItem={setDataItem}
         />
       )}
       {data?.innerData?.length ? (
@@ -151,10 +154,10 @@ function AllCreditUsers() {
                       <FaRegEye onClick={() => clickEye(i?._id)} />
                     </td>
                     <td>
-                      <FaPencilAlt onClick={() => creditEdit(i?._id)} />
+                      <FaPencilAlt onClick={() => creditEdit(i)} />
                     </td>
                     <td>
-                      <FaTrashCan onClick={() => criditUserDeleteOne(i?._id)} />
+                      <FaTrashCan onClick={() => criditUserDelete(i?._id)} />
                     </td>
                   </tr>
                 ))}
