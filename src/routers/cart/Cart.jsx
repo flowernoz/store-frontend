@@ -103,7 +103,7 @@ function Cart() {
                   <th>Razmeri</th>
                   <th>Rangi</th>
                   <th>Umumiy narxi</th>
-                  <th>Soni</th>
+                  <th> S Soni</th>
                   <th onClick={clearCart}>
                     <FaTrash />
                   </th>

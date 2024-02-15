@@ -341,3 +341,6 @@
     font-size: 13px;
   }
 }
+
+@media (max-width: 550px) {
+}
