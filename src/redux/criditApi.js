@@ -24,7 +24,7 @@ export const productApi = api.injectEndpoints({
     creditUserDeleteOne: builder.mutation({
       query(id) {
         return {
-          url: `creditUser/creditDeleteOneUser/delete/${id}`,
+          url: `creditUser/deleteOneUser/${id}`,
           method: "DELETE",
         };
       },
@@ -60,14 +60,14 @@ export const productApi = api.injectEndpoints({
     // PUT => UPDATE CREDIT USER
 
     updateCreditUser: builder.mutation({
-      query(body) {
-        let { id } = body;
+      query(data) {
         return {
-          url: `creditUser/updateCreditUser/${id}`,
+          url: `creditUser/updateCreditUser/${data?._id}`,
           method: "PUT",
-          body,
+          body: data,
         };
       },
+      invalidatesTags: ["GETALLCRIDIT"],
     }),
   }),
 });

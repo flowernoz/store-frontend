@@ -33,10 +33,11 @@ function AllCreditUsers() {
   const [openCriditEye, setOpenCriditEye] = useState(false);
   const [userData, setUserData] = useState(null);
   const [openUserDataEdit, setOpenUserDataEdit] = useState(false);
+  const [userUpdateData, setuserUpdateData] = useState(null);
 
   useEffect(() => {
     setDataItem(data?.innerData);
-  }, [data]);
+  }, [userUpdateData, data, dataItem]);
 
   async function criditUserDelete(id) {
     let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
@@ -63,21 +64,24 @@ function AllCreditUsers() {
       .then((res) => {
         if (res?.data?.status === "success") {
           setUserData(res?.data?.innerData);
-          setOpenCriditEye(!openCriditEye);
+          setOpenCriditEye(true);
         }
       })
       .catch((err) => console.log(err));
   };
 
-  const creditEdit = async (id) => {
-    await updateCreditUser({ id })
+  const creditEdit = async (editData) => {
+    await updateCreditUser(editData)
       .then((res) => {
         if (res?.data?.status === "success") {
           setOpenUserDataEdit(true);
+          setuserUpdateData(res?.data?.innerData);
         }
       })
       .catch((err) => console.log(err));
   };
+
+  // console.log(userUpdateData);
 
   openCriditEye
     ? (document.body.style.overflow = "hidden")
@@ -92,7 +96,13 @@ function AllCreditUsers() {
       {openCriditEye && (
         <CriditEye closeCreditEya={setOpenCriditEye} userData={userData} />
       )}
-      {openUserDataEdit && <CreditEdit creditEditClose={setOpenUserDataEdit} />}
+      {openUserDataEdit && (
+        <CreditEdit
+          creditEditClose={setOpenUserDataEdit}
+          updateUserData={userUpdateData}
+          setDataItem={setDataItem}
+        />
+      )}
       {data?.innerData?.length ? (
         <>
           <ToastContainer />
@@ -137,14 +147,14 @@ function AllCreditUsers() {
                     <td>{i?.phone}</td>
                     <td>{i?.passport}</td>
 
-                    <td></td>
+                    <td>{i?.creditTotalPrice}</td>
                     <td>{i?.addedTime.split(" ")[0]}</td>
                     <td>{i?.givingDay}</td>
                     <td>
                       <FaRegEye onClick={() => clickEye(i?._id)} />
                     </td>
                     <td>
-                      <FaPencilAlt onClick={() => creditEdit(i?._id)} />
+                      <FaPencilAlt onClick={() => creditEdit(i)} />
                     </td>
                     <td>
                       <FaTrashCan onClick={() => criditUserDelete(i?._id)} />

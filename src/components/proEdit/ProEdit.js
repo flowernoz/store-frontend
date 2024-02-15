@@ -72,7 +72,6 @@ const ProEdit = ({ close, data }) => {
 
   return (
     <div className="pro_edit_page">
-      <ToastContainer />
       <div className="container">
         <div className="pro_edit_container">
           <form onSubmit={proFormData}>
