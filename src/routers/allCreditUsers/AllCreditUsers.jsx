@@ -29,7 +29,7 @@ function AllCreditUsers() {
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
 
-  let [dataItem, setDataItem] = useState(null);
+  let [dataItem, setDataItem] = useState([]);
   const [openCriditEye, setOpenCriditEye] = useState(false);
   const [userData, setUserData] = useState(null);
   const [openUserDataEdit, setOpenUserDataEdit] = useState(false);
@@ -40,13 +40,12 @@ function AllCreditUsers() {
   }, [userUpdateData, data, dataItem]);
 
   async function criditUserDelete(id) {
-    console.log(id);
     let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
     clientConfirm &&
       (await creditUserDeleteOne(id)
         .then((res) => {
           console.log(res);
-          if (res?.data?.status == true) {
+          if (res?.data?.status) {
             console.log(res);
             toast.success("malumot o'chirildi", {
               transition: Zoom,
@@ -54,6 +53,7 @@ function AllCreditUsers() {
               closeButton: false,
               hideProgressBar: true,
             });
+            return setDataItem(res?.data?.innerData);
           }
         })
         .catch((err) => console.log(err)));
@@ -103,7 +103,7 @@ function AllCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      {dataItem ? (
+      {data?.innerData?.length ? (
         <>
           <ToastContainer />
           <h1 className="heading">Barcha qarzdorlar</h1>
@@ -123,6 +123,7 @@ function AllCreditUsers() {
                   <th>
                     <FaRegCalendarPlus />
                   </th>
+
                   <th>
                     <FaRegCalendarCheck />
                   </th>

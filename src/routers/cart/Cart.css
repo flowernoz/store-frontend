@@ -46,6 +46,10 @@
   border: none;
 }
 
+.num_icon {
+  display: none;
+}
+
 .cart_table_container table tbody {
   background: #eee;
   width: 100%;
@@ -241,7 +245,6 @@
     width: auto;
   }
 }
-
 @media (max-width: 1141px) {
   .cart_tfoot_title h2 {
     font-size: 18px;
@@ -342,5 +345,12 @@
   }
 }
 
-@media (max-width: 550px) {
+@media (max-width: 540px) {
+  .num_icon {
+    display: block;
+    font-size: 20px;
+  }
+  .text {
+    display: none;
+  }
 }

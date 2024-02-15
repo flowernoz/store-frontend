@@ -4,7 +4,6 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { GiMoneyStack } from "react-icons/gi";
 
 const CriditEye = ({ closeCreditEya, userData }) => {
-  console.log(userData);
   return (
     <div className="eye_page">
       <div className="container">
