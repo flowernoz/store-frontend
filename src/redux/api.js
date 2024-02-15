@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://store-backend-pi-fawn.vercel.app/",
+  baseUrl: "http://localhost:5500/",
+  // baseUrl: "https://store-backend-pi-fawn.vercel.app/",
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("token");
     if (token) {

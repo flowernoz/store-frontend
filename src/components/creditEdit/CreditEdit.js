@@ -3,8 +3,9 @@ import "./CreditEdit.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useUpdateCreditUserMutation } from "../../redux/criditApi";
 
-const CreditEdit = ({ creditEditClose }) => {
+const CreditEdit = ({ creditEditClose, updateUserData }) => {
   const [updateCreditUser] = useUpdateCreditUserMutation();
+
   async function updateCredit(e) {
     e.preventDefault();
 
@@ -12,7 +13,7 @@ const CreditEdit = ({ creditEditClose }) => {
     let data = Object.fromEntries(value);
     data.price = +data.price;
 
-    await updateCreditUser(data)
+    await updateCreditUser({ id: updateUserData?._id, data })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }

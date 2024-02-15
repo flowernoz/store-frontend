@@ -61,7 +61,7 @@ export const productApi = api.injectEndpoints({
 
     updateCreditUser: builder.mutation({
       query(body) {
-        let { id } = body;
+        let { id, data } = body;
         return {
           url: `creditUser/updateCreditUser/${id}`,
           method: "PUT",
