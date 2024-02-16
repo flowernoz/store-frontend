@@ -13,6 +13,11 @@ import { toast, ToastContainer } from "react-toastify";
 import empty from "../../assets/empty1.png";
 import CriditRegister from "../../components/criditRegister/CriditRegister";
 import { useState } from "react";
+import { GoNumber } from "react-icons/go";
+import { MdOutlinePriceCheck, MdOutlineTitle } from "react-icons/md";
+import { IoIosColorPalette } from "react-icons/io";
+import { TfiRulerAlt } from "react-icons/tfi";
+import { GiMoneyStack } from "react-icons/gi";
 
 function Cart() {
   const cart = useCart();
@@ -98,12 +103,42 @@ function Cart() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Nomi</th>
-                  <th>Narxi</th>
-                  <th>Razmeri</th>
-                  <th>Rangi</th>
-                  <th>Umumiy narxi</th>
-                  <th> S Soni</th>
+                  <th>
+                    <span className="num_icon">
+                      <MdOutlineTitle />
+                    </span>
+                    <span className="text">Razmer</span>
+                  </th>
+                  <th>
+                    <span className="num_icon">
+                      <GiMoneyStack />
+                    </span>
+                    <span className="text">Razmer</span>
+                  </th>
+                  <th>
+                    <span className="num_icon">
+                      <TfiRulerAlt />
+                    </span>
+                    <span className="text">Razmer</span>
+                  </th>
+                  <th>
+                    <span className="num_icon">
+                      <IoIosColorPalette />
+                    </span>
+                    <span className="text">Rang</span>
+                  </th>
+                  <th>
+                    <span className="num_icon">
+                      <MdOutlinePriceCheck />
+                    </span>
+                    <span className="text">Umumiy narxi</span>
+                  </th>
+                  <th>
+                    <span className="num_icon">
+                      <GoNumber />
+                    </span>
+                    <span className="text">Soni</span>
+                  </th>
                   <th onClick={clearCart}>
                     <FaTrash />
                   </th>
@@ -114,10 +149,10 @@ function Cart() {
                   <tr key={inx}>
                     <td>{inx + 1}</td>
                     <td>{i?.title ? i?.title : <FaMinus />}</td>
-                    <td>{i?.price ? i?.price + " ming" : 0}</td>
+                    <td>{i?.price ? i?.price : 0}</td>
                     <td>{i?.size ? i?.size : <FaMinus />}</td>
                     <td>{i?.color ? i?.color : <FaMinus />}</td>
-                    <td>{i?.totalPrice + " so'm"}</td>
+                    <td>{i?.totalPrice ? i?.totalPrice : 0}</td>
                     <td>
                       <div className="table_butons">
                         <button

@@ -140,3 +140,31 @@
   font-size: 17px;
   margin: 0 auto;
 }
+
+/* ?\ \\ */
+
+@media (max-width: 570px) {
+  .cridit_register_form form .form_inputs {
+    display: grid;
+    grid-template-columns: repeat(1, auto);
+  }
+}
+
+@media (max-width: 520px) {
+  .cridit_register_form_container {
+    width: 330px;
+  }
+
+  .cridit_register_form_header h2 {
+    font-size: 17px;
+  }
+
+  .criedit_register_find_form h1,
+  .cridit_register_form form h1 {
+    font-size: 22px;
+  }
+
+  .form_find_inputs input {
+    height: 35px;
+  }
+}
