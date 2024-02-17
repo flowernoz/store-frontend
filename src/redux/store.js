@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import cart from "./cart";
 import { api } from "./api";
 
+
 export const store = configureStore({
   reducer: {
     cart,
@@ -9,4 +10,5 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
+
 });
