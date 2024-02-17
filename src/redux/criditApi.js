@@ -48,7 +48,6 @@ export const productApi = api.injectEndpoints({
     //  POST => CREDIT REGISTER FIND USER
     creditFindRegister: builder.mutation({
       query(body) {
-        console.log(body);
         return {
           url: `creditUser/creditFindRegister`,
           method: "POST",

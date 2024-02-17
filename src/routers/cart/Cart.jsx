@@ -13,11 +13,7 @@ import { toast, ToastContainer } from "react-toastify";
 import empty from "../../assets/empty1.png";
 import CriditRegister from "../../components/criditRegister/CriditRegister";
 import { useState } from "react";
-import { GoNumber } from "react-icons/go";
-import { MdOutlinePriceCheck, MdOutlineTitle } from "react-icons/md";
-import { IoIosColorPalette } from "react-icons/io";
-import { TfiRulerAlt } from "react-icons/tfi";
-import { GiMoneyStack } from "react-icons/gi";
+import cartData from "../../static/cartIcon";
 
 function Cart() {
   const cart = useCart();
@@ -103,42 +99,12 @@ function Cart() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>
-                    <span className="num_icon">
-                      <MdOutlineTitle />
-                    </span>
-                    <span className="text">Razmer</span>
-                  </th>
-                  <th>
-                    <span className="num_icon">
-                      <GiMoneyStack />
-                    </span>
-                    <span className="text">Razmer</span>
-                  </th>
-                  <th>
-                    <span className="num_icon">
-                      <TfiRulerAlt />
-                    </span>
-                    <span className="text">Razmer</span>
-                  </th>
-                  <th>
-                    <span className="num_icon">
-                      <IoIosColorPalette />
-                    </span>
-                    <span className="text">Rang</span>
-                  </th>
-                  <th>
-                    <span className="num_icon">
-                      <MdOutlinePriceCheck />
-                    </span>
-                    <span className="text">Umumiy narxi</span>
-                  </th>
-                  <th>
-                    <span className="num_icon">
-                      <GoNumber />
-                    </span>
-                    <span className="text">Soni</span>
-                  </th>
+                  <th>Nomi</th>
+                  <th>Narxi</th>
+                  <th>Olchami</th>
+                  <th>Rangi</th>
+                  <th>Umumiy narxi</th>
+                  <th>Soni</th>
                   <th onClick={clearCart}>
                     <FaTrash />
                   </th>
@@ -183,6 +149,53 @@ function Cart() {
                 ))}
               </tbody>
             </table>
+            <div className="table_container">
+              <div className="table_sidebar">
+                {cartData?.map((i, inx) => (
+                  <div key={inx} className="icon_conrainer">
+                    <span>{i?.icon}</span>
+                  </div>
+                ))}
+              </div>
+              <ul>
+                {cart?.map((i, inx) => (
+                  <div className="li_table" key={inx}>
+                    <li>{inx + 1}</li>
+                    <li>{i?.title ? i?.title : <FaMinus />}</li>
+                    <li>{i?.price ? i?.price : 0}</li>
+                    <li>{i?.size ? i?.size : <FaMinus />}</li>
+                    <li>{i?.color ? i?.color : <FaMinus />}</li>
+                    <li>{i?.totalPrice ? i?.totalPrice : 0}</li>
+                    <li>
+                      <div className="table_butons">
+                        <button
+                          className="plus_minus"
+                          disabled={i?.quantity === 1}
+                          onClick={() => decrementCart(i?.barcode)}
+                        >
+                          <FaMinus />
+                        </button>
+                        <span>{i.quantity}</span>
+                        <button
+                          className="plus_minus"
+                          onClick={() => incrementCart(i?.barcode)}
+                        >
+                          <FaPlus />
+                        </button>
+                      </div>
+                    </li>
+                    <li>
+                      <button
+                        className="table_trash"
+                        onClick={() => handleDelete(i?.barcode)}
+                      >
+                        <FaTrash />
+                      </button>
+                    </li>
+                  </div>
+                ))}
+              </ul>
+            </div>
             <div className="cart_tfoot">
               <div className="cart_tfoot_title">
                 <h2>Sotib olingan mahulotlar</h2>
