@@ -100,12 +100,16 @@ function Cart() {
               <thead>
                 <tr>
                   <th>#</th>
+<<<<<<< HEAD
                   <th>
                     <span className="num_icon">
                       <MdOutlineTitle />
                     </span>
                     <span className="text">Razmer</span>
                   </th>
+=======
+                  <th>Razmer</th>
+>>>>>>> origin/muhammadsoleh
                   <th>Narxi</th>
                   <th>Olchami</th>
                   <th>Rangi</th>
