@@ -24,7 +24,7 @@ import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
 
 function AllCreditUsers() {
-  const { data, isError } = useGetAllCriditDataQuery();
+  const { data } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
@@ -60,7 +60,7 @@ function AllCreditUsers() {
   const clickEye = async (id) => {
     await soldCriditFintUser({ id })
       .then((res) => {
-        if (res?.data?.status === "success") {
+        if (res?.data?.msg === "Credit users are found") {
           setUserData(res?.data?.innerData);
           setOpenCriditEye(true);
         }

@@ -46,6 +46,40 @@ const CriditEye = ({ closeCreditEya, userData }) => {
                   </table>
                 </div>
               ))}
+              {/* {userData?.stories &&
+                userData?.stories?.map((story) => (
+                  <div className="table_container_border" key={story?._id}>
+                    <p>
+                      <strong>Olingan sanasi:</strong> {story?.boughtTime}
+                    </p>
+                    <p>
+                      <strong>Umumiy narxi:</strong> {story?.totalPrice}
+                    </p>
+                    <table border="1">
+                      <thead>
+                        <tr>
+                          <th>Nomi</th>
+                          <th>Soni</th>
+                          <th>
+                            <GiMoneyStack />
+                          </th>
+                          <th>Umumiy narxi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {story?.products &&
+                          story.products.map((product) => (
+                            <tr key={product?._id}>
+                              <td>{product?.title}</td>
+                              <td>{product?.quantity}</td>
+                              <td>{product?.price}</td>
+                              <td>{product?.totalPrice}</td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ))} */}
             </div>
           </div>
         </div>
