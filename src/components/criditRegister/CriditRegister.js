@@ -37,6 +37,18 @@ const CriditRegister = ({ close, totalPrice }) => {
     value.passport = idNumber;
     setRegLoader(true);
 
+    function toUpperCase(number) {
+      var toUpperCase = number.replace(/[a-z]/g, function (i) {
+        return i.toUpperCase();
+      });
+      return toUpperCase;
+    }
+
+    var input = value?.passport;
+    var upperCase = toUpperCase(input);
+
+    value.passport = upperCase;
+
     let userData = { criditUser: value, totalPrice, criditData: cart };
 
     await creditCreateUser(userData)
@@ -67,6 +79,18 @@ const CriditRegister = ({ close, totalPrice }) => {
 
     let creditData = new FormData(e.target);
     let value = Object.fromEntries(creditData);
+
+    function toUpperCase(number) {
+      let toUpperCase = number.replace(/[a-z]/g, function (i) {
+        return i.toUpperCase();
+      });
+      return toUpperCase;
+    }
+
+    let input = value?.passport;
+    let upperCase = toUpperCase(input);
+
+    value.passport = upperCase;
 
     let userData = { criditUser: value, totalPrice, criditData: cart };
 

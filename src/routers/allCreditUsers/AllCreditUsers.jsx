@@ -24,7 +24,7 @@ import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
 
 function AllCreditUsers() {
-  const { data } = useGetAllCriditDataQuery();
+  const { data, isError } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
@@ -37,23 +37,21 @@ function AllCreditUsers() {
 
   useEffect(() => {
     setDataItem(data?.innerData);
-  }, [userUpdateData, data, dataItem]);
+  }, [userUpdateData, data]);
 
   async function criditUserDelete(id) {
     let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
     clientConfirm &&
       (await creditUserDeleteOne(id)
         .then((res) => {
-          console.log(res);
-          if (res?.data?.status) {
-            console.log(res);
+          if (res?.data?.msg === "credit user is deleted") {
+            setDataItem(null);
             toast.success("malumot o'chirildi", {
               transition: Zoom,
               autoClose: 2000,
               closeButton: false,
               hideProgressBar: true,
             });
-            return setDataItem(res?.data?.innerData);
           }
         })
         .catch((err) => console.log(err)));
@@ -103,7 +101,7 @@ function AllCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      {data?.innerData?.length ? (
+      {dataItem?.length ? (
         <>
           <ToastContainer />
           <h1 className="heading">Barcha qarzdorlar</h1>
