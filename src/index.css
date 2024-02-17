@@ -10,9 +10,11 @@
   scroll-behavior: smooth;
   text-transform: capitalize;
 }
+
 body {
   -webkit-font-smoothing: antialiased;
 }
+
 .container {
   max-width: 1366px;
   width: 100%;
@@ -53,6 +55,7 @@ svg {
   display: flex;
   justify-content: space-between;
 }
+
 .strange aside {
   position: sticky;
   left: 0;

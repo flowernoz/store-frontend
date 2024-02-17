@@ -2,85 +2,64 @@ import React from "react";
 import "./CriditEye.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { GiMoneyStack } from "react-icons/gi";
+import { MdOutlinePriceCheck, MdOutlineTitle } from "react-icons/md";
+import { GoNumber } from "react-icons/go";
 
 const CriditEye = ({ closeCreditEya, userData }) => {
   return (
     <div className="eye_page">
       <div className="container">
-        <div className="eye_container">
-          <div className="eye_border">
+        <div className="eya_card">
+          <div className="cont_eya">
             <div className="eye_header">
               <h2>Tarix</h2>
               <IoIosCloseCircleOutline onClick={() => closeCreditEya(false)} />
             </div>
-            <div className="table_container">
-              {userData?.stories?.map((story) => (
-                <div className="table_container_border" key={story?._id}>
+            {userData?.stories?.map((story, index) => (
+              <div className="table_container_border" key={index}>
+                <div className="eya_data_item">
                   <p>
-                    <strong>Olingan sanasi:</strong> {story?.boughtTime}
+                    <strong>Olingan sanasi:</strong>
+                    {story?.boughtTime.split(", ")[0]}
+                  </p>
+                  <p>
+                    <strong>Olingan vaqti:</strong>
+                    {story?.boughtTime.split(" ")[1]}
                   </p>
                   <p>
                     <strong>Umumiy narxi:</strong> {story?.totalPrice}
                   </p>
-                  <table border="1">
-                    <thead>
-                      <tr>
-                        <th>Nomi</th>
-                        <th>Soni</th>
-                        <th>
-                          <GiMoneyStack />
-                        </th>
-                        <th>Umumiy narxi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {story?.products?.map((product) => (
-                        <tr key={product?._id}>
-                          <td>{product?.title}</td>
-                          <td>{product?.quantity}</td>
-                          <td>{product?.price}</td>
-                          <td>{product?.totalPrice}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
-              ))}
-              {/* {userData?.stories &&
-                userData?.stories?.map((story) => (
-                  <div className="table_container_border" key={story?._id}>
-                    <p>
-                      <strong>Olingan sanasi:</strong> {story?.boughtTime}
-                    </p>
-                    <p>
-                      <strong>Umumiy narxi:</strong> {story?.totalPrice}
-                    </p>
-                    <table border="1">
-                      <thead>
-                        <tr>
-                          <th>Nomi</th>
-                          <th>Soni</th>
-                          <th>
-                            <GiMoneyStack />
-                          </th>
-                          <th>Umumiy narxi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {story?.products &&
-                          story.products.map((product) => (
-                            <tr key={product?._id}>
-                              <td>{product?.title}</td>
-                              <td>{product?.quantity}</td>
-                              <td>{product?.price}</td>
-                              <td>{product?.totalPrice}</td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                ))} */}
-            </div>
+                <table border="1">
+                  <thead>
+                    <tr>
+                      <th>
+                        <MdOutlineTitle />
+                      </th>
+                      <th>
+                        <GoNumber />
+                      </th>
+                      <th>
+                        <GiMoneyStack />
+                      </th>
+                      <th>
+                        <MdOutlinePriceCheck />
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {story?.products?.map((product, idx) => (
+                      <tr key={idx}>
+                        <td>{product?.title}</td>
+                        <td>{product?.quantity}</td>
+                        <td>{product?.price}</td>
+                        <td>{product?.totalPrice}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ))}
           </div>
         </div>
       </div>

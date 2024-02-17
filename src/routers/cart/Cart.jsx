@@ -99,7 +99,7 @@ function Cart() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Nomi</th>
+                  <th>Razmer</th>
                   <th>Narxi</th>
                   <th>Olchami</th>
                   <th>Rangi</th>

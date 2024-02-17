@@ -36,50 +36,52 @@ function AllCreditUsers() {
   const [userUpdateData, setuserUpdateData] = useState(null);
 
   useEffect(() => {
-    setDataItem(data?.innerData);
+    setDataItem(data?.innerData || []); // 1. '?.' operatori qo'shildi va yuqoridagi ifoda uchun yozilgan qo'shish
   }, [userUpdateData, data]);
 
-  async function criditUserDelete(id) {
-    let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
-    clientConfirm &&
-      (await creditUserDeleteOne(id)
-        .then((res) => {
-          if (res?.data?.msg === "credit user is deleted") {
-            setDataItem(null);
-            toast.success("malumot o'chirildi", {
-              transition: Zoom,
-              autoClose: 2000,
-              closeButton: false,
-              hideProgressBar: true,
-            });
-          }
-        })
-        .catch((err) => console.log(err)));
-  }
-
   const clickEye = async (id) => {
-    await soldCriditFintUser({ id })
-      .then((res) => {
-        if (res?.data?.msg === "Credit users are found") {
-          setUserData(res?.data?.innerData);
-          setOpenCriditEye(true);
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      const res = await soldCriditFintUser({ id });
+      if (res?.data?.msg === "Credit users are found") {
+        setUserData(res?.data?.innerData || null); // `userData` obyektiga ma'lumot joylashtiriladi
+        setOpenCriditEye(true); // Modal oynasini ochamiz
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const creditEdit = async (editData) => {
-    await updateCreditUser(editData)
-      .then((res) => {
-        if (res?.data?.status === "success") {
-          setOpenUserDataEdit(true);
-          setuserUpdateData(res?.data?.innerData);
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      const res = await updateCreditUser(editData);
+      if (res?.data?.status === "success") {
+        setOpenUserDataEdit(true);
+        setuserUpdateData(res?.data?.innerData || null); // 3. Null tekshiruvi qo'shildi
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  // console.log(userUpdateData);
+  async function criditUserDelete(id) {
+    try {
+      let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
+      if (clientConfirm) {
+        const res = await creditUserDeleteOne(id);
+        if (res?.data?.msg === "credit user is deleted") {
+          setDataItem((prevData) => prevData.filter((item) => item._id !== id)); // 4. Bazadan o'chirilgan elementni o'chirish
+          toast.success("malumot o'chirildi", {
+            transition: Zoom,
+            autoClose: 2000,
+            closeButton: false,
+            hideProgressBar: true,
+          });
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   openCriditEye
     ? (document.body.style.overflow = "hidden")
