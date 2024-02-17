@@ -8,6 +8,7 @@ import {
 } from "../../redux/cart";
 import { useDispatch } from "react-redux";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
+import { MdOutlineTitle } from "react-icons/md";
 import axios from "../../api";
 import { toast, ToastContainer } from "react-toastify";
 import empty from "../../assets/empty1.png";
