@@ -1,7 +1,7 @@
 .finished-credit-user {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 10px 10px 0 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  padding: 30px 20px;
+  background: #f1efef;
+  overflow: auto;
 }
