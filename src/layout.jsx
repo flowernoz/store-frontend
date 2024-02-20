@@ -12,6 +12,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
+import { FaCashRegister } from "react-icons/fa";
 function Layout() {
   const [state, setState] = useState(false);
   return (
@@ -52,6 +53,10 @@ function Layout() {
           <NavLink to={"/cart"}>
             <AiOutlineShoppingCart />
             {!state ? "Savat" : ""}
+          </NavLink>
+          <NavLink to={"/register"}>
+            <FaCashRegister />
+            {!state ? "Ro'yxatdan o'tish" : ""}
           </NavLink>
         </aside>
         {<Outlet />}
