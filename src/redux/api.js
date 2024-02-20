@@ -1,22 +1,22 @@
-import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://store-backend-pi-fawn.vercel.app/",
-  // baseUrl: "http://localhost:5500/",
-  prepareHeaders: (headers) => {
-    const token = localStorage.getItem("token");
+  // baseUrl: "https://store-backend-pi-fawn.vercel.app/",
+  baseUrl: 'http://localhost:5500/',
+  prepareHeaders: headers => {
+    const token = localStorage.getItem('token')
     if (token) {
-      headers.set("authentification", `Bearer ${token}`);
+      headers.set('authentification', `Bearer ${token}`)
     }
-    return headers;
+    return headers
   },
-});
+})
 
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 })
 
 export const api = createApi({
-  reducerPath: "splitApi",
+  reducerPath: 'splitApi',
   baseQuery: baseQueryWithRetry,
-  tagTypes: ["GETALLCRIDIT", "GETPRODUCT", "SCANER_DATA", "GETALLUSER"],
+  tagTypes: ['GETALLCRIDIT', 'GETPRODUCT', 'SCANER_DATA', 'GETALLUSER'],
   endpoints: () => ({}),
-});
+})

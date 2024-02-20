@@ -1,0 +1,7 @@
+.finished-credit-user {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 10px 0 0;
+}

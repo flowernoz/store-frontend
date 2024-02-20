@@ -1,48 +1,55 @@
-import { api } from "./api";
+import { api } from './api'
 
 export const productApi = api.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     //  GET => CREDIT DATA
     getAllCriditData: builder.query({
-      query: () => "creditUser/creditUsers",
-      providesTags: ["GETALLCRIDIT"],
+      query: () => 'creditUser/creditUsers',
+      providesTags: ['GETALLCRIDIT'],
     }),
 
-    // CRIDIT CREATE USER
+    // GET => FINISHED DATA
+
+    finishedCredit: builder.query({
+      query: () => 'creditUser/getFinishedData',
+      invalidatesTags: ['GETFINISHEDCRIDIT'],
+    }),
+
+    // CREDIT CREATE USER
 
     creditCreateUser: builder.mutation({
       query(body) {
         return {
           url: `creditUser/create`,
-          method: "POST",
+          method: 'POST',
           body,
-        };
+        }
       },
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ['GETALLCRIDIT'],
     }),
 
     creditUserDeleteOne: builder.mutation({
       query(id) {
         return {
           url: `creditUser/deleteOneUser/${id}`,
-          method: "DELETE",
-        };
+          method: 'DELETE',
+        }
       },
 
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ['GETALLCRIDIT'],
     }),
 
     //   POST => CREDIT FIND USER
     soldCriditFintUser: builder.mutation({
       query(body) {
-        let id = body;
+        let id = body
         return {
           url: `creditUser/soldCreditFindUser/${id}`,
-          method: "POST",
+          method: 'POST',
           body,
-        };
+        }
       },
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ['GETALLCRIDIT'],
     }),
 
     //  POST => CREDIT REGISTER FIND USER
@@ -50,11 +57,11 @@ export const productApi = api.injectEndpoints({
       query(body) {
         return {
           url: `creditUser/creditFindRegister`,
-          method: "POST",
+          method: 'POST',
           body,
-        };
+        }
       },
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ['GETALLCRIDIT'],
     }),
 
     // PUT => UPDATE CREDIT USER
@@ -63,14 +70,14 @@ export const productApi = api.injectEndpoints({
       query(data) {
         return {
           url: `creditUser/updateCreditUser/${data?._id}`,
-          method: "PUT",
+          method: 'PUT',
           body: data,
-        };
+        }
       },
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ['GETALLCRIDIT'],
     }),
   }),
-});
+})
 
 export const {
   useCreditFindRegisterMutation,
@@ -79,4 +86,5 @@ export const {
   useSoldCriditFintUserMutation,
   useGetAllCriditDataQuery,
   useUpdateCreditUserMutation,
-} = productApi;
+  useFinishedCreditQuery,
+} = productApi
