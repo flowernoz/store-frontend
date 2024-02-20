@@ -57,6 +57,7 @@ function Cart() {
   let subtotal = cart.reduce((a, b) => a + b.totalPrice, 0);
 
   function checkout() {
+    console.log("ok");
     axios
       .post("/soldPro/create", cart)
       .then((res) => console.log(res))
