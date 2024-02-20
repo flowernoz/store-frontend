@@ -8,6 +8,7 @@ import {
   AllCreditUsers,
   CreateProduct,
 } from "./routers";
+import { Register } from "./routers/register/Register";
 import Layout from "./layout";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
@@ -28,6 +29,7 @@ function Router() {
             <Route path="/product" element={<Allproducts />} />
             <Route path="/createProduct" element={<CreateProduct />} />
             <Route path="/popular" element={<Popular />} />
+            <Route path="/register" element={<Register />} />
           </Route>
         </Route>
       </Routes>

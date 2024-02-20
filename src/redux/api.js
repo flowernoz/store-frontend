@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://store-backend-pi-fawn.vercel.app/",
-  // baseUrl: "http://localhost:5000/",
+  // baseUrl: "https://store-backend-pi-fawn.vercel.app/",
+  baseUrl: "http://localhost:5500/",
   prepareHeaders: (headers) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -17,6 +17,6 @@ const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 export const api = createApi({
   reducerPath: "splitApi",
   baseQuery: baseQueryWithRetry,
-  tagTypes: ["GETALLCRIDIT", "GETPRODUCT", "SCANER_DATA"],
+  tagTypes: ["GETALLCRIDIT", "GETPRODUCT", "SCANER_DATA", "GETALLUSER"],
   endpoints: () => ({}),
 });
