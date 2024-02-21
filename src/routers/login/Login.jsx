@@ -28,11 +28,6 @@ const Login = () => {
         return;
       }
       sessionStorage.setItem("userInfo", JSON.stringify(res?.data?.innerData));
-      toast.success("Muofaqqiyatli urunish", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-      });
       e.target.reset();
       navigate("/");
     } catch (error) {
