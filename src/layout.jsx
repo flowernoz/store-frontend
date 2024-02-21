@@ -5,7 +5,6 @@ import {
   FaArrowCircleLeft,
   FaArrowCircleRight,
   FaRegCalendarAlt,
-  FaRegCalendarPlus,
 } from "react-icons/fa";
 import { IoHomeOutline } from "react-icons/io5";
 import { NavLink, Outlet } from "react-router-dom";
@@ -17,9 +16,9 @@ function Layout() {
   const [state, setState] = useState(false);
   return (
     <div className="layout">
-      <header className="head">
+      <div className="head">
         <Navbar />
-      </header>
+      </div>
 
       <main className="strange">
         <aside style={!state ? { width: "100%" } : { width: "auto" }}>

@@ -47,7 +47,10 @@ svg {
   background: var(--bgColorDark);
   border-radius: 6px;
 }
-
+.head{
+  position: sticky;
+  z-index: 9999;
+}
 .strange {
   max-width: 1366px;
   width: 100%;
