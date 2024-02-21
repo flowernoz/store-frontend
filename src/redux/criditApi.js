@@ -67,7 +67,7 @@ export const productApi = api.injectEndpoints({
           body: data,
         };
       },
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT", "GETREPORT"],
     }),
   }),
 });
