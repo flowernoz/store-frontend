@@ -12,6 +12,9 @@ import { BsCart2 } from "react-icons/bs";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { GiMoneyStack } from "react-icons/gi";
 // CREDIT API =>
+
+import Loader from "../../components/loader/Loader";
+
 import {
   useCreditUserDeleteOneMutation,
   useGetAllCriditDataQuery,
@@ -24,7 +27,7 @@ import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
 
 function AllCreditUsers() {
-  const { data } = useGetAllCriditDataQuery();
+  const { data, isLoading } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
@@ -107,7 +110,7 @@ function AllCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      {dataItem?.length ? (
+      {isLoading ? <Loader /> : dataItem?.length ? (
         <>
           <ToastContainer />
           <h1 className="heading">Barcha qarzdorlar</h1>
