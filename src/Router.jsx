@@ -14,6 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Allproducts from "./routers/allproducts/Allproducts";
 import Popular from "./routers/popular/Popular";
+import Registered from "./routers/registered/Registered";
 function Router() {
   return (
     <div className="router">
@@ -30,6 +31,7 @@ function Router() {
             <Route path="/createProduct" element={<CreateProduct />} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/registered" element={<Registered />} />
           </Route>
         </Route>
       </Routes>

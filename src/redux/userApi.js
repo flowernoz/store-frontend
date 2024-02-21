@@ -14,8 +14,35 @@ export const userApi = api.injectEndpoints({
           body,
         };
       },
+      invalidatesTags: ["GETALLUSER"],
+    }),
+    userDeleteOne: builder.mutation({
+      query(id) {
+        return {
+          url: `user/deleteOneUser/${id}`,
+          method: "DELETE",
+        };
+      },
+
+      invalidatesTags: ["GETALLUSER"],
+    }),
+    userUpdate: builder.mutation({
+      query(data) {
+        // const { updateData } = data;
+        // return {
+        //   url: `pro/update/${data?._id}`,
+        //   method: "PUT",
+        //   body: updateData,
+        // };
+      },
+      invalidatesTags: ["GETALLUSER"],
     }),
   }),
 });
 
-export const { useGetAllUserQuery, useSignUpMutation } = userApi;
+export const {
+  useGetAllUserQuery,
+  useSignUpMutation,
+  useUserDeleteOneMutation,
+  useUserUpdateMutation,
+} = userApi;

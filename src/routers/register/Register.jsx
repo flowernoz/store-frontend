@@ -7,25 +7,41 @@ import { toast } from "react-toastify";
 
 export const Register = () => {
   const [signUp] = useSignUpMutation();
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [clickEye, setClickEye] = useState(false);
+
+  const handleChange = (e) => {
+    const value = e.target.value.trim();
+    if (/^\d{0,9}$/.test(value)) {
+      setPhoneNumber(value);
+    }
+  };
+
   const userRegister = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     data.year = parseInt(data.year);
-
+    data.phone = phoneNumber;
     try {
       const res = await signUp(data);
-      if (res?.data?.status === "success") {
-        toast.success("Mahsulot bazaga qo'shildi !", {
+      if (res?.data?.success) {
+        toast.success("Malumot bazaga qo'shildi !", {
           position: "top-center",
           autoClose: 1500,
           hideProgressBar: true,
         });
         e.target.reset();
+        return;
       }
-    } catch (err) {
-      console.log(err);
+      toast.error(`Bunday ${data?.username} foydalanuvchi avval yaratilgan`, {
+        position: "top-center",
+        autoClose: 2500,
+        hideProgressBar: true,
+      });
+      e.target.reset();
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -85,7 +101,12 @@ export const Register = () => {
               </div>
               <div className="input_box">
                 <label>Nomer</label>
-                <input required name="phone" type="text" />
+                <input
+                  required
+                  name="phone"
+                  type="text"
+                  onChange={(e) => handleChange(e)}
+                />
               </div>
               <div className="input_box">
                 <label>Adres</label>
@@ -95,8 +116,8 @@ export const Register = () => {
                 <label>Ro'li</label>
                 <select required name="role">
                   <option value=""></option>
-                  <option value="Admin">Admin</option>
-                  <option value="Owner">Egasi</option>
+                  <option value="admin">Admin</option>
+                  <option value="owner">Egasi</option>
                 </select>
               </div>
             </div>

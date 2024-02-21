@@ -12,7 +12,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
-import { FaCashRegister } from "react-icons/fa";
+import { FaCashRegister, FaUserCog } from "react-icons/fa";
 function Layout() {
   const [state, setState] = useState(false);
   return (
@@ -57,6 +57,10 @@ function Layout() {
           <NavLink to={"/register"}>
             <FaCashRegister />
             {!state ? "Ro'yxatdan o'tish" : ""}
+          </NavLink>
+          <NavLink to={"/registered"}>
+            <FaUserCog />
+            {!state ? "Adminlar" : ""}
           </NavLink>
         </aside>
         {<Outlet />}

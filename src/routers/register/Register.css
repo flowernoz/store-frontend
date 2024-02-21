@@ -1,9 +1,5 @@
 .register {
   width: 100%;
-  height: calc(100vh - 60px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: #fff;
   padding: 2%;
   user-select: none;
@@ -11,8 +7,6 @@
 
 .register_container {
   width: 100%;
-  height: 100%;
-  /* border: 1px solid #000; */
   border-radius: 10px;
   box-shadow: -10px -10px 6px #eeeff3, 10px 10px 6px #d1d1d9;
   display: grid;
@@ -23,7 +17,6 @@
 
 .register_form_container {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -33,7 +26,6 @@
   width: 100%;
   padding: 10px;
   box-shadow: -5px -5px 3px #d1d1d9, 5px 5px 3px #eeeff3;
-
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -113,9 +105,6 @@
   padding-right: 5px;
 }
 
-.input_gender_box .input_eye_button {
-}
-
 .form_button {
   border-radius: 20px;
   background: none;
@@ -132,8 +121,51 @@
 
 .register_img_container {
   width: 100%;
-  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* media */
+
+@media (max-width: 1000px) {
+  .register_container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 760px) {
+  .register_container {
+    margin-bottom: 40px;
+  }
+  .register_header h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 550px) {
+  .form_input_container {
+    grid-template-columns: repeat(1, auto);
+  }
+
+  .register_header,
+  .input_box {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .form_button {
+    width: 100%;
+    height: 50px;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}
+
+@media (max-width: 430px) {
+  .register_header h1 {
+    font-size: 22px;
+  }
 }
