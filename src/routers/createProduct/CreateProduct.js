@@ -63,13 +63,6 @@ const CreateProduct = () => {
     setClenPriceValue(orgValue);
   };
 
-  // Misol uchun, backendga yuborish funksiyasi
-  const backendgaYuborish = () => {
-    console.log("Backendga yuboriladigan qiymat:", clenQntValue);
-    console.log("Backendga yuboriladigan qiymat:", clenOrgPriceValue);
-    console.log("Backendga yuboriladigan qiymat:", clenPriceValue);
-    // Bu yerda backendga so'rov yuborish logikasi bo'ladi
-  };
   // ------------------------------------------------
 
   function generateUniqueNumber() {

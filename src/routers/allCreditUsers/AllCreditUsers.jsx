@@ -83,6 +83,10 @@ function AllCreditUsers() {
     }
   }
 
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat("uz-UZ").format(number);
+  };
+
   openCriditEye
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
@@ -148,7 +152,7 @@ function AllCreditUsers() {
                     <td>{i?.phone}</td>
                     <td>{i?.passport}</td>
 
-                    <td>{i?.creditTotalPrice}</td>
+                    <td>{formatNumber(i?.creditTotalPrice)}</td>
                     <td>{i?.addedTime.split(" ")[0]}</td>
                     <td>{i?.givingDay}</td>
                     <td>
