@@ -8,7 +8,14 @@ export const productApi = api.injectEndpoints({
       providesTags: ["GETALLCRIDIT"],
     }),
 
-    // CRIDIT CREATE USER
+    // GET => FINISHED DATA
+
+    finishedCredit: builder.query({
+      query: () => "creditUser/getFinishedData",
+      invalidatesTags: ["GETFINISHEDCRIDIT"],
+    }),
+
+    // CREDIT CREATE USER
 
     creditCreateUser: builder.mutation({
       query(body) {
@@ -79,4 +86,5 @@ export const {
   useSoldCriditFintUserMutation,
   useGetAllCriditDataQuery,
   useUpdateCreditUserMutation,
+  useFinishedCreditQuery,
 } = productApi;

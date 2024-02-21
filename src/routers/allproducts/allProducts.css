@@ -67,12 +67,17 @@
 }
 .change button {
   background: none;
+  color: #fff;
 }
 .change button:first-child {
   color: rgb(214, 145, 16);
 }
-.change button:last-child {
+.change button:nth-child(2) {
   color: crimson;
+}
+
+.print_svg {
+  color: #000;
 }
 
 /* Responsive */

@@ -5,9 +5,10 @@ import { FiPlus, FiMinus } from "react-icons/fi";
 // PRODUCT API =>
 import { useProductUpdateMutation } from "../../redux/productApi";
 import { toast, ToastContainer } from "react-toastify";
+import BtnLoader from "../btnLoader/BtnLoader";
 
 const ProEdit = ({ close, data }) => {
-  const [productUpdate] = useProductUpdateMutation();
+  const [productUpdate, { isSuccess }] = useProductUpdateMutation();
 
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
@@ -169,7 +170,9 @@ const ProEdit = ({ close, data }) => {
               </div>
             </div>
             <div className="form_btn_container">
-              <button>Qo'shish</button>
+              <button disabled={isSuccess}>
+                {isSuccess ? <BtnLoader /> : "Qo'shish"}
+              </button>
             </div>
           </form>
         </div>

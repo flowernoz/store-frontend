@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar/Sidebar";
 import { LiaBarsSolid } from "react-icons/lia";
 import { FaBell, FaRegCalendarAlt } from "react-icons/fa";
@@ -16,7 +16,7 @@ import { HiOutlineViewGridAdd } from "react-icons/hi";
 function Navbar() {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [openQrScanner, setOpenQrScanner] = useState(false);
-
+  let navigate = useNavigate();
   function openSidebarFunc() {
     setOpenSidebar(true);
   }
@@ -46,7 +46,11 @@ function Navbar() {
                 title="Shtrix kodni skanerlang"
                 onClick={() => setOpenQrScanner(!openQrScanner)}
               />
-              <FaBell className="bell" title="Bildirishnomalar" />
+              <FaBell
+                onClick={() => navigate("/finishedCredits")}
+                className="bell"
+                title="Bildirishnomalar"
+              />
               <LiaBarsSolid onClick={openSidebarFunc} className="bar__icon" />
             </div>
           </div>
@@ -57,7 +61,11 @@ function Navbar() {
                 title="Shtrix kodni skanerlang"
                 onClick={() => setOpenQrScanner(!openQrScanner)}
               />
-              <FaBell className="bell" title="Bildirishnomalar" />
+              <FaBell
+                onClick={() => navigate("/finishedCredits")}
+                className="bell"
+                title="Bildirishnomalar"
+              />
             </div>
           </div>
         </div>

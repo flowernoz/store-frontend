@@ -15,6 +15,7 @@ import { ToastContainer } from "react-toastify";
 import Allproducts from "./routers/allproducts/Allproducts";
 import Popular from "./routers/popular/Popular";
 import Registered from "./routers/registered/Registered";
+import FinishedCreditUsers from "./routers/finished-credit-users/FinishedCreditUsers";
 function Router() {
   return (
     <div className="router">
@@ -27,6 +28,7 @@ function Router() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/nasiya" element={<AllCreditUsers />} />
             <Route path="/nasiyacreate" element={<Nasiya />} />
+            <Route path="/finishedCredits" element={<FinishedCreditUsers />} />
             <Route path="/product" element={<Allproducts />} />
             <Route path="/createProduct" element={<CreateProduct />} />
             <Route path="/popular" element={<Popular />} />
