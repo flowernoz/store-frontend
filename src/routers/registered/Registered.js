@@ -60,6 +60,7 @@ const Registered = () => {
       {openUserEdit && <UserEdit close={setOpenUserEdit} />}
       {dataItem?.length ? (
         <table>
+          <caption>Ro'yxatdagi adminlar</caption>
           <thead>
             <tr>
               <th>#</th>

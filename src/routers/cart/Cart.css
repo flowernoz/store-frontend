@@ -15,6 +15,8 @@
   width: 100%;
   border-collapse: collapse;
   border-radius: 5px;
+  position: relative;
+  margin-top: 50px;
 }
 
 .cart_table_container table caption {
@@ -26,6 +28,8 @@
   color: #fff;
   font-size: 22px;
   border-bottom: 1px solid #fff;
+  position: absolute;
+  top: -75px;
 }
 
 .cart_table_container table thead {
