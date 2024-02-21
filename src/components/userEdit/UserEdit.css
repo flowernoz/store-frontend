@@ -1,0 +1,41 @@
+.user_edit_page {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.825);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+
+.user_edit_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user_edit_form {
+  background: #fff;
+  padding: 15px 10px;
+  border-radius: 10px;
+}
+
+.user_edit_header {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #000;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.user_edit_header svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 22px;
+}

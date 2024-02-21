@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from "react-router";
 import {
   Auth,
   Statistics,
@@ -7,14 +7,15 @@ import {
   Nasiya,
   AllCreditUsers,
   CreateProduct,
-} from './routers'
-import { Register } from './routers/register/Register'
-import Layout from './layout'
-import 'react-toastify/dist/ReactToastify.css'
-import { ToastContainer } from 'react-toastify'
-import Allproducts from './routers/allproducts/Allproducts'
-import Popular from './routers/popular/Popular'
-import FinishedCreditUsers from './routers/finished-credit-users/FinishedCreditUsers'
+} from "./routers";
+import { Register } from "./routers/register/Register";
+import Layout from "./layout";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Allproducts from "./routers/allproducts/Allproducts";
+import Popular from "./routers/popular/Popular";
+import Registered from "./routers/registered/Registered";
+import FinishedCreditUsers from "./routers/finished-credit-users/FinishedCreditUsers";
 function Router() {
   return (
     <div className="router">
@@ -32,11 +33,12 @@ function Router() {
             <Route path="/createProduct" element={<CreateProduct />} />
             <Route path="/popular" element={<Popular />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/registered" element={<Registered />} />
           </Route>
         </Route>
       </Routes>
     </div>
-  )
+  );
 }
 
-export default Router
+export default Router;
