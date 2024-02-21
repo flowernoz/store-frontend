@@ -46,10 +46,6 @@ function Layout() {
             <FaRegCalendarAlt />
             {!state ? " Nasiya" : ""}
           </NavLink>
-          <NavLink to={"/nasiyacreate"}>
-            <FaRegCalendarPlus />
-            {!state ? "Nasiya qo'shish" : ""}
-          </NavLink>
           <NavLink to={"/cart"}>
             <AiOutlineShoppingCart />
             {!state ? "Savat" : ""}
