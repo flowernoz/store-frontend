@@ -1,10 +1,10 @@
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 const Auth = () => {
-  let userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  let auth = userInfo?.username === "admin" && userInfo?.password === "admin";
-  if (auth) return <Outlet />;
+  let location = useLocation();
+  let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
+  if (userInfo) return <Outlet />;
   else {
-    return <Navigate to={"/login"} />;
+    return <Navigate to={"/login"} state={{ from: location }} />;
   }
 };
 export default Auth;

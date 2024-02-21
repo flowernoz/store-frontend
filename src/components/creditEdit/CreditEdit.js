@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CreditEdit.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useUpdateCreditUserMutation } from "../../redux/criditApi";
@@ -10,12 +10,36 @@ const CreditEdit = ({ creditEditClose, updateUserData, setDataItem }) => {
 
   let { creditTotalPrice } = updateUserData;
 
+  // ------------------------------------------
+
+  // input qiymatiga bosh string qoshish ochun
+  const [price, setPrice] = useState("");
+
+  // toza qiymat olish uchun
+  const [clenPriceValue, setClenPriceValue] = useState("");
+
+  // input qiymatini orasiga bosh string qoshib beradigan funftion
+  const formatNumber = (qiymat) => {
+    return qiymat.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
+  const priceChange = (e) => {
+    const value = e.target.value;
+    const orgValue = value.replace(/\D/g, "");
+    const formatValue = formatNumber(value);
+
+    setPrice(formatValue);
+    setClenPriceValue(orgValue);
+  };
+
+  //  ----------------------------------------------
+
   async function updateCredit(e) {
     e.preventDefault();
 
     let value = new FormData(e.target);
     let data = Object.fromEntries(value);
-    data.price = +data.price;
+    data.price = +clenPriceValue;
 
     let newCreditTotalPrice = creditTotalPrice - data?.price;
 
@@ -44,7 +68,13 @@ const CreditEdit = ({ creditEditClose, updateUserData, setDataItem }) => {
             </div>
 
             <div className="form_container">
-              <input type="number" name="price" placeholder="Qarzdan ayrish" />
+              <input
+                type="text"
+                value={price}
+                onChange={priceChange}
+                name="price"
+                placeholder="Qarzdan ayrish"
+              />
               <button disabled={isLoading} className="form_btn">
                 {isLoading ? "Bajarilmoqda" : "Ayrish"}
               </button>

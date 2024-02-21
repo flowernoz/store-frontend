@@ -3,36 +3,41 @@ import { useNavigate } from "react-router-dom";
 import axios from "../../api";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import { useLogInMutation } from "../../redux/userApi";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [logIn] = useLogInMutation();
+
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    let data = {
-      username,
-      password,
-    };
-    localStorage.setItem("userInfo", JSON.stringify(data));
-    navigate("/");
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
 
-    // try {
-    //   await axios
-    //     .post("/user/login", { username, password })
-    //     .then((res) => {
-    //       console.log(res);
-    //       localStorage.setItem(
-    //         "userInfo",
-    //         JSON.stringify(res?.data?.innerdata)
-    //       );
-    //       navigate("/");
-    //     })
-    //     .catch((res) => console.log(res));
-    // } catch (error) {
-    //   console.error("Login error:", error);
-    // }
+    try {
+      const res = await logIn(data);
+      if (!res?.data?.success) {
+        toast.error(`Bunday ${data?.username} foydalanuvchi yartilmagan`, {
+          position: "top-center",
+          autoClose: 2500,
+          hideProgressBar: true,
+        });
+        e.target.reset();
+        return;
+      }
+      sessionStorage.setItem("userInfo", JSON.stringify(res?.data?.innerData));
+      toast.success("Muofaqqiyatli urunish", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+      e.target.reset();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -42,8 +47,6 @@ const Login = () => {
         <div className="email_id">
           <p>Username</p>
           <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
             name="username"
             autoFocus
             required
@@ -55,8 +58,6 @@ const Login = () => {
         <div className="email_password">
           <p>Password</p>
           <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             name="password"
             required
             type="password"

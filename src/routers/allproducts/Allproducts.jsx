@@ -65,17 +65,9 @@ function Allproducts() {
       .catch((err) => console.log(err));
   }
 
-  // async function SearchValue(e) {
-  //   let value = e.trimStart();
-
-  //   await searchPost({ value })
-  //     .then((res) => {
-  //       if (res?.data?.status === "success") {
-  //         setDataItem(res?.data?.innerData);
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat("uz-UZ").format(number);
+  };
 
   openProEdit
     ? (document.body.style.overflow = "hidden")
@@ -109,11 +101,15 @@ function Allproducts() {
                 {dataItem?.map((i, inx) => (
                   <tr key={inx}>
                     <td>{inx + 1}</td>
-                    <td>{i?.title}</td>
-                    <td>{i?.orgPrice}</td>
-                    <td>{i?.price}</td>
-                    <td>{i?.quantity}</td>
-                    <td>{i?.category}</td>
+                    <td>{i?.title ? i?.title : <FaMinus />}</td>
+                    <td>
+                      {i?.orgPrice ? formatNumber(i?.orgPrice) : <FaMinus />}
+                    </td>
+                    <td>{i?.price ? formatNumber(i?.price) : <FaMinus />}</td>
+                    <td>
+                      {i?.quantity ? formatNumber(i?.quantity) : <FaMinus />}
+                    </td>
+                    <td>{i?.category ? i?.category : <FaMinus />}</td>
                     <td>{i?.subcategory ? i.subcategory : <FaMinus />}</td>
                     <td>{i?.size ? i.size : <FaMinus />}</td>
                     <td>{i?.brand ? i.brand : <FaMinus />}</td>

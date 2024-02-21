@@ -6,6 +6,16 @@ export const userApi = api.injectEndpoints({
       query: () => "user/allUser",
       providesTags: ["GETALLUSER"],
     }),
+    logIn: builder.mutation({
+      query(body) {
+        return {
+          url: "user/login",
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["GETALLUSER"],
+    }),
     signUp: builder.mutation({
       query(body) {
         return {
@@ -42,6 +52,7 @@ export const userApi = api.injectEndpoints({
 
 export const {
   useGetAllUserQuery,
+  useLogInMutation,
   useSignUpMutation,
   useUserDeleteOneMutation,
   useUserUpdateMutation,

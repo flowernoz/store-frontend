@@ -8,20 +8,23 @@
   border-collapse: collapse;
   border-radius: 10px;
   margin-top: 20px;
+  position: relative;
+  margin-top: 70px;
 }
 
-caption {
+.registered_page table caption {
   width: 100%;
   margin: 15px 0;
   padding: 15px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
-  border: 1px solid #000;
+  border-bottom: 1px solid #fff;
   color: #fff;
   font-size: 25px;
   background: #042654;
+  position: absolute;
+  top: -76px;
 }
 
 .registered_page table thead tr {

@@ -19,6 +19,52 @@ const CreateProduct = () => {
   const [categoryId, setCategoryId] = useState(null);
   const [addCategory, setAddCategory] = useState(false);
 
+  // ------------------------------------------------
+
+  // input qiymatiga bosh string qoshish ochun
+  const [qnt, setQnt] = useState("");
+  const [orgPrice, setOrgPrice] = useState("");
+  const [price, setPrice] = useState("");
+
+  // toza qiymat olish uchun
+  const [clenQntValue, setClenQntValue] = useState("");
+  const [clenOrgPriceValue, setClenOrgPriceValue] = useState("");
+  const [clenPriceValue, setClenPriceValue] = useState("");
+
+  // input qiymatini orasiga bosh string qoshib beradigan funftion
+  const formatNumber = (qiymat) => {
+    return qiymat.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
+  const qntChange = (e) => {
+    const value = e.target.value;
+    const orgValue = value.replace(/\D/g, "");
+    const formatValue = formatNumber(value);
+
+    setQnt(formatValue);
+    setClenQntValue(orgValue);
+  };
+
+  const orgPriceChange = (e) => {
+    const value = e.target.value;
+    const orgValue = value.replace(/\D/g, "");
+    const formatValue = formatNumber(value);
+
+    setOrgPrice(formatValue);
+    setClenOrgPriceValue(orgValue);
+  };
+
+  const priceChange = (e) => {
+    const value = e.target.value;
+    const orgValue = value.replace(/\D/g, "");
+    const formatValue = formatNumber(value);
+
+    setPrice(formatValue);
+    setClenPriceValue(orgValue);
+  };
+
+  // ------------------------------------------------
+
   function generateUniqueNumber() {
     const timestamp = Date.now();
     const randomPart = Math.floor(Math.random() * 1000000);
@@ -42,9 +88,9 @@ const CreateProduct = () => {
     e.preventDefault();
     let newData = new FormData(e.target);
     let data = Object.fromEntries(newData);
-    data.price = +data.price;
-    data.orgPrice = +data.orgPrice;
-    data.quantity = +data.quantity;
+    data.price = +clenPriceValue;
+    data.orgPrice = +clenOrgPriceValue;
+    data.quantity = +clenQntValue;
     data.barcode = barcode;
     setLoader(true);
 
@@ -60,6 +106,9 @@ const CreateProduct = () => {
           setCategoryId(barcode);
           setOpenBarcode(true);
           document.form__create.reset();
+          setPrice("");
+          setOrgPrice("");
+          setQnt("");
         }
       })
       .catch((err) => {
@@ -85,23 +134,29 @@ const CreateProduct = () => {
               <input type="text" placeholder="O'lchami" name="size" />
               <input
                 required
-                type="number"
+                type="text"
                 placeholder="asl narxi"
                 name="orgPrice"
+                value={orgPrice}
+                onChange={orgPriceChange}
                 className="numberInput"
               />
               <input
                 required
-                type="number"
+                type="text"
                 placeholder="Sotiladigan narxi"
                 name="price"
+                value={price}
+                onChange={priceChange}
                 className="numberInput"
               />
               <input
                 required
-                type="number"
+                type="text"
                 placeholder="miqdori"
                 name="quantity"
+                value={qnt}
+                onChange={qntChange}
                 className="numberInput"
               />
               <input type="text" placeholder="rangi" name="color" />
