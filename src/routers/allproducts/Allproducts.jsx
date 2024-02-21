@@ -11,11 +11,11 @@ import {
 } from "../../redux/productApi";
 import { toast, ToastContainer } from "react-toastify";
 import Empty from "../../components/empty/Empty";
-import UpdateCode from "../../components/updateCode/UpdateCode";
+import Loader from "../../components/loader/Loader";
+import UpdateCode from '../../components/updateCode/UpdateCode'
 import { BsFillPrinterFill } from "react-icons/bs";
-
 function Allproducts() {
-  const { data } = useGetAllProductsQuery();
+  const { data, isLoading } = useGetAllProductsQuery();
   const [productUpdate] = useProductUpdateMutation();
   const [deleteOneProduct] = useDeleteOneProductMutation();
   const [searchPost] = useSearchPostMutation();
@@ -25,7 +25,8 @@ function Allproducts() {
   const [openProEdit, setOpenProEdit] = useState(false);
   const [openBarcode, setOpenBarcode] = useState(false);
   const [dataItem, setDataItem] = useState([]);
-  // const [loading, setLoading] = useState(true);
+
+  
   useEffect(() => {
     setDataItem(data?.innerData);
     // setLoading(false);
@@ -91,7 +92,10 @@ function Allproducts() {
         <UpdateCode text={categoryId} setOpenBarcode={setOpenBarcode} />
       )}
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
-      {dataItem?.length ? (
+      {
+        isLoading ? <Loader/> :
+      
+      dataItem?.length ? 
         <>
           <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>
@@ -146,11 +150,11 @@ function Allproducts() {
             </table>
           </div>
         </>
-      ) : (
+      : 
         <div className="empty">
           <Empty />
         </div>
-      )}
+      }
     </div>
   );
 }

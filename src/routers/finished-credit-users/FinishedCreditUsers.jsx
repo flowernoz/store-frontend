@@ -22,10 +22,14 @@ import { GiMoneyStack } from 'react-icons/gi'
 import './FinishedCreditUsers.css'
 import CriditEye from '../../components/criditEye/CriditEye'
 import CreditEdit from '../../components/creditEdit/CreditEdit'
+
+import Loader from "../../components/loader/Loader";
+
+
 export default function FinishedCreditUsers() {
   const { data2 } = useGetAllCriditDataQuery()
   let [dataItem, setDataItem] = useState([])
-  const { data } = useFinishedCreditQuery()
+  const { data, isLoading } = useFinishedCreditQuery()
   const [userData, setUserData] = useState(null)
   const [soldCriditFintUser] = useSoldCriditFintUserMutation()
   const [updateCreditUser] = useUpdateCreditUserMutation()
@@ -130,7 +134,7 @@ export default function FinishedCreditUsers() {
             </tr>
           </thead>
           <tbody>
-            {data?.innerData.map((i, inx) => (
+            {isLoading ? <Loader /> : data?.innerData.map((i, inx) => (
               <tr key={inx}>
                 <td>{inx + 1}</td>
                 <td>{i?.firstname}</td>

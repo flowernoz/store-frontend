@@ -20,9 +20,9 @@ function Layout() {
   let cartLength = cart.reduce((a, b) => a + b.quantity, 0);
   return (
     <div className="layout">
-      <div className="head">
+      <header className="head">
         <Navbar />
-      </div>
+      </header>
 
       <main className="strange">
         <aside style={!state ? { width: "100%" } : { width: "auto" }}>

@@ -3,9 +3,10 @@ import { useState, useEffect, memo } from "react";
 import { FaMinus } from "react-icons/fa";
 import { useGetPopularProductsQuery } from "../../redux/productApi";
 import Empty from "../../components/empty/Empty";
+import Loader from "../../components/loader/Loader";
 
 function Allproducts() {
-  const { data } = useGetPopularProductsQuery();
+  const { data, isLoading } = useGetPopularProductsQuery();
   const [dataItem, setDataItem] = useState([]);
   useEffect(() => {
     setDataItem(data?.innerData);
@@ -13,7 +14,7 @@ function Allproducts() {
 
   return (
     <div className="allproducts">
-      {dataItem?.length ? (
+      {isLoading ? <Loader /> : dataItem?.length ? (
         <>
           <h1 className="heading">Ommabop mahsulotlar</h1>
           <div className="tb">
