@@ -15,7 +15,6 @@ const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    localStorage.setItem("userInfo", JSON.stringify(data));
 
     try {
       const res = await logIn(data);
@@ -28,6 +27,7 @@ const Login = () => {
         e.target.reset();
         return;
       }
+      localStorage.setItem("userInfo", JSON.stringify(res?.data?.innerData));
       toast.success("Muofaqqiyatli urunish", {
         position: "top-center",
         autoClose: 1500,
