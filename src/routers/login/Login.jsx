@@ -27,7 +27,7 @@ const Login = () => {
         e.target.reset();
         return;
       }
-      localStorage.setItem("userInfo", JSON.stringify(res?.data?.innerData));
+      sessionStorage.setItem("userInfo", JSON.stringify(res?.data?.innerData));
       toast.success("Muofaqqiyatli urunish", {
         position: "top-center",
         autoClose: 1500,
