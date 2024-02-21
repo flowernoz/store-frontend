@@ -12,8 +12,12 @@ import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FaCashRegister, FaUserCog } from "react-icons/fa";
+import { useCart } from "./redux/selectors";
+
 function Layout() {
   const [state, setState] = useState(false);
+  const cart = useCart();
+  let cartLength = cart.reduce((a, b) => a + b.quantity, 0);
   return (
     <div className="layout">
       <div className="head">
@@ -48,6 +52,9 @@ function Layout() {
           <NavLink to={"/cart"}>
             <AiOutlineShoppingCart />
             {!state ? "Savat" : ""}
+            {cartLength?.length && (
+              <span className="cart_length">{cartLength}</span>
+            )}
           </NavLink>
           <NavLink to={"/register"}>
             <FaCashRegister />

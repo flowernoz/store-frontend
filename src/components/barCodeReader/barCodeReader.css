@@ -1,26 +1,29 @@
 .barCodeReader {
-  position: fixed;
   top: 60px;
   left: 0;
   z-index: 100;
   width: 100%;
-  min-height: 100vh;
-  background: rgba(50, 50, 50, 0.608) !important;
-  display: flex;
-  padding-top: 20px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
+  background: rgba(50, 50, 50, 0.715) !important;
   backdrop-filter: blur(2px);
   gap: 7px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
+
+.barcode_container {
+  width: 400px !important;
+  height: 400px !important;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: #fff;
+}
+
 .scanned {
   width: 400px !important;
   height: 400px !important;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding: 30px 40px;
   gap: 15px;
   box-shadow: 1px 0 8px rgb(10, 107, 203);
@@ -28,7 +31,7 @@
   background: var(--bgColor) !important;
   font-size: 16px;
   color: #fff;
-  margin: auto;
+  margin: 0 auto;
 }
 .scanned span {
   width: 100%;
@@ -76,7 +79,6 @@ input::-webkit-inner-spin-button {
   height: 30px;
   font-size: 25px;
   display: flex;
-  justify-content: right;
   padding-top: 5px;
   color: #fff;
 }
@@ -88,17 +90,15 @@ input::-webkit-inner-spin-button {
 /* add code css */
 
 .barCodeReader {
-  position: fixed;
+  position: absolute;
   top: 60px;
   left: 0;
   z-index: 100;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background: azure;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 .scanned {
   width: 400px !important;
@@ -131,6 +131,23 @@ input::-webkit-inner-spin-button {
   align-items: center;
   border-radius: 10px;
   gap: 5px;
+}
+
+.scaner_item_price {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #fff;
+  padding: 7px 10px;
+  align-items: center;
+  border-radius: 10px;
+  gap: 5px;
+}
+
+.scaner_item_price label {
+  width: 100%;
+  margin-right: 100px;
 }
 
 .scaner_item input[type="number"]::-webkit-inner-spin-button,
@@ -169,4 +186,56 @@ input::-webkit-inner-spin-button {
 .scanned__btns {
   display: flex;
   gap: 7px;
+}
+
+.barCodeReader h1 {
+  text-align: center;
+  color: #fff;
+}
+
+@media (max-width: 500px) {
+  .scanned {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 445px) {
+  .scanned {
+    width: 320px !important;
+  }
+  .barcode_container {
+    width: 320px !important;
+  }
+  .scaner_item_price label {
+    margin-right: 60px;
+  }
+
+  .barCodeReader h1 {
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 350px) {
+  .scanned {
+    width: 300px !important;
+    padding: 15px;
+    height: auto;
+  }
+
+  .barcode_container {
+    width: 280px !important;
+  }
+}
+
+@media (max-width: 330px) {
+  .scanned {
+    width: 290px !important;
+    padding: 10px;
+    height: auto;
+    gap: 5px;
+  }
+  .scaner_item,
+  .scaner_item_price {
+    padding: 7px;
+  }
 }

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../../api";
 import "./Login.css";
-import { Link } from "react-router-dom";
 import { useLogInMutation } from "../../redux/userApi";
 import { toast } from "react-toastify";
+import BtnLoader from "../../components/btnLoader/BtnLoader";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 const Login = () => {
-  const [logIn] = useLogInMutation();
+  const [logIn, { isSuccess }] = useLogInMutation();
+  const [clickEye, setClickEye] = useState(false);
 
   const navigate = useNavigate();
 
@@ -46,27 +47,30 @@ const Login = () => {
             autoFocus
             required
             type="text"
-            placeholder="username"
             autoComplete="username"
           />
         </div>
         <div className="email_password">
           <p>Password</p>
-          <input
-            name="password"
-            required
-            type="password"
-            placeholder="Password"
-            autoComplete="current-password"
-          />
+          <div className="password_container">
+            <input
+              name="password"
+              required
+              type={clickEye ? "text" : "password"}
+              autoComplete="current-password"
+            />
+            <span
+              onClick={() => setClickEye(!clickEye)}
+              className="input_eye_button"
+            >
+              {clickEye ? <IoEyeOutline /> : <IoEyeOffOutline />}
+            </span>
+          </div>
         </div>
         <div className="email_login">
-          <button type="submit">Login</button>
-          <p>Forgot password?</p>
-        </div>
-        <div className="email_google">
-          <hr />
-          <Link to={"/registration"}>Register</Link>
+          <button disabled={isSuccess} type="submit">
+            {isSuccess ? <BtnLoader /> : "Login"}
+          </button>
         </div>
       </form>
     </div>

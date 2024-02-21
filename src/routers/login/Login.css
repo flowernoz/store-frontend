@@ -46,6 +46,7 @@
   outline: none;
   text-indent: 15px;
   box-shadow: 0 0 5px 1px gray;
+  font-size: 17px;
 }
 
 .email_password {
@@ -54,6 +55,7 @@
   align-items: start;
   justify-content: start;
   flex-direction: column;
+  margin-top: 10px;
 }
 
 .email_password > p {
@@ -61,7 +63,7 @@
   margin-bottom: 5px;
 }
 
-.email_password > input {
+.password_container {
   width: 90%;
   margin: auto;
   border-radius: 5px;
@@ -70,6 +72,24 @@
   outline: none;
   text-indent: 15px;
   box-shadow: 0 0 5px 1px gray;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.password_container input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  text-indent: 15px;
+  font-size: 17px;
+}
+
+.password_container span {
+  color: #000;
+  padding-right: 10px;
 }
 
 .email_login {
@@ -82,51 +102,14 @@
 }
 
 .email_login > button {
-  padding: 10px 55px;
+  padding: 8px 55px;
   border-radius: 23px;
   border: 1px solid white;
   font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.37);
+  background-color: rgba(24, 24, 24, 0.85);
   color: white;
-}
-
-.email_login > p {
-  color: white;
-  font-size: 14px;
-}
-
-.login form > button {
-  width: 50%;
-  height: 40px;
-  border-radius: 23px;
-  border-color: white;
-  color: white;
-  font-size: 15px;
-  background-color: transparent;
-
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
-  margin-top: 10px;
-}
-
-.email_google {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.email_google > p {
-  position: absolute;
-  background-color: rgba(31, 55, 96, 0.733);
-  top: -8px;
-  left: 42%;
-}
-
-.email_google > hr {
-  width: 90%;
 }

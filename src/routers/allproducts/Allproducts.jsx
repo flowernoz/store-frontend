@@ -11,6 +11,8 @@ import {
 } from "../../redux/productApi";
 import { toast, ToastContainer } from "react-toastify";
 import Empty from "../../components/empty/Empty";
+import UpdateCode from "../../components/updateCode/UpdateCode";
+import { BsFillPrinterFill } from "react-icons/bs";
 
 function Allproducts() {
   const { data } = useGetAllProductsQuery();
@@ -19,7 +21,9 @@ function Allproducts() {
   const [searchPost] = useSearchPostMutation();
   const [deleteAllProducts] = useDeleteAllProductsMutation();
   const [updateData, setUpdateData] = useState("");
+  const [categoryId, setCategoryId] = useState(null);
   const [openProEdit, setOpenProEdit] = useState(false);
+  const [openBarcode, setOpenBarcode] = useState(false);
   const [dataItem, setDataItem] = useState([]);
   // const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -69,12 +73,23 @@ function Allproducts() {
     return new Intl.NumberFormat("uz-UZ").format(number);
   };
 
+  const codeRender = (code) => {
+    setCategoryId(code);
+    setOpenBarcode(true);
+  };
+
+  openBarcode
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
   openProEdit
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
 
   return (
     <div className="allproducts">
+      {openBarcode && (
+        <UpdateCode text={categoryId} setOpenBarcode={setOpenBarcode} />
+      )}
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
       {dataItem?.length ? (
         <>
@@ -120,6 +135,9 @@ function Allproducts() {
                       </button>
                       <button onClick={() => deleteOne(i?._id)}>
                         <FaTrash />
+                      </button>
+                      <button onClick={() => codeRender(i?.barcode)}>
+                        <BsFillPrinterFill className="print_svg" />
                       </button>
                     </td>
                   </tr>

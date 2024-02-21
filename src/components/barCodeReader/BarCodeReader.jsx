@@ -63,17 +63,19 @@ function BarCodeReader({ setOpenQrScanner }) {
       <IoMdClose onClick={() => setOpenQrScanner(false)} className="barClose" />
 
       {!data ? (
-        <BarCodeScan
-          fps={10}
-          qrbox={450}
-          disableFlip={false}
-          qrCodeSuccessCallback={onNewScanResult}
-          id={id}
-        />
+        <div className="barcode_container">
+          <BarCodeScan
+            fps={10}
+            qrbox={450}
+            disableFlip={false}
+            qrCodeSuccessCallback={onNewScanResult}
+            id={id}
+          />
+        </div>
       ) : (
         <div className="scanned">
           <p>nomi: {data?.title}</p>
-          <div className="scaner_item">
+          <div className="scaner_item_price">
             <label>asl narxi:</label>
             <span>{data?.orgPrice + " so'm"}</span>
           </div>
@@ -89,10 +91,10 @@ function BarCodeReader({ setOpenQrScanner }) {
             />
           </div>
           <div className="scaner_item">
-              <label>Bazadagi miqdori:</label>
+            <label>Bazadagi miqdori:</label>
             <input type="text" value={totalquantity} />
           </div>
-          <div className="scaner_item">
+          <div className="scaner_item_price">
             <label>kategoriyasi:</label>
             <span>{data?.category}</span>
           </div>
