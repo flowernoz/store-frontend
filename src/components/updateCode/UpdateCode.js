@@ -5,6 +5,10 @@ import { BsFillPrinterFill, BsX } from "react-icons/bs";
 import { useReactToPrint } from "react-to-print";
 
 const UpdateCode = ({ text, setOpenBarcode }) => {
+  setOpenBarcode
+    ? (document.body.style.overflow = "hidden")
+    : (document.body.style.overflow = "auto");
+
   const componentRef = useRef();
   //   const handlePrint = useReactToPrint({
   //     content: () => componentRef.current,
@@ -15,8 +19,8 @@ const UpdateCode = ({ text, setOpenBarcode }) => {
     content: () => componentRef.current,
     // styling
     pageStyle: () => `
-      @update_code_card {
-        size: auto;
+      @page {
+        size: 60mm 38mm;
         margin: 0;
       }
       @media print {

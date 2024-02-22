@@ -1,18 +1,7 @@
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BiGridAlt } from "react-icons/bi";
-import { HiOutlineViewGridAdd } from "react-icons/hi";
-import {
-  FaArrowCircleLeft,
-  FaArrowCircleRight,
-  FaRegCalendarAlt,
-  FaRegCalendarPlus,
-} from "react-icons/fa";
-import { IoHomeOutline } from "react-icons/io5";
+import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import { useState } from "react";
-import { FaMoneyBillTrendUp } from "react-icons/fa6";
-import { FaCashRegister, FaUserCog } from "react-icons/fa";
 import { useCart } from "./redux/selectors";
 
 import asideData from "./static/asideData";
