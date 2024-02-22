@@ -7,8 +7,9 @@ import BtnLoader from "../../components/btnLoader/BtnLoader";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 const Login = () => {
-  const [logIn, { isSuccess }] = useLogInMutation();
+  const [logIn] = useLogInMutation();
   const [clickEye, setClickEye] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const navigate = useNavigate();
 
@@ -16,8 +17,7 @@ const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
-
+    setLoader(true);
     try {
       const res = await logIn(data);
       if (!res?.data?.success) {
@@ -27,8 +27,10 @@ const Login = () => {
           hideProgressBar: true,
         });
         e.target.reset();
+        setLoader(false);
         return;
       }
+      setLoader(false);
       sessionStorage.setItem("userInfo", JSON.stringify(res?.data?.innerData));
       console.log(res?.data);
       toast.success("Muofaqqiyatli urunish", {
@@ -75,8 +77,8 @@ const Login = () => {
           </div>
         </div>
         <div className="email_login">
-          <button disabled={isSuccess} type="submit">
-            {isSuccess ? <BtnLoader /> : "Login"}
+          <button disabled={loader} type="submit">
+            {loader ? <BtnLoader /> : "Login"}
           </button>
         </div>
       </form>

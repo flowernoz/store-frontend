@@ -4,11 +4,13 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import singUp from "../../assets/signup-image.jpeg";
 import { useSignUpMutation } from "../../redux/userApi";
 import { toast } from "react-toastify";
+import BtnLoader from "../../components/btnLoader/BtnLoader";
 
 export const Register = () => {
-  const [signUp] = useSignUpMutation();
+  const [signUp, { isSuccess }] = useSignUpMutation();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [clickEye, setClickEye] = useState(false);
+  const [loader, setLoader] = useState(false);
 
   const handleChange = (e) => {
     const value = e.target.value.trim();
@@ -23,6 +25,7 @@ export const Register = () => {
     const data = Object.fromEntries(formData.entries());
     data.year = parseInt(data.year);
     data.phone = phoneNumber;
+    setLoader(true);
     try {
       const res = await signUp(data);
       if (res?.data?.success) {
@@ -31,6 +34,7 @@ export const Register = () => {
           autoClose: 1500,
           hideProgressBar: true,
         });
+        setLoader(false);
         e.target.reset();
         return;
       }
@@ -39,6 +43,7 @@ export const Register = () => {
         autoClose: 2500,
         hideProgressBar: true,
       });
+      setLoader(false);
       e.target.reset();
     } catch (error) {
       console.log(error);
@@ -122,7 +127,9 @@ export const Register = () => {
               </div>
             </div>
 
-            <button className="form_button">Qo'shish</button>
+            <button disabled={loader} className="form_button">
+              {loader ? <BtnLoader /> : "Qo'shish"}
+            </button>
           </form>
         </div>
         <div className="register_img_container">

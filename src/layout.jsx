@@ -14,10 +14,15 @@ import { FaMoneyBillTrendUp } from "react-icons/fa6";
 import { FaCashRegister, FaUserCog } from "react-icons/fa";
 import { useCart } from "./redux/selectors";
 
+import asideData from "./static/asideData";
+
 function Layout() {
   const [state, setState] = useState(false);
   const cart = useCart();
   let cartLength = cart.reduce((a, b) => a + b.quantity, 0);
+
+  let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
+
   return (
     <div className="layout">
       <header className="head">
@@ -29,41 +34,18 @@ function Layout() {
           <button onClick={() => setState(!state)}>
             {!state ? <FaArrowCircleLeft /> : <FaArrowCircleRight />}
           </button>
-          <NavLink to={"/"}>
-            <IoHomeOutline />
-            {!state ? "Bosh sahifa" : ""}
-          </NavLink>
-          <NavLink to={"/product"}>
-            <BiGridAlt />
-            {!state ? "mahsulotlar" : ""}
-          </NavLink>
-          <NavLink to={"/popular"}>
-            <FaMoneyBillTrendUp />
-            {!state ? "ommabop" : ""}
-          </NavLink>
-          <NavLink to={"/createProduct"}>
-            <HiOutlineViewGridAdd />
-            {!state ? "mahsulot qo'shish" : ""}
-          </NavLink>
-          <NavLink to={"/nasiya"}>
-            <FaRegCalendarAlt />
-            {!state ? " Nasiya" : ""}
-          </NavLink>
-          <NavLink to={"/cart"}>
-            <AiOutlineShoppingCart />
-            {!state ? "Savat" : ""}
-            {cartLength?.length && (
-              <span className="cart_length">{cartLength}</span>
-            )}
-          </NavLink>
-          <NavLink to={"/register"}>
-            <FaCashRegister />
-            {!state ? "Ro'yxatdan o'tish" : ""}
-          </NavLink>
-          <NavLink to={"/registered"}>
-            <FaUserCog />
-            {!state ? "Adminlar" : ""}
-          </NavLink>
+
+          {asideData[role].map((item, inx) => (
+            <NavLink key={inx} to={item?.link}>
+              {item?.icon}
+              {!state ? item?.title : ""}
+              {cartLength > 0 && (
+                <span className={item?.class}>
+                  {item?.link === "/cart" && cartLength}
+                </span>
+              )}
+            </NavLink>
+          ))}
         </aside>
         {<Outlet />}
       </main>
