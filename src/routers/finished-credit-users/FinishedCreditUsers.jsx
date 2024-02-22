@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Empty from '../../components/empty/Empty'
+
 import {
   useCreditUserDeleteOneMutation,
   useFinishedCreditQuery,
@@ -22,9 +22,7 @@ import { GiMoneyStack } from 'react-icons/gi'
 import './FinishedCreditUsers.css'
 import CriditEye from '../../components/criditEye/CriditEye'
 import CreditEdit from '../../components/creditEdit/CreditEdit'
-
 import Loader from "../../components/loader/Loader";
-
 
 export default function FinishedCreditUsers() {
   const { data2 } = useGetAllCriditDataQuery()
@@ -37,6 +35,7 @@ export default function FinishedCreditUsers() {
   const [openCriditEye, setOpenCriditEye] = useState(false)
   const [openUserDataEdit, setOpenUserDataEdit] = useState(false)
   const [userUpdateData, setuserUpdateData] = useState(null)
+
   useEffect(() => {
     setDataItem(data2?.innerData || []) // 1. '?.' operatori qo'shildi va yuqoridagi ifoda uchun yozilgan qo'shish
   }, [userUpdateData, data2])
@@ -134,7 +133,7 @@ export default function FinishedCreditUsers() {
             </tr>
           </thead>
           <tbody>
-            {isLoading ? <Loader /> : data?.innerData.map((i, inx) => (
+            {isLoading ? Loader : data?.innerData.map((i, inx) => (
               <tr key={inx}>
                 <td>{inx + 1}</td>
                 <td>{i?.firstname}</td>
