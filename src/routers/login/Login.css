@@ -102,12 +102,10 @@
 }
 
 .email_login > button {
-  padding: 8px 55px;
+  padding: 9px 55px;
   border-radius: 23px;
-  border: 1px solid white;
   font-size: 16px;
-  background-color: rgba(24, 24, 24, 0.85);
-  color: white;
+  color: #000;
   margin: 0 auto;
   display: flex;
   align-items: center;
