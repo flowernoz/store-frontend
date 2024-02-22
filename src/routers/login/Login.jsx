@@ -21,7 +21,7 @@ const Login = () => {
     try {
       const res = await logIn(data);
       if (!res?.data?.success) {
-        toast.error(`Bunday ${data?.username} foydalanuvchi yaratilmagan`, {
+        toast.error(`Bunday ${data?.username} foydalanuvchi yartilmagan`, {
           position: "top-center",
           autoClose: 2500,
           hideProgressBar: true,
@@ -32,12 +32,6 @@ const Login = () => {
       }
       setLoader(false);
       sessionStorage.setItem("userInfo", JSON.stringify(res?.data?.innerData));
-      console.log(res?.data);
-      toast.success("Muofaqqiyatli urunish", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-      });
       e.target.reset();
       navigate("/");
     } catch (error) {

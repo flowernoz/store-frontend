@@ -79,9 +79,6 @@ function Allproducts() {
     setOpenBarcode(true);
   };
 
-  openBarcode
-    ? (document.body.style.overflow = "hidden")
-    : (document.body.style.overflow = "auto");
   openProEdit
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");

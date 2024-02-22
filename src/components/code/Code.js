@@ -8,7 +8,35 @@ const Code = ({ text, setOpenBarcode }) => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    pageStyle: () => "width",
+    // pageStyle: () => `
+    //   @page {
+    //     size: 60mm 38mm;
+    //     margin: 0;
+    //   }
+    //   @media print {
+    //     body {
+    //       margin: 0;
+    //     }
+    //      {
+    //       height: 100;
+    //     }
+    //   }
+    // `,
+
+    pageStyle: () => `
+  @page {
+    size: 60mm 38mm;
+    margin: 0;
+  }
+  @media print {
+    body {
+      margin: 0;
+    }
+    @page {
+      size: 60mm 38mm;
+    }
+  }
+`,
   });
 
   return (
