@@ -16,11 +16,12 @@ const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
+    console.log(data);
 
     try {
       const res = await logIn(data);
       if (!res?.data?.success) {
-        toast.error(`Bunday ${data?.username} foydalanuvchi yartilmagan`, {
+        toast.error(`Bunday ${data?.username} foydalanuvchi yaratilmagan`, {
           position: "top-center",
           autoClose: 2500,
           hideProgressBar: true,
