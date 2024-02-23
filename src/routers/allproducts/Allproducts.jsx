@@ -95,7 +95,7 @@ function Allproducts() {
       {
         isLoading ? <Loader/> :
       
-      dataItem?.length ? 
+        dataItem?.length ? 
         <>
           <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>
@@ -150,7 +150,7 @@ function Allproducts() {
             </table>
           </div>
         </>
-      : 
+        : 
         <div className="empty">
           <Empty />
         </div>
