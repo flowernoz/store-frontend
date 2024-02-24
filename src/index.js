@@ -14,3 +14,11 @@ root.render(
     </Provider>
   </BrowserRouter>
 );
+
+const today = new Date();
+const currentDay = today.getDate();
+const currentMonth = today.getMonth();
+const currentYear = today.getFullYear();
+const addedTime = new Date(
+  "Wed Feb 21 2024 09:20:49 GMT+0000 (Coordinated Universal Time)"
+);
