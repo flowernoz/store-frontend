@@ -6,7 +6,6 @@ import {
   useGetAllProductsQuery,
   useProductUpdateMutation,
   useDeleteOneProductMutation,
-  useSearchPostMutation,
   useDeleteAllProductsMutation,
 } from "../../redux/productApi";
 import { toast, ToastContainer } from "react-toastify";
@@ -18,7 +17,6 @@ function Allproducts() {
   const { data, isLoading } = useGetAllProductsQuery();
   const [productUpdate] = useProductUpdateMutation();
   const [deleteOneProduct] = useDeleteOneProductMutation();
-  const [searchPost] = useSearchPostMutation();
   const [deleteAllProducts] = useDeleteAllProductsMutation();
   const [updateData, setUpdateData] = useState("");
   const [categoryId, setCategoryId] = useState(null);
@@ -92,7 +90,7 @@ function Allproducts() {
       {
         isLoading ? <Loader/> :
       
-      dataItem?.length ? 
+        dataItem?.length ? 
         <>
           <ToastContainer />
           <h1 className="heading">Barcha mahsulotlar</h1>
@@ -147,7 +145,7 @@ function Allproducts() {
             </table>
           </div>
         </>
-      : 
+        : 
         <div className="empty">
           <Empty />
         </div>

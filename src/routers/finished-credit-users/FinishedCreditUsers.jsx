@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Empty from "../../components/empty/Empty";
 
 import {
   useCreditUserDeleteOneMutation,
@@ -57,6 +58,10 @@ export default function FinishedCreditUsers() {
         setOpenUserDataEdit(true)
         setuserUpdateData(res?.data?.innerData || null) // 3. Null tekshiruvi qo'shildi
       }
+
+      console.log(res?.data?.innerData);
+
+
     } catch (err) {
       console.error(err)
     }
@@ -100,66 +105,76 @@ export default function FinishedCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      <h1 className="heading">Bugungi qarzdorlar</h1>
-      <div className="tb">
-        <table className="fl-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Ismi</th>
-              <th>Familiyasi</th>
-              <th>Manzili</th>
-              <th>Telefon raqami</th>
-              <th>Passport raqami</th>
-              <th>
-                <GiMoneyStack />
-              </th>
-              <th>
-                <FaRegCalendarPlus />
-              </th>
 
-              <th>
-                <FaRegCalendarCheck />
-              </th>
-              <th>
-                <BsCart2 />
-              </th>
-              <th>
-                <LuClipboardEdit />
-              </th>
-              <th>
-                <IoTrashBinOutline />
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {isLoading ? Loader : data?.innerData.map((i, inx) => (
-              <tr key={inx}>
-                <td>{inx + 1}</td>
-                <td>{i?.firstname}</td>
-                <td>{i?.lastname}</td>
-                <td>{i?.address}</td>
-                <td>{i?.phone}</td>
-                <td>{i?.passport}</td>
+      {
+        isLoading ? <Loader /> :
+          data?.innerData.lenght ?
+            <>
 
-                <td>{i?.creditTotalPrice}</td>
-                <td>{i?.addedTime.split(' ')[0]}</td>
-                <td>{i?.givingDay}</td>
-                <td onClick={() => clickEye(i?._id)}>
-                  <FaRegEye />
-                </td>
-                <td onClick={() => creditEdit(i)}>
-                  <FaPencilAlt />
-                </td>
-                <td onClick={() => criditUserDelete(i?._id)}>
-                  <FaTrashCan />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <ToastContainer />
-      </div>
-    </div>
+              <h1 className="heading">Bugungi qarzdorlar</h1>
+              <div className="tb">
+                <table className="fl-table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Ismi</th>
+                      <th>Familiyasi</th>
+                      <th>Manzili</th>
+                      <th>Telefon raqami</th>
+                      <th>Passport raqami</th>
+                      <th>
+                        <GiMoneyStack />
+                      </th>
+                      <th>
+                        <FaRegCalendarPlus />
+                      </th>
+
+                      <th>
+                        <FaRegCalendarCheck />
+                      </th>
+                      <th>
+                        <BsCart2 />
+                      </th>
+                      <th>
+                        <LuClipboardEdit />
+                      </th>
+                      <th>
+                        <IoTrashBinOutline />
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data?.innerData.map((i, inx) => (
+                      <tr key={inx}>
+                        <td>{inx + 1}</td>
+                        <td>{i?.firstname}</td>
+                        <td>{i?.lastname}</td>
+                        <td>{i?.address}</td>
+                        <td>{i?.phone}</td>
+                        <td>{i?.passport}</td>
+
+                        <td>{i?.creditTotalPrice}</td>
+                        <td>{i?.addedTime.split(' ')[0]}</td>
+                        <td>{i?.givingDay}</td>
+                        <td onClick={() => clickEye(i?._id)}>
+                          <FaRegEye />
+                        </td>
+                        <td onClick={() => creditEdit(i)}>
+                          <FaPencilAlt />
+                        </td>
+                        <td onClick={() => criditUserDelete(i?._id)}>
+                          <FaTrashCan />
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <ToastContainer />
+              </div>
+            </>
+            :
+            <Empty />
+      }
+    </div >
   )
 }

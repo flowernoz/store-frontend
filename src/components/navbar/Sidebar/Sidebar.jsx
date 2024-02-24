@@ -6,7 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import { LiaFacebookF, LiaTelegramPlane } from "react-icons/lia";
 import { LuInstagram } from "react-icons/lu";
 import { BiGridAlt } from "react-icons/bi";
-import { FaRegCalendarAlt, FaRegCalendarPlus, FaUsersCog } from "react-icons/fa";
+import { FaRegCalendarAlt, FaUsersCog } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import { IoHomeOutline } from "react-icons/io5";
