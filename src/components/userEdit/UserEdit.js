@@ -21,27 +21,6 @@ const UserEdit = ({ close, userEditData }) => {
     data.year = parseInt(data.year);
     data.phone = phoneNumber;
 
-    console.log(data);
-    // try {
-    //   const res = await signUp(data);
-    //   if (res?.data?.success) {
-    //     toast.success("Malumot bazaga qo'shildi !", {
-    //       position: "top-center",
-    //       autoClose: 1500,
-    //       hideProgressBar: true,
-    //     });
-    //     e.target.reset();
-    //     return;
-    //   }
-    //   toast.error(`Bunday ${data?.username} foydalanuvchi avval yaratilgan`, {
-    //     position: "top-center",
-    //     autoClose: 2500,
-    //     hideProgressBar: true,
-    //   });
-    //   e.target.reset();
-    // } catch (error) {
-    //   console.log(error);
-    // }
   };
   return (
     <div className="user_edit_page">

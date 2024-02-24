@@ -8,10 +8,11 @@ import {
 import Empty from "../../components/empty/Empty";
 import { FaTrash } from "react-icons/fa";
 import { Zoom, toast } from "react-toastify";
+import Loader from "../../components/loader/Loader";
 import { MdOutlineUpdate } from "react-icons/md";
 
 const Registered = () => {
-  const { data } = useGetAllUserQuery();
+  const { data, isLoading } = useGetAllUserQuery();
   const [userDeleteOne] = useUserDeleteOneMutation();
   const [userSearch] = useUserSearchMutation();
   const [dataItem, setDataItem] = useState([]);
@@ -47,7 +48,7 @@ const Registered = () => {
     }
   }
 
-  const aminAndOvnerSearch = async (search) => {
+  const userFirsNameSearch = async (search) => {
     try {
       let e = search.trimStart();
       const res = await userSearch({ search: e });
@@ -65,23 +66,25 @@ const Registered = () => {
 
   return (
     <div className="registered_page">
-      {dataItem?.length ? (
+      {isLoading ? (
+        <Loader />
+      ) : dataItem?.length ? (
         <div className="registered_container">
           <div className="registered_header">
             <h1>Ro'yxatdagi adminlar</h1>
             <div className="search_container">
               <input
-                onChange={(e) => aminAndOvnerSearch(e.target.value)}
+                onChange={(e) => userFirsNameSearch(e.target.value)}
                 type="text"
                 name="firstname"
                 placeholder="Qidirish..."
               />
               <select name="phone">
-                <option>Telfon raqami bo'yicha qidirish</option>
-                <option value="909976220">909976220</option>
-                <option value="909976220">909976220</option>
-                <option value="909976220">909976220</option>
-                <option value="909976220">909976220</option>
+                <option>Kategoriya qidirish</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
               </select>
             </div>
           </div>

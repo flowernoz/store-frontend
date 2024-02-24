@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
+import Loader from "../../components/loader/Loader";
+
 import "./AllCreditUsers.css";
 import {
   FaPencilAlt,
@@ -18,15 +20,16 @@ import {
   useUpdateCreditUserMutation,
   useCreditUserSearchMutation,
 } from "../../redux/criditApi";
-import { toast, ToastContainer, Zoom } from "react-toastify";
+import { toast, Zoom } from "react-toastify";
 import CriditEye from "../../components/criditEye/CriditEye";
 import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
+import { MdOutlineUpdate } from "react-icons/md";
 
 function AllCreditUsers() {
   let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
 
-  const { data } = useGetAllCriditDataQuery();
+  const { data, isLoading } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
@@ -122,7 +125,9 @@ function AllCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      {dataItem?.length ? (
+      {isLoading ? (
+        <Loader />
+      ) : dataItem?.length ? (
         <div className="credit_cart_container">
           <div className="credit_cart_header">
             <h1>Barcha qarzdorlar</h1>
@@ -134,7 +139,7 @@ function AllCreditUsers() {
                 placeholder="Qidirish..."
               />
               <select name="phone">
-                <option>Telfon raqami bo'yicha qidirish</option>
+                <option>Nomer qidirish</option>
                 <option value="909976220">909976220</option>
                 <option value="909976220">909976220</option>
                 <option value="909976220">909976220</option>
@@ -163,7 +168,9 @@ function AllCreditUsers() {
                   <th>
                     <FaRegCalendarCheck />
                   </th>
-                  <th>O'zgartirish</th>
+                  <th>
+                    <MdOutlineUpdate />
+                  </th>
                 </tr>
               </thead>
               <tbody>

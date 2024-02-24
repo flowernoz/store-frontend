@@ -36,10 +36,10 @@ export const creditAmountApi = api.injectEndpoints({
       },
       invalidatesTags: ["GETALLAMOUNTUSER"],
     }),
-    userChackSearch: builder.mutation({
+    userSearchPayment: builder.mutation({
       query(body) {
         return {
-          url: "creditAmount/userChackSearch",
+          url: `creditAmount/userSearchPayment`,
           method: "POST",
           body,
         };
@@ -54,5 +54,4 @@ export const {
   useCreateAmountCreditMutation,
   useChackUserDeleteOneMutation,
   useFindUserChackMutation,
-  useUserChackSearchMutation,
 } = creditAmountApi;
