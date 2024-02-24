@@ -63,6 +63,7 @@ input::-webkit-inner-spin-button {
   user-select: none;
   background: none !important;
   color: #fff !important;
+  font-size: 20px !important;
 }
 .scanned :where(div, span) {
   display: flex;
