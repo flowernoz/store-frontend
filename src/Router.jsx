@@ -1,13 +1,14 @@
 import { Route, Routes } from "react-router";
 import {
   Auth,
-  Statistics,
   Cart,
   Login,
   Nasiya,
   AllCreditUsers,
   CreateProduct,
 } from "./routers";
+
+import Statistics from "./routers/statistics/Statistics";
 import { Register } from "./routers/register/Register";
 import Layout from "./layout";
 import "react-toastify/dist/ReactToastify.css";

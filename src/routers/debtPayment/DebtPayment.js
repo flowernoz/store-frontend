@@ -123,8 +123,8 @@ const DebtPayment = () => {
                       <td>{date}</td>
                       <td>{time}</td>
                       <td>{item?.usersStories?.pricePaid}</td>
-                      <td>{item?.usersStories?.remainingDebt}</td>
                       <td>{item?.usersStories?.totalPrice}</td>
+                      <td>{item?.usersStories?.remainingDebt}</td>
                       <td>
                         {role === "owner" && (
                           <FaTrash onClick={() => userChackDelete(item._id)} />
