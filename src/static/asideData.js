@@ -1,6 +1,11 @@
 import { IoHomeOutline } from "react-icons/io5";
 import { FaMoneyBillTrendUp } from "react-icons/fa6";
-import { FaCashRegister, FaRegCalendarAlt, FaUserCog } from "react-icons/fa";
+import {
+  FaCashRegister,
+  FaRegCalendarAlt,
+  FaUserCog,
+  FaMoneyCheckAlt,
+} from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiGridAlt } from "react-icons/bi";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
@@ -23,6 +28,12 @@ let asideData = {
       link: "/cart",
       class: "cart_length",
       id: 5,
+    },
+    {
+      icon: <FaMoneyCheckAlt />,
+      title: "Qarz to'laganlar",
+      link: "/debtpayment",
+      id: 6,
     },
   ],
   owner: [
@@ -50,6 +61,12 @@ let asideData = {
       id: 6,
     },
     { icon: <FaUserCog />, title: "Adminlar", link: "/registered", id: 7 },
+    {
+      icon: <FaMoneyCheckAlt />,
+      title: "Qarz to'laganlar",
+      link: "/debtpayment",
+      id: 8,
+    },
   ],
 };
 

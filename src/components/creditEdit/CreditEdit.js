@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import "./CreditEdit.css";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useUpdateCreditUserMutation } from "../../redux/criditApi";
-import { toast, ToastContainer } from "react-toastify";
+import { useCreateAmountCreditMutation } from "../../redux/creditAmountApi";
+import { toast } from "react-toastify";
+import UserPrint from "../userPrint/UserPrint";
 
 const CreditEdit = ({ creditEditClose, updateUserData, setDataItem }) => {
   const [updateCreditUser, { isLoading, isSuccess }] =
     useUpdateCreditUserMutation();
+
+  const [createAmountCredit] = useCreateAmountCreditMutation();
 
   let { creditTotalPrice } = updateUserData;
 
@@ -14,6 +18,8 @@ const CreditEdit = ({ creditEditClose, updateUserData, setDataItem }) => {
 
   // input qiymatiga bosh string qoshish ochun
   const [price, setPrice] = useState("");
+  const [openPrint, setOpenPrint] = useState(false);
+  const [userDataPrint, setUserDataPrint] = useState(null);
 
   // toza qiymat olish uchun
   const [clenPriceValue, setClenPriceValue] = useState("");
@@ -51,14 +57,40 @@ const CreditEdit = ({ creditEditClose, updateUserData, setDataItem }) => {
             closeButton: false,
             hideProgressBar: true,
           });
-          creditEditClose(false);
+          setPrice("");
         }
       })
       .catch((err) => console.log(err));
+
+    amoutnData(newCreditTotalPrice, data.price);
   }
+
+  async function amoutnData(newCreditTotalPrice, pricePaid) {
+    let userData = {
+      updateUserData, //user malumotlari
+      pricePaid, //bergan puli
+      newCreditTotalPrice, //qarzidan ayrilgani
+      creditTotalPrice, //oldingi qarzi
+    };
+
+    try {
+      let res = await createAmountCredit(userData);
+      // console.log(res);
+      if (res?.data?.status === "success") {
+        setOpenPrint(true);
+        setUserDataPrint(res?.data?.innerData?.usersStories);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  // openPrint ? creditEditClose(openPrint) : creditEditClose(openPrint);
 
   return (
     <div className="credit_edit">
+      {openPrint && (
+        <UserPrint setOpenPrint={setOpenPrint} userPrintData={userDataPrint} />
+      )}
       <div className="container">
         <div className="credit_edit_container">
           <form onSubmit={updateCredit}>

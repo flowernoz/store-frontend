@@ -9,17 +9,18 @@ import {
   useSearchPostMutation,
   useDeleteAllProductsMutation,
 } from "../../redux/productApi";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Empty from "../../components/empty/Empty";
 import UpdateCode from "../../components/updateCode/UpdateCode";
 import { BsFillPrinterFill } from "react-icons/bs";
+import { MdOutlineUpdate } from "react-icons/md";
 
 function Allproducts() {
   const { data } = useGetAllProductsQuery();
   const [productUpdate] = useProductUpdateMutation();
   const [deleteOneProduct] = useDeleteOneProductMutation();
-  const [searchPost] = useSearchPostMutation();
   const [deleteAllProducts] = useDeleteAllProductsMutation();
+  const [searchPost] = useSearchPostMutation();
   const [updateData, setUpdateData] = useState("");
   const [categoryId, setCategoryId] = useState(null);
   const [openProEdit, setOpenProEdit] = useState(false);
@@ -28,7 +29,6 @@ function Allproducts() {
   // const [loading, setLoading] = useState(true);
   useEffect(() => {
     setDataItem(data?.innerData);
-    // setLoading(false);
   }, [data]);
 
   async function deleteAll() {
@@ -69,6 +69,18 @@ function Allproducts() {
       .catch((err) => console.log(err));
   }
 
+  const proSearch = async (search) => {
+    try {
+      let e = search.trimStart();
+      const res = await searchPost({ search: e });
+      if (res?.data?.status === "success") {
+        setDataItem(res?.data?.innerData || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const formatNumber = (number) => {
     return new Intl.NumberFormat("uz-UZ").format(number);
   };
@@ -83,17 +95,33 @@ function Allproducts() {
     : (document.body.style.overflow = "auto");
 
   return (
-    <div className="allproducts">
+    <div className="allproducts_page">
       {openBarcode && (
         <UpdateCode text={categoryId} setOpenBarcode={setOpenBarcode} />
       )}
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
       {dataItem?.length ? (
-        <>
-          <ToastContainer />
-          <h1 className="heading">Barcha mahsulotlar</h1>
-          <div className="tb">
-            <table className="fl-table">
+        <div className="allproducts_container">
+          <div className="allproducts_header">
+            <h1>Barcha mahsulotlar</h1>
+            <div className="search_container">
+              <input
+                onChange={(e) => proSearch(e.target.value)}
+                type="text"
+                name="firstname"
+                placeholder="Qidirish..."
+              />
+              <select name="phone">
+                <option>Kategoriya qidirish</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+              </select>
+            </div>
+          </div>
+          <div className="allproducts_table_container">
+            <table>
               <thead>
                 <tr>
                   <th>#</th>
@@ -106,7 +134,9 @@ function Allproducts() {
                   <th>O'lchami</th>
                   <th>Brendi</th>
                   <th>rangi</th>
-                  <th>o'zgartirish</th>
+                  <th>
+                    <MdOutlineUpdate />
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -126,23 +156,22 @@ function Allproducts() {
                     <td>{i?.size ? i.size : <FaMinus />}</td>
                     <td>{i?.brand ? i.brand : <FaMinus />}</td>
                     <td>{i?.color ? i.color : <FaMinus />}</td>
-                    <td className="change">
-                      <button onClick={() => proEdit(i)}>
-                        <FaEdit />
-                      </button>
-                      <button onClick={() => deleteOne(i?._id)}>
-                        <FaTrash />
-                      </button>
-                      <button onClick={() => codeRender(i?.barcode)}>
-                        <BsFillPrinterFill className="print_svg" />
-                      </button>
+                    <td>
+                      <FaEdit onClick={() => proEdit(i)} />
+
+                      <FaTrash onClick={() => deleteOne(i?._id)} />
+
+                      <BsFillPrinterFill
+                        className="print_svg"
+                        onClick={() => codeRender(i?.barcode)}
+                      />
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </>
+        </div>
       ) : (
         <div className="empty">
           <Empty />

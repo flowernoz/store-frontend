@@ -92,7 +92,7 @@ function BarCodeReader({ setOpenQrScanner }) {
           </div>
           <div className="scaner_item">
             <label>Bazadagi miqdori:</label>
-            <input type="text" value={totalquantity} />
+            <input className="generalQty" type="text" value={totalquantity} />
           </div>
           <div className="scaner_item_price">
             <label>kategoriyasi:</label>

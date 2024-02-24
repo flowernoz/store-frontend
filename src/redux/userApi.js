@@ -47,6 +47,16 @@ export const userApi = api.injectEndpoints({
       },
       invalidatesTags: ["GETALLUSER"],
     }),
+    userSearch: builder.mutation({
+      query(body) {
+        return {
+          url: "user/userSearch",
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["GETALLUSER"],
+    }),
   }),
 });
 
@@ -56,4 +66,5 @@ export const {
   useSignUpMutation,
   useUserDeleteOneMutation,
   useUserUpdateMutation,
+  useUserSearchMutation,
 } = userApi;

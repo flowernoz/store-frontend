@@ -1,9 +1,10 @@
-.registered_page {
+.debt_payment_page {
   width: 100%;
   height: calc(100vh - 60px);
+  overflow: hidden;
 }
 
-.registered_container {
+.debt_payment_container {
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -12,10 +13,9 @@
   gap: 10px;
 }
 
-.registered_header {
+.debt_payment_header {
   width: 100%;
   height: 60px;
-  /* background: dodgerblue; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,76 +60,69 @@
   font-size: 17px;
 }
 
-.registered_table_container {
+.debt_paymet_table_container {
   width: 100%;
   height: 100%;
+  /* background: crimson; */
   max-height: 100%;
   overflow-y: auto;
+  overflow-x: auto;
   position: relative;
 }
 
-.registered_table_container table {
+.debt_paymet_table_container table {
   width: 100%;
   border-collapse: collapse;
   /* border: 1px solid #000; */
 }
 
-.registered_table_container table thead tr {
+.debt_paymet_table_container table thead tr {
   width: 100%;
   height: 40px;
   background: #05326e;
   /* background: #042654; */
 }
 
-.registered_table_container table thead tr th {
+.debt_paymet_table_container table thead tr th {
   color: #fff;
   border-right: 1px solid #fff;
   padding: 0 2px;
   position: sticky;
-  z-index: 999;
   top: 0px;
   background: #042654;
 }
 
-.registered_table_container table thead tr th:nth-child(12) {
+.debt_paymet_table_container table thead tr th:nth-child(12) {
   border-right: none;
 }
 
-.registered_table_container table tbody tr {
+.debt_paymet_table_container table tbody tr {
   height: 35px;
   background: #eeeeee;
-  z-index: -1;
 }
 
-.registered_table_container table tbody tr td {
+.debt_paymet_table_container table tbody tr td {
   border-right: 1px solid #fff;
   padding: 0 5px;
 }
 
-.registered_table_container table tbody tr:nth-child(odd) {
+.debt_paymet_table_container table tbody tr:nth-child(odd) {
   background: #c7defd;
 }
-.registered_table_container table tbody tr td:nth-child(11) {
-  border-right: none;
-}
 
-.registered_table_container table tbody tr td:nth-child(1) {
-  text-align: center;
-}
-
-.registered_table_container table tbody tr td:nth-child(11) {
+.debt_paymet_table_container table tbody tr td:nth-child(12) {
   display: flex;
   gap: 10px;
   align-items: center;
   justify-content: center;
   padding-top: 10px;
+  border-right: none;
 }
 
-.registered_table_container table tbody tr td svg {
+.debt_paymet_table_container table tbody tr td:nth-child(1) {
+  text-align: center;
+}
+
+.debt_paymet_table_container table tbody tr td:nth-child(12) svg:nth-child(1) {
   color: crimson;
-}
-
-.empty_cart {
-  width: 100%;
-  height: calc(100vh - 100px);
 }

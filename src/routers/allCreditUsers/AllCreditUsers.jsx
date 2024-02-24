@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./AllCreditUsers.css";
 import {
   FaPencilAlt,
@@ -6,17 +6,17 @@ import {
   FaRegCalendarCheck,
   FaRegEye,
 } from "react-icons/fa";
-import { LuClipboardEdit } from "react-icons/lu";
 import { FaTrashCan } from "react-icons/fa6";
-import { BsCart2 } from "react-icons/bs";
-import { IoTrashBinOutline } from "react-icons/io5";
 import { GiMoneyStack } from "react-icons/gi";
+import { FaPassport } from "react-icons/fa6";
+
 // CREDIT API =>
 import {
   useCreditUserDeleteOneMutation,
   useGetAllCriditDataQuery,
   useSoldCriditFintUserMutation,
   useUpdateCreditUserMutation,
+  useCreditUserSearchMutation,
 } from "../../redux/criditApi";
 import { toast, ToastContainer, Zoom } from "react-toastify";
 import CriditEye from "../../components/criditEye/CriditEye";
@@ -24,10 +24,13 @@ import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
 
 function AllCreditUsers() {
+  let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
+
   const { data } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
+  const [creditUserSearch] = useCreditUserSearchMutation();
 
   let [dataItem, setDataItem] = useState([]);
   const [openCriditEye, setOpenCriditEye] = useState(false);
@@ -83,6 +86,18 @@ function AllCreditUsers() {
     }
   }
 
+  const creditSearch = async (search) => {
+    try {
+      let e = search.trimStart();
+      const res = await creditUserSearch({ search: e });
+      if (res?.data?.status === "success") {
+        setDataItem(res?.data?.innerData || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const formatNumber = (number) => {
     return new Intl.NumberFormat("uz-UZ").format(number);
   };
@@ -96,7 +111,7 @@ function AllCreditUsers() {
     : (document.body.style.overflow = "auto");
 
   return (
-    <div className="creditCart">
+    <div className="credit_cart_page">
       {openCriditEye && (
         <CriditEye closeCreditEya={setOpenCriditEye} userData={userData} />
       )}
@@ -108,11 +123,27 @@ function AllCreditUsers() {
         />
       )}
       {dataItem?.length ? (
-        <>
-          <ToastContainer />
-          <h1 className="heading">Barcha qarzdorlar</h1>
-          <div className="tb">
-            <table className="fl-table">
+        <div className="credit_cart_container">
+          <div className="credit_cart_header">
+            <h1>Barcha qarzdorlar</h1>
+            <div className="search_container">
+              <input
+                onChange={(e) => creditSearch(e.target.value)}
+                type="text"
+                name="firstname"
+                placeholder="Qidirish..."
+              />
+              <select name="phone">
+                <option>Telfon raqami bo'yicha qidirish</option>
+                <option value="909976220">909976220</option>
+                <option value="909976220">909976220</option>
+                <option value="909976220">909976220</option>
+                <option value="909976220">909976220</option>
+              </select>
+            </div>
+          </div>
+          <div className="credit_cart_table_container">
+            <table>
               <thead>
                 <tr>
                   <th>#</th>
@@ -120,26 +151,19 @@ function AllCreditUsers() {
                   <th>Familiyasi</th>
                   <th>Manzili</th>
                   <th>Telefon raqami</th>
-                  <th>Passport raqami</th>
+                  <th>
+                    <FaPassport />
+                  </th>
                   <th>
                     <GiMoneyStack />
                   </th>
                   <th>
                     <FaRegCalendarPlus />
                   </th>
-
                   <th>
                     <FaRegCalendarCheck />
                   </th>
-                  <th>
-                    <BsCart2 />
-                  </th>
-                  <th>
-                    <LuClipboardEdit />
-                  </th>
-                  <th>
-                    <IoTrashBinOutline />
-                  </th>
+                  <th>O'zgartirish</th>
                 </tr>
               </thead>
               <tbody>
@@ -151,25 +175,25 @@ function AllCreditUsers() {
                     <td>{i?.address}</td>
                     <td>{i?.phone}</td>
                     <td>{i?.passport}</td>
-
                     <td>{formatNumber(i?.creditTotalPrice)}</td>
                     <td>{i?.addedTime.split(" ")[0]}</td>
                     <td>{i?.givingDay}</td>
                     <td>
                       <FaRegEye onClick={() => clickEye(i?._id)} />
-                    </td>
-                    <td>
+
                       <FaPencilAlt onClick={() => creditEdit(i)} />
-                    </td>
-                    <td>
-                      <FaTrashCan onClick={() => criditUserDelete(i?._id)} />
+                      {role === "owner" ? (
+                        <FaTrashCan onClick={() => criditUserDelete(i?._id)} />
+                      ) : (
+                        ""
+                      )}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </>
+        </div>
       ) : (
         <div className="empty">
           <Empty />

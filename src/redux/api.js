@@ -23,6 +23,7 @@ export const api = createApi({
     "SCANER_DATA",
     "GETALLUSER",
     "GETREPORT",
+    "GETALLAMOUNTUSER",
   ],
   endpoints: () => ({}),
 });

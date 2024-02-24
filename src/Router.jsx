@@ -16,6 +16,8 @@ import Allproducts from "./routers/allproducts/Allproducts";
 import Popular from "./routers/popular/Popular";
 import Registered from "./routers/registered/Registered";
 import FinishedCreditUsers from "./routers/finished-credit-users/FinishedCreditUsers";
+import DebtPayment from "./routers/debtPayment/DebtPayment";
+
 function Router() {
   return (
     <div className="router">
@@ -34,6 +36,7 @@ function Router() {
             <Route path="/popular" element={<Popular />} />
             <Route path="/register" element={<Register />} />
             <Route path="/registered" element={<Registered />} />
+            <Route path="/debtpayment" element={<DebtPayment />} />
           </Route>
         </Route>
       </Routes>

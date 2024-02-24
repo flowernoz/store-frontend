@@ -120,7 +120,13 @@ input::-webkit-inner-spin-button {
   font-size: 20px;
   text-align: center;
 }
-
+.generalQty {
+  pointer-events: none;
+  user-select: none;
+  background: none !important;
+  color: white !important;
+  font-size: 18px !important;
+}
 .scaner_item {
   width: 100%;
   height: 50px;
