@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./AllCreditUsers.css";
 import {
   FaPencilAlt,
@@ -12,9 +12,6 @@ import { BsCart2 } from "react-icons/bs";
 import { IoTrashBinOutline } from "react-icons/io5";
 import { GiMoneyStack } from "react-icons/gi";
 // CREDIT API =>
-
-import Loader from "../../components/loader/Loader";
-
 import {
   useCreditUserDeleteOneMutation,
   useGetAllCriditDataQuery,
@@ -27,7 +24,9 @@ import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
 
 function AllCreditUsers() {
-  const { data, isLoading } = useGetAllCriditDataQuery();
+  let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
+
+  const { data } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
@@ -99,7 +98,7 @@ function AllCreditUsers() {
     : (document.body.style.overflow = "auto");
 
   return (
-    <div className="creditCart">
+    <div className="credit_cart_page">
       {openCriditEye && (
         <CriditEye closeCreditEya={setOpenCriditEye} userData={userData} />
       )}
@@ -110,12 +109,23 @@ function AllCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      {isLoading ? <Loader /> : dataItem?.length ? (
-        <>
-          <ToastContainer />
-          <h1 className="heading">Barcha qarzdorlar</h1>
-          <div className="tb">
-            <table className="fl-table">
+      {dataItem?.length ? (
+        <div className="credit_cart_container">
+          <div className="credit_cart_header">
+            <h1>Barcha qarzdorlar</h1>
+            <div className="search_container">
+              <input type="text" name="firstname" placeholder="Qidirish..." />
+              <select name="phone">
+                <option>Nomer qidirish</option>
+                <option value="909976220">909976220</option>
+                <option value="909976220">909976220</option>
+                <option value="909976220">909976220</option>
+                <option value="909976220">909976220</option>
+              </select>
+            </div>
+          </div>
+          <div className="credit_cart_table_container">
+            <table>
               <thead>
                 <tr>
                   <th>#</th>
@@ -130,19 +140,10 @@ function AllCreditUsers() {
                   <th>
                     <FaRegCalendarPlus />
                   </th>
-
                   <th>
                     <FaRegCalendarCheck />
                   </th>
-                  <th>
-                    <BsCart2 />
-                  </th>
-                  <th>
-                    <LuClipboardEdit />
-                  </th>
-                  <th>
-                    <IoTrashBinOutline />
-                  </th>
+                  <th>O'zgartirish</th>
                 </tr>
               </thead>
               <tbody>
@@ -154,25 +155,25 @@ function AllCreditUsers() {
                     <td>{i?.address}</td>
                     <td>{i?.phone}</td>
                     <td>{i?.passport}</td>
-
                     <td>{formatNumber(i?.creditTotalPrice)}</td>
                     <td>{i?.addedTime.split(" ")[0]}</td>
                     <td>{i?.givingDay}</td>
                     <td>
                       <FaRegEye onClick={() => clickEye(i?._id)} />
-                    </td>
-                    <td>
+
                       <FaPencilAlt onClick={() => creditEdit(i)} />
-                    </td>
-                    <td>
-                      <FaTrashCan onClick={() => criditUserDelete(i?._id)} />
+                      {role === "owner" ? (
+                        <FaTrashCan onClick={() => criditUserDelete(i?._id)} />
+                      ) : (
+                        ""
+                      )}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </>
+        </div>
       ) : (
         <div className="empty">
           <Empty />

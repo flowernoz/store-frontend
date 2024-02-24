@@ -8,7 +8,6 @@ const Code = ({ text, setOpenBarcode }) => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-
     pageStyle: () => `
   @page {
     size: 60mm 38mm;

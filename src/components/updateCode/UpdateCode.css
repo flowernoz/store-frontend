@@ -1,13 +1,13 @@
 .update_code_page {
   width: 100%;
-  height: calc(100vh - 60px);
+  height: 110vh;
   background: #0000007e;
-  position: fixed;
-  top: 60px;
+  position: absolute;
+  top: 0;
   left: 0;
   backdrop-filter: blur(7px);
   z-index: 1000;
-  padding: 40px 0 0;
+  padding: 30px 0;
 }
 
 .update_code_container {

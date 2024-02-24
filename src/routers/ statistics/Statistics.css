@@ -70,44 +70,11 @@
 
 /* media */
 
-
-@media (max-width: 1150px) {
-  
-  .statistics_container>.box>.statistics_card>p{
-    font-size: 20px;
-  }
-  .statistics_container .box .statistics_card p {
-    font-size: 2.5em;
-  }
-}
-
 @media (max-width: 950px) {
   .statistics_container .shadow {
     padding: 40px 0;
   }
-  
-  .statistics_container .box .statistics_card p {
-    font-size: 2em;
-  }
 }
-
-@media (max-width: 850px) {
- 
-  .statistics_container .box .statistics_card p {
-    font-size: 1.7em;
-  }
-}
-
-
-@media (max-width: 800px) {
-  
-  
-  .statistics_container .box .statistics_card p {
-    font-size: 1.5em;
-  }
-}
-
-
 
 @media (max-width: 600px) {
   .statistics_container .box .statistics_card p {

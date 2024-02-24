@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CriditRegister.css";
-import {  toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { useCart } from "../../redux/selectors";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import {
@@ -202,6 +202,7 @@ const CriditRegister = ({ close, totalPrice }) => {
                     />
                     <input required type="date" name="givingDay" />
                   </div>
+                  {/* disabled={regLoader} */}
                   <button disabled={regLoader} type="submit">
                     {regLoader ? "Saqlanmoqda" : "Saqlash"}
                   </button>

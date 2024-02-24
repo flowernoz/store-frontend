@@ -8,6 +8,7 @@
   text-decoration: none;
   border: none;
   scroll-behavior: smooth;
+  text-transform: capitalize;
 }
 
 body {
@@ -46,10 +47,7 @@ svg {
   background: var(--bgColorDark);
   border-radius: 6px;
 }
-.head {
-  position: sticky;
-  z-index: 9999;
-}
+
 .strange {
   max-width: 1366px;
   width: 100%;
@@ -86,7 +84,6 @@ aside a {
   display: flex;
   gap: 7px;
   position: relative;
-  text-transform: capitalize;
 }
 aside a svg {
   font-size: 20px;

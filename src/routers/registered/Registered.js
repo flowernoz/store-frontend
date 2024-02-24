@@ -3,18 +3,15 @@ import "./Registered.css";
 import {
   useGetAllUserQuery,
   useUserDeleteOneMutation,
-  useUserUpdateMutation,
 } from "../../redux/userApi";
 import Empty from "../../components/empty/Empty";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { Zoom, toast } from "react-toastify";
-import UserEdit from "../../components/userEdit/UserEdit";
 
 const Registered = () => {
   const { data } = useGetAllUserQuery();
   const [userDeleteOne] = useUserDeleteOneMutation();
   const [dataItem, setDataItem] = useState([]);
-  const [openUserEdit, setOpenUserEdit] = useState(false);
 
   useEffect(() => {
     setDataItem(data?.innerData || []);
@@ -47,62 +44,115 @@ const Registered = () => {
     }
   }
 
-  const userEdit = (item) => {
-    setOpenUserEdit(true);
-  };
-
   useEffect(() => {
     findAges(data?.innerData);
   }, [data]);
 
   return (
+    // <div className="registered_page">
+    //   {dataItem?.length ? (
+    //     <table>
+    //       <caption>Ro'yxatdagi adminlar</caption>
+    //       <thead>
+    //         <tr>
+    //           <th>#</th>
+    //           <th>Ism</th>
+    //           <th>Familiya</th>
+    //           <th>Yil</th>
+    //           <th>Yosh</th>
+    //           <th>Jins</th>
+    //           <th>Foydalanuvchi nomi</th>
+    //           <th>Nomer</th>
+    //           <th>Manzil</th>
+    //           <th>Roli</th>
+    //           <th>O'zgartirish</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {dataItem?.map((item, inx) => (
+    //           <tr key={inx}>
+    //             <td>{inx + 1}</td>
+    //             <td>{item?.firstname}</td>
+    //             <td>{item?.lastname}</td>
+    //             <td>{item?.year}</td>
+    //             <td>{findAges(data?.innerData)[inx]}</td>
+    //             <td>{item?.gender}</td>
+    //             <td>{item?.username}</td>
+    //             <td>{item?.phone}</td>
+    //             <td>{item?.address}</td>
+    //             <td>{item?.role}</td>
+    //             <td className="change">
+    //               <button onClick={() => userDelete(item?._id)}>
+    //                 <FaTrash className="user_delete_icon" />
+    //               </button>
+    //             </td>
+    //           </tr>
+    //         ))}
+    //       </tbody>
+    //     </table>
+    //   ) : (
+    //     <div className="empty_cart">
+    //       <Empty />
+    //     </div>
+    //   )}
+    // </div>
     <div className="registered_page">
-      {openUserEdit && <UserEdit close={setOpenUserEdit} />}
       {dataItem?.length ? (
-        <table>
-          <caption>Ro'yxatdagi adminlar</caption>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Ism</th>
-              <th>Familiya</th>
-              <th>Yil</th>
-              <th>Yosh</th>
-              <th>Jins</th>
-              <th>Foydalanuvchi nomi</th>
-              <th>Nomer</th>
-              <th>Manzil</th>
-              <th>Roli</th>
-              <th>O'zgartirish</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dataItem?.map((item, inx) => (
-              <tr key={inx}>
-                <td>{inx + 1}</td>
-                <td>{item?.firstname}</td>
-                <td>{item?.lastname}</td>
-                <td>{item?.year}</td>
-                <td>{findAges(data?.innerData)[inx]}</td>
-                <td>{item?.gender}</td>
-                <td>{item?.username}</td>
-                <td>{item?.phone}</td>
-                <td>{item?.address}</td>
-                <td>{item?.role}</td>
-                <td className="change">
-                  <button onClick={() => userEdit(item)}>
-                    <FaEdit />
-                  </button>
-                  <button onClick={() => userDelete(item?._id)}>
-                    <FaTrash />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="registered_container">
+          <div className="registered_header">
+            <h1>Ro'yxatdagi adminlar</h1>
+            <div className="search_container">
+              <input type="text" name="firstname" placeholder="Qidirish..." />
+              <select name="phone">
+                <option>Kategoriya qidirish</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+              </select>
+            </div>
+          </div>
+          <div className="registered_table_container">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Ism</th>
+                  <th>Familiya</th>
+                  <th>Yil</th>
+                  <th>Yosh</th>
+                  <th>Jins</th>
+                  <th>Foydalanuvchi nomi</th>
+                  <th>Nomer</th>
+                  <th>Manzil</th>
+                  <th>Roli</th>
+                  <th>O'zgartirish</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dataItem?.map((item, inx) => (
+                  <tr key={inx}>
+                    <td>{inx + 1}</td>
+                    <td>{item?.firstname}</td>
+                    <td>{item?.lastname}</td>
+                    <td>{item?.year}</td>
+                    <td>{findAges(data?.innerData)[inx]}</td>
+                    <td>{item?.gender}</td>
+                    <td>{item?.username}</td>
+                    <td>{item?.phone}</td>
+                    <td>{item?.address}</td>
+                    <td>{item?.role}</td>
+                    <td>
+                      <FaTrash onClick={() => userDelete(item?._id)} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       ) : (
-        <div className="empty_cart">
+        <div className="empty">
           <Empty />
         </div>
       )}

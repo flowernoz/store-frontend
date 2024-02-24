@@ -10,10 +10,6 @@ const UpdateCode = ({ text, setOpenBarcode }) => {
     : (document.body.style.overflow = "auto");
 
   const componentRef = useRef();
-  //   const handlePrint = useReactToPrint({
-  //     content: () => componentRef.current,
-  //     pageStyle: () => "width",
-  //   });
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,

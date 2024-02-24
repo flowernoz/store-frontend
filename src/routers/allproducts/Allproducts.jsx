@@ -6,15 +6,16 @@ import {
   useGetAllProductsQuery,
   useProductUpdateMutation,
   useDeleteOneProductMutation,
+  useSearchPostMutation,
   useDeleteAllProductsMutation,
 } from "../../redux/productApi";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Empty from "../../components/empty/Empty";
-import Loader from "../../components/loader/Loader";
-import UpdateCode from '../../components/updateCode/UpdateCode'
+import UpdateCode from "../../components/updateCode/UpdateCode";
 import { BsFillPrinterFill } from "react-icons/bs";
+
 function Allproducts() {
-  const { data, isLoading } = useGetAllProductsQuery();
+  const { data } = useGetAllProductsQuery();
   const [productUpdate] = useProductUpdateMutation();
   const [deleteOneProduct] = useDeleteOneProductMutation();
   const [deleteAllProducts] = useDeleteAllProductsMutation();
@@ -23,11 +24,9 @@ function Allproducts() {
   const [openProEdit, setOpenProEdit] = useState(false);
   const [openBarcode, setOpenBarcode] = useState(false);
   const [dataItem, setDataItem] = useState([]);
-
-  
+  // const [loading, setLoading] = useState(true);
   useEffect(() => {
     setDataItem(data?.innerData);
-    // setLoading(false);
   }, [data]);
 
   async function deleteAll() {
@@ -82,20 +81,28 @@ function Allproducts() {
     : (document.body.style.overflow = "auto");
 
   return (
-    <div className="allproducts">
+    <div className="allproducts_page">
       {openBarcode && (
         <UpdateCode text={categoryId} setOpenBarcode={setOpenBarcode} />
       )}
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
-      {
-        isLoading ? <Loader/> :
-      
-        dataItem?.length ? 
-        <>
-          <ToastContainer />
-          <h1 className="heading">Barcha mahsulotlar</h1>
-          <div className="tb">
-            <table className="fl-table">
+      {dataItem?.length ? (
+        <div className="allproducts_container">
+          <div className="allproducts_header">
+            <h1>Barcha mahsulotlar</h1>
+            <div className="search_container">
+              <input type="text" name="firstname" placeholder="Qidirish..." />
+              <select name="phone">
+                <option>Kategoriya qidirish</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+                <option value="Smartfonlar">Smartfonlar</option>
+              </select>
+            </div>
+          </div>
+          <div className="allproducts_table_container">
+            <table>
               <thead>
                 <tr>
                   <th>#</th>
@@ -128,28 +135,27 @@ function Allproducts() {
                     <td>{i?.size ? i.size : <FaMinus />}</td>
                     <td>{i?.brand ? i.brand : <FaMinus />}</td>
                     <td>{i?.color ? i.color : <FaMinus />}</td>
-                    <td className="change">
-                      <button onClick={() => proEdit(i)}>
-                        <FaEdit />
-                      </button>
-                      <button onClick={() => deleteOne(i?._id)}>
-                        <FaTrash />
-                      </button>
-                      <button onClick={() => codeRender(i?.barcode)}>
-                        <BsFillPrinterFill className="print_svg" />
-                      </button>
+                    <td>
+                      <FaEdit onClick={() => proEdit(i)} />
+
+                      <FaTrash onClick={() => deleteOne(i?._id)} />
+
+                      <BsFillPrinterFill
+                        className="print_svg"
+                        onClick={() => codeRender(i?.barcode)}
+                      />
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </>
-        : 
+        </div>
+      ) : (
         <div className="empty">
           <Empty />
         </div>
-      }
+      )}
     </div>
   );
 }

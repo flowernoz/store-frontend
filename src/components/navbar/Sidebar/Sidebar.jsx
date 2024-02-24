@@ -6,11 +6,11 @@ import { IoMdClose } from "react-icons/io";
 import { LiaFacebookF, LiaTelegramPlane } from "react-icons/lia";
 import { LuInstagram } from "react-icons/lu";
 import { BiGridAlt } from "react-icons/bi";
-import { FaRegCalendarAlt, FaUsersCog } from "react-icons/fa";
+import { FaRegCalendarAlt, FaRegCalendarPlus } from "react-icons/fa";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import { IoHomeOutline } from "react-icons/io5";
-import { FaCashRegister, FaMoneyBillTrendUp } from "react-icons/fa6";
+import { FaMoneyBillTrendUp } from "react-icons/fa6";
 
 function Sidebar({ closeSidebarFunc }) {
   return (
@@ -45,17 +45,13 @@ function Sidebar({ closeSidebarFunc }) {
             <FaRegCalendarAlt />
             nasiya
           </NavLink>
+          <NavLink onClick={closeSidebarFunc} to={"/nasiyacreate"}>
+            <FaRegCalendarPlus />
+            Nasiya qo'shish
+          </NavLink>
           <NavLink onClick={closeSidebarFunc} to={"/cart"}>
             <AiOutlineShoppingCart className="service__icon" />
             Savat
-          </NavLink>
-          <NavLink onClick={closeSidebarFunc} to={"/register"}>
-            <FaCashRegister />
-            Ro'yxatdan o'tish
-          </NavLink>
-          <NavLink onClick={closeSidebarFunc} to={"/registered"}>
-            <FaUsersCog />
-            Adminlar
           </NavLink>
         </div>
         {/*========= SIDEBAR BOTTOM ======== */}

@@ -1,0 +1,126 @@
+.user_print {
+  width: 100%;
+  height: 100vh;
+  background: #0000007e;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+}
+
+.user_print_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.user_print_header {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 10px;
+  border-radius: 10px;
+  border-bottom: 1px solid #fff;
+  gap: 10px;
+}
+
+.user_print_header button {
+  padding: 8px 13px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.user_print_header button svg {
+  font-size: 22px;
+}
+
+.user_print_card_container {
+  width: 300px;
+  padding: 0 10px;
+  padding-top: 10px;
+  background: #fff;
+  border-radius: 5px;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.user_print__header {
+  width: 100%;
+  padding: 30px 0;
+  height: 0;
+  border-radius: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #000;
+}
+
+.user_print__header h2 {
+  flex: 1;
+  padding-left: 15px;
+}
+
+.chack_img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.chack_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.user_print_card ul {
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 0;
+}
+
+.user_print_card ul li {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 0;
+  padding-right: 10px;
+  border-bottom: 1px solid #000;
+}
+
+.user_print_card ul li span {
+  font-size: 14px;
+  color: #333;
+  border-right: 1px solid #000;
+}
+
+.user_print_card ul li p {
+  padding-left: 10px;
+  color: #000;
+}
+
+.user_print_chack_border {
+  width: 100%;
+  display: flex;
+  padding-top: 10px;
+}
+
+.chack_border {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-bottom: 2px solid #000;
+}
