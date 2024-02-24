@@ -1,8 +1,10 @@
 .barCodeReader {
+  position: fixed;
   top: 60px;
   left: 0;
   z-index: 100;
   width: 100%;
+  height: calc(100vh - 60px);
   background: rgba(50, 50, 50, 0.715) !important;
   backdrop-filter: blur(2px);
   gap: 7px;
@@ -56,7 +58,12 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
+.generalQty {
+  pointer-events: none;
+  user-select: none;
+  background: none !important;
+  color: #fff !important;
+}
 .scanned :where(div, span) {
   display: flex;
   justify-content: space-between;

@@ -58,11 +58,11 @@ function Cart() {
   function checkout() {
     console.log(cart);
     axios
-      .post("/soldPro/create", cart)
+      .post("soldPro/create", cart)
       .then((res) => console.log(res))
       .catch((res) => console.log(res));
     axios
-      .patch("/pro/updateQty", cart)
+      .patch("pro/updateQty", cart)
       .then((res) => {
         console.log(res.data.status);
         if (res.data?.status === "success") {

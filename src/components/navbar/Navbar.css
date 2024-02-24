@@ -271,9 +271,12 @@ input[type="search"]::-webkit-search-cancel-button {
   .header__searchbar {
     order: 3;
   }
+  .update_code_page,
   .barCodeReader {
     top: 110px !important;
   }
+  .update_code_page,
+  .barCodeReader,
   .allproducts,
   .main_cart_home,
   .creditCart {
