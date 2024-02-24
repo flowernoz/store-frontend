@@ -14,11 +14,13 @@ import Empty from "../../components/empty/Empty";
 import UpdateCode from "../../components/updateCode/UpdateCode";
 import { BsFillPrinterFill } from "react-icons/bs";
 import Loader from "../../components/loader/Loader";
+import { MdOutlineUpdate } from "react-icons/md";
 function Allproducts() {
   const { data, isLoading } = useGetAllProductsQuery();
   const [productUpdate] = useProductUpdateMutation();
   const [deleteOneProduct] = useDeleteOneProductMutation();
   const [deleteAllProducts] = useDeleteAllProductsMutation();
+  const [searchPost] = useSearchPostMutation();
   const [updateData, setUpdateData] = useState("");
   const [categoryId, setCategoryId] = useState(null);
   const [openProEdit, setOpenProEdit] = useState(false);
@@ -67,6 +69,18 @@ function Allproducts() {
       .catch((err) => console.log(err));
   }
 
+  const proSearch = async (search) => {
+    try {
+      let e = search.trimStart();
+      const res = await searchPost({ search: e });
+      if (res?.data?.status === "success") {
+        setDataItem(res?.data?.innerData || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const formatNumber = (number) => {
     return new Intl.NumberFormat("uz-UZ").format(number);
   };
@@ -86,12 +100,19 @@ function Allproducts() {
         <UpdateCode text={categoryId} setOpenBarcode={setOpenBarcode} />
       )}
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
-      {isLoading ? <Loader /> : dataItem?.length ? (
+      {isLoading ? (
+        <Loader />
+      ) : dataItem?.length ? (
         <div className="allproducts_container">
           <div className="allproducts_header">
             <h1>Barcha mahsulotlar</h1>
             <div className="search_container">
-              <input type="text" name="firstname" placeholder="Qidirish..." />
+              <input
+                onChange={(e) => proSearch(e.target.value)}
+                type="text"
+                name="firstname"
+                placeholder="Qidirish..."
+              />
               <select name="phone">
                 <option>Kategoriya qidirish</option>
                 <option value="Smartfonlar">Smartfonlar</option>
@@ -115,7 +136,9 @@ function Allproducts() {
                   <th>O'lchami</th>
                   <th>Brendi</th>
                   <th>rangi</th>
-                  <th>o'zgartirish</th>
+                  <th>
+                    <MdOutlineUpdate />
+                  </th>
                 </tr>
               </thead>
               <tbody>

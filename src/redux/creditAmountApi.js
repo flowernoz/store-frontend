@@ -36,6 +36,16 @@ export const creditAmountApi = api.injectEndpoints({
       },
       invalidatesTags: ["GETALLAMOUNTUSER"],
     }),
+    userSearchPayment: builder.mutation({
+      query(body) {
+        return {
+          url: `creditAmount/userSearchPayment`,
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["GETALLAMOUNTUSER"],
+    }),
   }),
 });
 

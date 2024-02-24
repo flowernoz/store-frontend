@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Loader from '../../components/loader/Loader'
+import Loader from "../../components/loader/Loader";
 
 import "./AllCreditUsers.css";
 import {
@@ -10,17 +10,21 @@ import {
 } from "react-icons/fa";
 import { FaTrashCan } from "react-icons/fa6";
 import { GiMoneyStack } from "react-icons/gi";
+import { FaPassport } from "react-icons/fa6";
+
 // CREDIT API =>
 import {
   useCreditUserDeleteOneMutation,
   useGetAllCriditDataQuery,
   useSoldCriditFintUserMutation,
   useUpdateCreditUserMutation,
+  useCreditUserSearchMutation,
 } from "../../redux/criditApi";
 import { toast, Zoom } from "react-toastify";
 import CriditEye from "../../components/criditEye/CriditEye";
 import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
+import { MdOutlineUpdate } from "react-icons/md";
 
 function AllCreditUsers() {
   let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
@@ -29,6 +33,7 @@ function AllCreditUsers() {
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
+  const [creditUserSearch] = useCreditUserSearchMutation();
 
   let [dataItem, setDataItem] = useState([]);
   const [openCriditEye, setOpenCriditEye] = useState(false);
@@ -84,6 +89,18 @@ function AllCreditUsers() {
     }
   }
 
+  const creditSearch = async (search) => {
+    try {
+      let e = search.trimStart();
+      const res = await creditUserSearch({ search: e });
+      if (res?.data?.status === "success") {
+        setDataItem(res?.data?.innerData || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const formatNumber = (number) => {
     return new Intl.NumberFormat("uz-UZ").format(number);
   };
@@ -108,12 +125,19 @@ function AllCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      {isLoading ? <Loader /> : dataItem?.length ? (
+      {isLoading ? (
+        <Loader />
+      ) : dataItem?.length ? (
         <div className="credit_cart_container">
           <div className="credit_cart_header">
             <h1>Barcha qarzdorlar</h1>
             <div className="search_container">
-              <input type="text" name="firstname" placeholder="Qidirish..." />
+              <input
+                onChange={(e) => creditSearch(e.target.value)}
+                type="text"
+                name="firstname"
+                placeholder="Qidirish..."
+              />
               <select name="phone">
                 <option>Nomer qidirish</option>
                 <option value="909976220">909976220</option>
@@ -132,7 +156,9 @@ function AllCreditUsers() {
                   <th>Familiyasi</th>
                   <th>Manzili</th>
                   <th>Telefon raqami</th>
-                  <th>Passport raqami</th>
+                  <th>
+                    <FaPassport />
+                  </th>
                   <th>
                     <GiMoneyStack />
                   </th>
@@ -142,7 +168,9 @@ function AllCreditUsers() {
                   <th>
                     <FaRegCalendarCheck />
                   </th>
-                  <th>O'zgartirish</th>
+                  <th>
+                    <MdOutlineUpdate />
+                  </th>
                 </tr>
               </thead>
               <tbody>

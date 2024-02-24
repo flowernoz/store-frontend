@@ -12,13 +12,14 @@ function Allproducts() {
   }, [data]);
 
   return (
-
-    <div className="allproducts_page">
-      {isLoading ? <Loader /> : dataItem?.length ? (
-        <div className="allproducts_container">
-          <div className="allproducts_header">
+    <div className="popular_page">
+      {isLoading ? (
+        <Loader />
+      ) : dataItem?.length ? (
+        <div className="popular_container">
+          <div className="popular_header">
             <h1>Ommabop mahsulotlar</h1>
-            <div className="search_container">
+            {/* <div className="search_container">
               <input type="text" name="firstname" placeholder="Qidirish..." />
               <select name="phone">
                 <option>Kategoriya qidirish</option>
@@ -27,9 +28,9 @@ function Allproducts() {
                 <option value="Smartfonlar">Smartfonlar</option>
                 <option value="Smartfonlar">Smartfonlar</option>
               </select>
-            </div>
+            </div> */}
           </div>
-          <div className="allproducts_table_container">
+          <div className="popular_table_container">
             <table>
               <thead>
                 <tr>

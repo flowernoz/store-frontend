@@ -1,7 +1,141 @@
-.finished-credit-user {
+.credit_cart_page {
   width: 100%;
   height: calc(100vh - 60px);
-  padding: 30px 20px;
-  background: #f1efef;
-  overflow: auto;
+}
+
+.credit_cart_container {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.credit_cart_header {
+  width: 100%;
+  height: 60px;
+  /* background: dodgerblue; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #000;
+}
+
+.search_container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search_container input {
+  height: 40px;
+  width: 300px;
+  border: none;
+  outline: none;
+  text-indent: 10px;
+  font-size: 17px;
+  border-radius: 15px;
+  background: transparent;
+  background: #00000043;
+  color: #fff;
+}
+
+.search_container input::placeholder {
+  color: #fff;
+}
+
+.search_container select {
+  width: 200px;
+  height: 40px;
+  background: #00000043;
+  border-radius: 15px;
+  padding-right: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.search_container select option {
+  font-size: 17px;
+}
+
+.credit_cart_table_container {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.credit_cart_table_container table {
+  width: 100%;
+  border-collapse: collapse;
+  /* border: 1px solid #000; */
+}
+
+.credit_cart_table_container table thead tr {
+  width: 100%;
+  height: 40px;
+  background: #05326e;
+  /* background: #042654; */
+}
+
+.credit_cart_table_container table thead tr th {
+  color: #fff;
+  border-right: 1px solid #fff;
+  padding: 0 2px;
+  position: sticky;
+  top: 0px;
+  background: #042654;
+}
+
+.credit_cart_table_container table thead tr th:nth-child(12) {
+  border-right: none;
+}
+
+.credit_cart_table_container table tbody tr {
+  height: 35px;
+  background: #eeeeee;
+  z-index: -1;
+}
+
+.credit_cart_table_container table tbody tr td {
+  border-right: 1px solid #fff;
+  padding: 0 5px;
+}
+
+.credit_cart_table_container table tbody tr:nth-child(odd) {
+  background: #c7defd;
+}
+.credit_cart_table_container table tbody tr td:nth-child(12) {
+  border-right: none;
+}
+
+.credit_cart_table_container table tbody tr td:nth-child(1) {
+  text-align: center;
+}
+
+.credit_cart_table_container table tbody tr td:nth-child(10) {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.credit_cart_table_container table tbody tr td svg:first-child {
+  color: rgb(214, 145, 16);
+}
+
+.credit_cart_table_container table tbody tr td svg:nth-child(2) {
+  color: crimson;
+}
+
+.empty_cart {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -3,15 +3,18 @@ import "./Registered.css";
 import {
   useGetAllUserQuery,
   useUserDeleteOneMutation,
+  useUserSearchMutation,
 } from "../../redux/userApi";
 import Empty from "../../components/empty/Empty";
 import { FaTrash } from "react-icons/fa";
 import { Zoom, toast } from "react-toastify";
 import Loader from "../../components/loader/Loader";
+import { MdOutlineUpdate } from "react-icons/md";
 
 const Registered = () => {
   const { data, isLoading } = useGetAllUserQuery();
   const [userDeleteOne] = useUserDeleteOneMutation();
+  const [userSearch] = useUserSearchMutation();
   const [dataItem, setDataItem] = useState([]);
 
   useEffect(() => {
@@ -45,19 +48,37 @@ const Registered = () => {
     }
   }
 
+  const userFirsNameSearch = async (search) => {
+    try {
+      let e = search.trimStart();
+      const res = await userSearch({ search: e });
+      if (res?.data?.status === "success") {
+        setDataItem(res?.data?.innerData || []);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     findAges(data?.innerData);
   }, [data]);
 
   return (
-
     <div className="registered_page">
-      {isLoading ? <Loader /> : dataItem?.length ? (
+      {isLoading ? (
+        <Loader />
+      ) : dataItem?.length ? (
         <div className="registered_container">
           <div className="registered_header">
             <h1>Ro'yxatdagi adminlar</h1>
             <div className="search_container">
-              <input type="text" name="firstname" placeholder="Qidirish..." />
+              <input
+                onChange={(e) => userFirsNameSearch(e.target.value)}
+                type="text"
+                name="firstname"
+                placeholder="Qidirish..."
+              />
               <select name="phone">
                 <option>Kategoriya qidirish</option>
                 <option value="Smartfonlar">Smartfonlar</option>
@@ -81,7 +102,9 @@ const Registered = () => {
                   <th>Nomer</th>
                   <th>Manzil</th>
                   <th>Roli</th>
-                  <th>O'zgartirish</th>
+                  <th>
+                    <MdOutlineUpdate />
+                  </th>
                 </tr>
               </thead>
               <tbody>

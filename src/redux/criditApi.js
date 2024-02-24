@@ -76,6 +76,17 @@ export const productApi = api.injectEndpoints({
       },
       invalidatesTags: ["GETALLCRIDIT", "GETREPORT"],
     }),
+
+    creditUserSearch: builder.mutation({
+      query(body) {
+        return {
+          url: `creditUser/creditUserSearch`,
+          method: "POST",
+          body,
+        };
+      },
+      invalidatesTags: ["GETALLCRIDIT"],
+    }),
   }),
 });
 
@@ -87,4 +98,5 @@ export const {
   useGetAllCriditDataQuery,
   useUpdateCreditUserMutation,
   useFinishedCreditQuery,
+  useCreditUserSearchMutation,
 } = productApi;

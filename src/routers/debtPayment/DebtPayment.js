@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import "./DebtPayment.css";
 import {
@@ -11,19 +10,20 @@ import Empty from "../../components/empty/Empty";
 import { FaTrash } from "react-icons/fa";
 import { BsFillPrinterFill } from "react-icons/bs";
 import UserPrint from "../../components/userPrint/UserPrint";
-import Loader from '../../components/loader/Loader'
+import Loader from "../../components/loader/Loader";
+import { MdOutlineUpdate } from "react-icons/md";
 // Sanani va vaqtni formatlash uchun funksiya
 function formatDateTime(dateString) {
   const date = new Date(dateString);
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
     hour12: false,
   });
-  const formattedDate = formatter.format(date).replace('', '');
+  const formattedDate = formatter.format(date).replace("", "");
   return formattedDate;
 }
 
@@ -78,7 +78,9 @@ const DebtPayment = () => {
       {openPrint && (
         <UserPrint setOpenPrint={setOpenPrint} userPrintData={userDataPrint} />
       )}
-      {isLoading ? <Loader /> : dataItem?.length ? (
+      {isLoading ? (
+        <Loader />
+      ) : dataItem?.length ? (
         <div className="debt_payment_container">
           <div className="debt_payment_header">
             <h1>Qarz to'laganlar</h1>
@@ -105,13 +107,17 @@ const DebtPayment = () => {
                   <th>Bergan pul</th>
                   <th>Umumiy qarz</th>
                   <th>Qolgan qarz</th>
-                  <th>O'zgartirish</th>
+                  <th>
+                    <MdOutlineUpdate />
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {dataItem?.map((item, index) => {
-                  const paymentDate = item?.usersStories?.paymentDate ? formatDateTime(item?.usersStories?.paymentDate) : "";
-                  const [date, time] = paymentDate.split(', ');
+                  const paymentDate = item?.usersStories?.paymentDate
+                    ? formatDateTime(item?.usersStories?.paymentDate)
+                    : "";
+                  const [date, time] = paymentDate.split(", ");
                   return (
                     <tr key={index}>
                       <td>{index + 1}</td>
@@ -123,13 +129,15 @@ const DebtPayment = () => {
                       <td>{date}</td>
                       <td>{time}</td>
                       <td>{item?.usersStories?.pricePaid}</td>
-                      <td>{item?.usersStories?.totalPrice}</td>
                       <td>{item?.usersStories?.remainingDebt}</td>
+                      <td>{item?.usersStories?.totalPrice}</td>
                       <td>
                         {role === "owner" && (
                           <FaTrash onClick={() => userChackDelete(item._id)} />
                         )}
-                        <BsFillPrinterFill onClick={() => printChackRender(item._id)} />
+                        <BsFillPrinterFill
+                          onClick={() => printChackRender(item._id)}
+                        />
                       </td>
                     </tr>
                   );

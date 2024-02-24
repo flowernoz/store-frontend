@@ -12,16 +12,16 @@ function UserPrint({ userPrintData, setOpenPrint }) {
   // Sanani va vaqtni formatlash uchun funksiya
   function formatDateTime(dateString) {
     const date = new Date(dateString);
-    const formatter = new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
+    const formatter = new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
       hour12: false,
     });
     const formattedDate = formatter.format(date);
-    return formattedDate.split(' ');
+    return formattedDate.split(" ");
   }
 
   // Bu qism kodda kerakli joyda chaqirilishi kerak, masalan data o'zgaruvchisi ishlatilganda
@@ -58,7 +58,6 @@ function UserPrint({ userPrintData, setOpenPrint }) {
   const paymentDate = data ? formatDateTime(data.paymentDate) : ["", ""];
   const [date, time] = paymentDate;
   return (
-
     <div className="user_print">
       <div className="container">
         <div className="user_print_container">
