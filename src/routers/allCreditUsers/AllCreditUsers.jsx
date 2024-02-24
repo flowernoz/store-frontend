@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
+import Loader from '../../components/loader/Loader'
+
 import "./AllCreditUsers.css";
 import {
   FaPencilAlt,
@@ -6,10 +8,7 @@ import {
   FaRegCalendarCheck,
   FaRegEye,
 } from "react-icons/fa";
-import { LuClipboardEdit } from "react-icons/lu";
 import { FaTrashCan } from "react-icons/fa6";
-import { BsCart2 } from "react-icons/bs";
-import { IoTrashBinOutline } from "react-icons/io5";
 import { GiMoneyStack } from "react-icons/gi";
 // CREDIT API =>
 import {
@@ -18,7 +17,7 @@ import {
   useSoldCriditFintUserMutation,
   useUpdateCreditUserMutation,
 } from "../../redux/criditApi";
-import { toast, ToastContainer, Zoom } from "react-toastify";
+import { toast, Zoom } from "react-toastify";
 import CriditEye from "../../components/criditEye/CriditEye";
 import Empty from "../../components/empty/Empty";
 import CreditEdit from "../../components/creditEdit/CreditEdit";
@@ -26,7 +25,7 @@ import CreditEdit from "../../components/creditEdit/CreditEdit";
 function AllCreditUsers() {
   let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
 
-  const { data } = useGetAllCriditDataQuery();
+  const { data, isLoading } = useGetAllCriditDataQuery();
   const [creditUserDeleteOne] = useCreditUserDeleteOneMutation();
   const [soldCriditFintUser] = useSoldCriditFintUserMutation();
   const [updateCreditUser] = useUpdateCreditUserMutation();
@@ -109,7 +108,7 @@ function AllCreditUsers() {
           setDataItem={setDataItem}
         />
       )}
-      {dataItem?.length ? (
+      {isLoading ? <Loader /> : dataItem?.length ? (
         <div className="credit_cart_container">
           <div className="credit_cart_header">
             <h1>Barcha qarzdorlar</h1>

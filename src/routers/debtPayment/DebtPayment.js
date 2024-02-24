@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import "./DebtPayment.css";
 import {
@@ -7,19 +8,34 @@ import {
 } from "../../redux/creditAmountApi";
 import { Zoom, toast } from "react-toastify";
 import Empty from "../../components/empty/Empty";
-import { FaMinus, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { BsFillPrinterFill } from "react-icons/bs";
 import UserPrint from "../../components/userPrint/UserPrint";
+import Loader from '../../components/loader/Loader'
+// Sanani va vaqtni formatlash uchun funksiya
+function formatDateTime(dateString) {
+  const date = new Date(dateString);
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+  const formattedDate = formatter.format(date).replace('', '');
+  return formattedDate;
+}
 
 const DebtPayment = () => {
-  const { data } = useGetCreditAmountUsersQuery();
+  const { data, isLoading } = useGetCreditAmountUsersQuery();
   const [chackUserDeleteOne] = useChackUserDeleteOneMutation();
   const [findUserChack] = useFindUserChackMutation();
   const [dataItem, setDataItem] = useState([]);
   const [openPrint, setOpenPrint] = useState(false);
   const [userDataPrint, setUserDataPrint] = useState(null);
 
-  let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
+  let { role } = JSON.parse(sessionStorage.getItem("userInfo") || "{}");
 
   useEffect(() => {
     setDataItem(data?.innerData);
@@ -27,12 +43,12 @@ const DebtPayment = () => {
 
   const userChackDelete = async (id) => {
     try {
-      let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz");
+      let clientConfirm = window.confirm("Malumotni o'chirishga rozimisiz?");
       if (clientConfirm) {
         const res = await chackUserDeleteOne({ id });
         if (res?.data?.msg === "credit user is deleted") {
-          setDataItem((prevData) => prevData.filter((item) => item._id !== id)); // 4. Bazadan o'chirilgan elementni o'chirish
-          toast.success("malumot o'chirildi", {
+          setDataItem((prevData) => prevData.filter((item) => item._id !== id));
+          toast.success("Malumot o'chirildi", {
             transition: Zoom,
             autoClose: 2000,
             closeButton: false,
@@ -62,7 +78,7 @@ const DebtPayment = () => {
       {openPrint && (
         <UserPrint setOpenPrint={setOpenPrint} userPrintData={userDataPrint} />
       )}
-      {dataItem?.length ? (
+      {isLoading ? <Loader /> : dataItem?.length ? (
         <div className="debt_payment_container">
           <div className="debt_payment_header">
             <h1>Qarz to'laganlar</h1>
@@ -70,9 +86,6 @@ const DebtPayment = () => {
               <input type="text" name="firstname" placeholder="Qidirish..." />
               <select name="phone">
                 <option>Kategoriya qidirish</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
                 <option value="Smartfonlar">Smartfonlar</option>
               </select>
             </div>
@@ -86,50 +99,47 @@ const DebtPayment = () => {
                   <th>Familiya</th>
                   <th>Address</th>
                   <th>Nomer</th>
-                  <th>Pasrtport raqami</th>
+                  <th>Pasport raqami</th>
                   <th>Sanasi</th>
                   <th>Soati</th>
                   <th>Bergan pul</th>
-                  <th>Opshi qarz</th>
+                  <th>Umumiy qarz</th>
                   <th>Qolgan qarz</th>
                   <th>O'zgartirish</th>
                 </tr>
               </thead>
-
               <tbody>
-                {dataItem?.map((item, inx) => (
-                  <tr key={inx}>
-                    <td>{inx + 1}</td>
-                    <td>{item?.usersStories?.firstname}</td>
-                    <td>{item?.usersStories?.lastname}</td>
-                    <td>{item?.usersStories?.address}</td>
-                    <td>{item?.usersStories?.phone}</td>
-                    <td>{item?.usersStories?.passport}</td>
-                    <td>{item?.usersStories?.paymentDate.split(" ")[0]}</td>
-                    <td>{item?.usersStories?.paymentDate.split(" ")[1]}</td>
-                    <td>{item?.usersStories?.pricePaid}</td>
-                    <td>{item?.usersStories?.remainingDebt}</td>
-                    <td>{item?.usersStories?.totalPrice}</td>
-                    <td>
-                      {role === "owner" ? (
-                        <FaTrash onClick={() => userChackDelete(item?._id)} />
-                      ) : (
-                        ""
-                      )}
-                      <BsFillPrinterFill
-                        onClick={() => printChackRender(item?._id)}
-                      />
-                    </td>
-                  </tr>
-                ))}
+                {dataItem?.map((item, index) => {
+                  const paymentDate = item?.usersStories?.paymentDate ? formatDateTime(item?.usersStories?.paymentDate) : "";
+                  const [date, time] = paymentDate.split(', ');
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{item?.usersStories?.firstname}</td>
+                      <td>{item?.usersStories?.lastname}</td>
+                      <td>{item?.usersStories?.address}</td>
+                      <td>{item?.usersStories?.phone}</td>
+                      <td>{item?.usersStories?.passport}</td>
+                      <td>{date}</td>
+                      <td>{time}</td>
+                      <td>{item?.usersStories?.pricePaid}</td>
+                      <td>{item?.usersStories?.remainingDebt}</td>
+                      <td>{item?.usersStories?.totalPrice}</td>
+                      <td>
+                        {role === "owner" && (
+                          <FaTrash onClick={() => userChackDelete(item._id)} />
+                        )}
+                        <BsFillPrinterFill onClick={() => printChackRender(item._id)} />
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
         </div>
       ) : (
-        <div className="empty">
-          <Empty />
-        </div>
+        <Empty />
       )}
     </div>
   );

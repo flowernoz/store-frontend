@@ -7,9 +7,10 @@ import {
 import Empty from "../../components/empty/Empty";
 import { FaTrash } from "react-icons/fa";
 import { Zoom, toast } from "react-toastify";
+import Loader from "../../components/loader/Loader";
 
 const Registered = () => {
-  const { data } = useGetAllUserQuery();
+  const { data, isLoading } = useGetAllUserQuery();
   const [userDeleteOne] = useUserDeleteOneMutation();
   const [dataItem, setDataItem] = useState([]);
 
@@ -49,55 +50,9 @@ const Registered = () => {
   }, [data]);
 
   return (
-    // <div className="registered_page">
-    //   {dataItem?.length ? (
-    //     <table>
-    //       <caption>Ro'yxatdagi adminlar</caption>
-    //       <thead>
-    //         <tr>
-    //           <th>#</th>
-    //           <th>Ism</th>
-    //           <th>Familiya</th>
-    //           <th>Yil</th>
-    //           <th>Yosh</th>
-    //           <th>Jins</th>
-    //           <th>Foydalanuvchi nomi</th>
-    //           <th>Nomer</th>
-    //           <th>Manzil</th>
-    //           <th>Roli</th>
-    //           <th>O'zgartirish</th>
-    //         </tr>
-    //       </thead>
-    //       <tbody>
-    //         {dataItem?.map((item, inx) => (
-    //           <tr key={inx}>
-    //             <td>{inx + 1}</td>
-    //             <td>{item?.firstname}</td>
-    //             <td>{item?.lastname}</td>
-    //             <td>{item?.year}</td>
-    //             <td>{findAges(data?.innerData)[inx]}</td>
-    //             <td>{item?.gender}</td>
-    //             <td>{item?.username}</td>
-    //             <td>{item?.phone}</td>
-    //             <td>{item?.address}</td>
-    //             <td>{item?.role}</td>
-    //             <td className="change">
-    //               <button onClick={() => userDelete(item?._id)}>
-    //                 <FaTrash className="user_delete_icon" />
-    //               </button>
-    //             </td>
-    //           </tr>
-    //         ))}
-    //       </tbody>
-    //     </table>
-    //   ) : (
-    //     <div className="empty_cart">
-    //       <Empty />
-    //     </div>
-    //   )}
-    // </div>
+
     <div className="registered_page">
-      {dataItem?.length ? (
+      {isLoading ? <Loader /> : dataItem?.length ? (
         <div className="registered_container">
           <div className="registered_header">
             <h1>Ro'yxatdagi adminlar</h1>

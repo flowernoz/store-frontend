@@ -13,9 +13,9 @@ import { toast } from "react-toastify";
 import Empty from "../../components/empty/Empty";
 import UpdateCode from "../../components/updateCode/UpdateCode";
 import { BsFillPrinterFill } from "react-icons/bs";
-
+import Loader from "../../components/loader/Loader";
 function Allproducts() {
-  const { data } = useGetAllProductsQuery();
+  const { data, isLoading } = useGetAllProductsQuery();
   const [productUpdate] = useProductUpdateMutation();
   const [deleteOneProduct] = useDeleteOneProductMutation();
   const [deleteAllProducts] = useDeleteAllProductsMutation();
@@ -86,7 +86,7 @@ function Allproducts() {
         <UpdateCode text={categoryId} setOpenBarcode={setOpenBarcode} />
       )}
       {openProEdit && <ProEdit data={updateData} close={setOpenProEdit} />}
-      {dataItem?.length ? (
+      {isLoading ? <Loader /> : dataItem?.length ? (
         <div className="allproducts_container">
           <div className="allproducts_header">
             <h1>Barcha mahsulotlar</h1>
