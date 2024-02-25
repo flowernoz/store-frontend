@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Sidebar from "./Sidebar/Sidebar";
 import { LiaBarsSolid } from "react-icons/lia";
@@ -12,10 +12,14 @@ import logo from "../../assets/logo.png";
 import BarCodeReader from "../barCodeReader/BarCodeReader";
 import { BiGridAlt } from "react-icons/bi";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
+import { useFinishedCreditQuery } from "../../redux/criditApi";
 
 function Navbar() {
+  const { data } = useFinishedCreditQuery();
+
   const [openSidebar, setOpenSidebar] = useState(false);
   const [openQrScanner, setOpenQrScanner] = useState(false);
+  let [dataItem, setDataItem] = useState([]);
   let navigate = useNavigate();
   function openSidebarFunc() {
     setOpenSidebar(true);
@@ -23,6 +27,11 @@ function Navbar() {
   function closeSidebarFunc() {
     setOpenSidebar(false);
   }
+
+  useEffect(() => {
+    setDataItem(data?.innerData || []); // 1. '?.' operatori qo'shildi va yuqoridagi ifoda uchun yozilgan qo'shish
+  }, [data]);
+
   openSidebar || openQrScanner
     ? (document.body.style.overflow = "hidden")
     : (document.body.style.overflow = "auto");
@@ -46,11 +55,18 @@ function Navbar() {
                 title="Shtrix kodni skanerlang"
                 onClick={() => setOpenQrScanner(!openQrScanner)}
               />
-              <FaBell
-                onClick={() => navigate("/finishedCredits")}
-                className="bell"
-                title="Bildirishnomalar"
-              />
+              <div className="bell_container">
+                <FaBell
+                  onClick={() => navigate("/finishedCredits")}
+                  className="bell"
+                  title="Bildirishnomalar"
+                />
+                {dataItem?.length ? (
+                  <span className="data_length">{dataItem?.length}</span>
+                ) : (
+                  ""
+                )}
+              </div>
               <LiaBarsSolid onClick={openSidebarFunc} className="bar__icon" />
             </div>
           </div>
@@ -61,11 +77,18 @@ function Navbar() {
                 title="Shtrix kodni skanerlang"
                 onClick={() => setOpenQrScanner(!openQrScanner)}
               />
-              <FaBell
-                onClick={() => navigate("/finishedCredits")}
-                className="bell"
-                title="Bildirishnomalar"
-              />
+              <div className="bell_container">
+                <FaBell
+                  onClick={() => navigate("/finishedCredits")}
+                  className="bell"
+                  title="Bildirishnomalar"
+                />
+                {dataItem?.length ? (
+                  <span className="data_length">{dataItem?.length}</span>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
         </div>
