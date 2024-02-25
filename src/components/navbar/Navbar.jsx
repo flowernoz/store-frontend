@@ -61,8 +61,10 @@ function Navbar() {
                   className="bell"
                   title="Bildirishnomalar"
                 />
-                {dataItem?.length && (
+                {dataItem?.length ? (
                   <span className="data_length">{dataItem?.length}</span>
+                ) : (
+                  ""
                 )}
               </div>
               <LiaBarsSolid onClick={openSidebarFunc} className="bar__icon" />
@@ -81,8 +83,10 @@ function Navbar() {
                   className="bell"
                   title="Bildirishnomalar"
                 />
-                {dataItem?.length && (
+                {dataItem?.length ? (
                   <span className="data_length">{dataItem?.length}</span>
+                ) : (
+                  ""
                 )}
               </div>
             </div>
