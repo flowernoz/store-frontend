@@ -136,6 +136,25 @@ input[type="search"]::-webkit-search-cancel-button {
 
 /* ======= NAVBAR BTNS ======= */
 
+.bell_container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.bell_container .data_length {
+  position: absolute;
+  top: -17px;
+  right: -13px;
+  padding: 0px 5px;
+  border-radius: 50px;
+  background: crimson;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
 .nav__btns {
   display: flex;
   align-items: center;
