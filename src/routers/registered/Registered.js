@@ -79,13 +79,7 @@ const Registered = () => {
                 name="firstname"
                 placeholder="Qidirish..."
               />
-              <select name="phone">
-                <option>Kategoriya qidirish</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-              </select>
+             
             </div>
           </div>
           <div className="registered_table_container">

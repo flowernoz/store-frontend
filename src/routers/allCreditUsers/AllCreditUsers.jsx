@@ -42,7 +42,7 @@ function AllCreditUsers() {
   const [userUpdateData, setuserUpdateData] = useState(null);
 
   useEffect(() => {
-    setDataItem(data?.innerData || []); // 1. '?.' operatori qo'shildi va yuqoridagi ifoda uchun yozilgan qo'shish
+    setDataItem(data?.innerData.filter(item => item.creditTotalPrice > 0) || []); 
   }, [userUpdateData, data]);
 
   const clickEye = async (id) => {
@@ -138,13 +138,7 @@ function AllCreditUsers() {
                 name="firstname"
                 placeholder="Qidirish..."
               />
-              <select name="phone">
-                <option>Nomer qidirish</option>
-                <option value="909976220">909976220</option>
-                <option value="909976220">909976220</option>
-                <option value="909976220">909976220</option>
-                <option value="909976220">909976220</option>
-              </select>
+          
             </div>
           </div>
           <div className="credit_cart_table_container">

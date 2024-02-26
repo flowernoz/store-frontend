@@ -26,9 +26,13 @@ function Allproducts() {
   const [openProEdit, setOpenProEdit] = useState(false);
   const [openBarcode, setOpenBarcode] = useState(false);
   const [dataItem, setDataItem] = useState([]);
+
   // const [loading, setLoading] = useState(true);
   useEffect(() => {
-    setDataItem(data?.innerData);
+    if (data?.innerData) {
+      const sortedData = [...data.innerData].sort((a, b) => a.quantity - b.quantity);
+      setDataItem(sortedData);
+    }
   }, [data]);
 
   async function deleteAll() {
@@ -113,13 +117,7 @@ function Allproducts() {
                 name="firstname"
                 placeholder="Qidirish..."
               />
-              <select name="phone">
-                <option>Kategoriya qidirish</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-                <option value="Smartfonlar">Smartfonlar</option>
-              </select>
+
             </div>
           </div>
           <div className="allproducts_table_container">
@@ -154,7 +152,12 @@ function Allproducts() {
                     <td data_lable="Sotuv narxi">
                       {i?.price ? formatNumber(i?.price) : <FaMinus />}
                     </td>
-                    <td data_lable="Soni">
+                    <td
+                      style={{
+                        backgroundColor: i?.quantity <= 5 ? 'red' : 'inherit',
+                        color: i?.quantity <= 5 ? 'white' : 'inherit'
+                      }}
+                      data_label="Soni">
                       {i?.quantity ? formatNumber(i?.quantity) : <FaMinus />}
                     </td>
                     <td data_lable="Kategoriya">
