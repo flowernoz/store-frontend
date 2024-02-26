@@ -148,14 +148,14 @@ function AllCreditUsers() {
             </div>
           </div>
           <div className="credit_cart_table_container">
-            <table>
+            <table className="table">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Ismi</th>
-                  <th>Familiyasi</th>
-                  <th>Manzili</th>
-                  <th>Telefon raqami</th>
+                  <th>Ism</th>
+                  <th>Familiya</th>
+                  <th>Manzil</th>
+                  <th>Telefon raqam</th>
                   <th>
                     <FaPassport />
                   </th>
@@ -176,16 +176,18 @@ function AllCreditUsers() {
               <tbody>
                 {dataItem?.map((i, inx) => (
                   <tr key={inx}>
-                    <td>{inx + 1}</td>
-                    <td>{i?.firstname}</td>
-                    <td>{i?.lastname}</td>
-                    <td>{i?.address}</td>
-                    <td>{i?.phone}</td>
-                    <td>{i?.passport}</td>
-                    <td>{formatNumber(i?.creditTotalPrice)}</td>
-                    <td>{i?.addedTime.split(" ")[0]}</td>
-                    <td>{i?.givingDay}</td>
-                    <td>
+                    <td data_lable="#">{inx + 1}</td>
+                    <td data_lable="Ism">{i?.firstname}</td>
+                    <td data_lable="Familiya">{i?.lastname}</td>
+                    <td data_lable="Manzil">{i?.address}</td>
+                    <td data_lable="Telefon raqam">{i?.phone}</td>
+                    <td data_lable="Pasport raqam">{i?.passport}</td>
+                    <td data_lable="Qarz">
+                      {formatNumber(i?.creditTotalPrice)}
+                    </td>
+                    <td data_lable="Ogan kun">{i?.addedTime.split(" ")[0]}</td>
+                    <td data_lable="Baradigan kun">{i?.givingDay}</td>
+                    <td data_lable="O'zgartirish">
                       <FaRegEye onClick={() => clickEye(i?._id)} />
 
                       <FaPencilAlt onClick={() => creditEdit(i)} />

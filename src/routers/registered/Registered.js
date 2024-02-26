@@ -89,7 +89,7 @@ const Registered = () => {
             </div>
           </div>
           <div className="registered_table_container">
-            <table>
+            <table className="table">
               <thead>
                 <tr>
                   <th>#</th>
@@ -110,17 +110,17 @@ const Registered = () => {
               <tbody>
                 {dataItem?.map((item, inx) => (
                   <tr key={inx}>
-                    <td>{inx + 1}</td>
-                    <td>{item?.firstname}</td>
-                    <td>{item?.lastname}</td>
-                    <td>{item?.year}</td>
-                    <td>{findAges(data?.innerData)[inx]}</td>
-                    <td>{item?.gender}</td>
-                    <td>{item?.username}</td>
-                    <td>{item?.phone}</td>
-                    <td>{item?.address}</td>
-                    <td>{item?.role}</td>
-                    <td>
+                    <td data_lable="#">{inx + 1}</td>
+                    <td data_lable="Ism">{item?.firstname}</td>
+                    <td data_lable="Familiya">{item?.lastname}</td>
+                    <td data_lable="Yil">{item?.year}</td>
+                    <td data_lable="Yosh">{findAges(data?.innerData)[inx]}</td>
+                    <td data_lable="Jins">{item?.gender}</td>
+                    <td data_lable="Foydalanuvchi nomi">{item?.username}</td>
+                    <td data_lable="Nomer">{item?.phone}</td>
+                    <td data_lable="Manzil">{item?.address}</td>
+                    <td data_lable="Roli">{item?.role}</td>
+                    <td data_lable="O'zgartirish">
                       <FaTrash onClick={() => userDelete(item?._id)} />
                     </td>
                   </tr>
