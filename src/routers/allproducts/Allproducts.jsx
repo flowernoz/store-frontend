@@ -123,7 +123,7 @@ function Allproducts() {
             </div>
           </div>
           <div className="allproducts_table_container">
-            <table>
+            <table className="table">
               <thead>
                 <tr>
                   <th>#</th>
@@ -144,21 +144,35 @@ function Allproducts() {
               <tbody>
                 {dataItem?.map((i, inx) => (
                   <tr key={inx}>
-                    <td>{inx + 1}</td>
-                    <td>{i?.title ? i?.title : <FaMinus />}</td>
-                    <td>
+                    <td data_lable="#">{inx + 1}</td>
+                    <td data_lable="Nomi">
+                      {i?.title ? i?.title : <FaMinus />}
+                    </td>
+                    <td data_lable="Asl narxi">
                       {i?.orgPrice ? formatNumber(i?.orgPrice) : <FaMinus />}
                     </td>
-                    <td>{i?.price ? formatNumber(i?.price) : <FaMinus />}</td>
-                    <td>
+                    <td data_lable="Sotuv narxi">
+                      {i?.price ? formatNumber(i?.price) : <FaMinus />}
+                    </td>
+                    <td data_lable="Soni">
                       {i?.quantity ? formatNumber(i?.quantity) : <FaMinus />}
                     </td>
-                    <td>{i?.category ? i?.category : <FaMinus />}</td>
-                    <td>{i?.subcategory ? i.subcategory : <FaMinus />}</td>
-                    <td>{i?.size ? i.size : <FaMinus />}</td>
-                    <td>{i?.brand ? i.brand : <FaMinus />}</td>
-                    <td>{i?.color ? i.color : <FaMinus />}</td>
-                    <td>
+                    <td data_lable="Kategoriya">
+                      {i?.category ? i?.category : <FaMinus />}
+                    </td>
+                    <td data_lable="Subkategoriya">
+                      {i?.subcategory ? i.subcategory : <FaMinus />}
+                    </td>
+                    <td data_lable="O'lchami">
+                      {i?.size ? i.size : <FaMinus />}
+                    </td>
+                    <td data_lable="Brendi">
+                      {i?.brand ? i.brand : <FaMinus />}
+                    </td>
+                    <td data_lable="rangi">
+                      {i?.color ? i.color : <FaMinus />}
+                    </td>
+                    <td data_lable="O'zgartirish">
                       <FaEdit onClick={() => proEdit(i)} />
 
                       <FaTrash onClick={() => deleteOne(i?._id)} />

@@ -11,6 +11,10 @@ function Allproducts() {
     setDataItem(data?.innerData);
   }, [data]);
 
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat("uz-UZ").format(number);
+  };
+
   return (
     <div className="popular_page">
       {isLoading ? (
@@ -31,7 +35,7 @@ function Allproducts() {
             </div> */}
           </div>
           <div className="popular_table_container">
-            <table>
+            <table className="table">
               <thead>
                 <tr>
                   <th>#</th>
@@ -49,16 +53,24 @@ function Allproducts() {
               <tbody>
                 {dataItem?.map((i, inx) => (
                   <tr key={inx}>
-                    <td>{inx + 1}</td>
-                    <td>{i?.title}</td>
-                    <td>{i?.orgPrice}</td>
-                    <td>{i?.price}</td>
-                    <td>{i?.quantity}</td>
-                    <td>{i?.category}</td>
-                    <td>{i?.subcategory ? i.subcategory : <FaMinus />}</td>
-                    <td>{i?.size ? i.size : <FaMinus />}</td>
-                    <td>{i?.brand ? i.brand : <FaMinus />}</td>
-                    <td>{i?.color ? i.color : <FaMinus />}</td>
+                    <td data_lable="#">{inx + 1}</td>
+                    <td data_lable="Nomi">{i?.title}</td>
+                    <td data_lable="Asl narxi">{formatNumber(i?.orgPrice)}</td>
+                    <td data_lable="Sotuv narxi">{formatNumber(i?.price)}</td>
+                    <td data_lable="Sotilgan Soni">{i?.quantity}</td>
+                    <td data_lable="Kategoriya">{i?.category}</td>
+                    <td data_lable="Subkategoriya">
+                      {i?.subcategory ? i.subcategory : <FaMinus />}
+                    </td>
+                    <td data_lable="O'lchami">
+                      {i?.size ? i.size : <FaMinus />}
+                    </td>
+                    <td data_lable="Brendi">
+                      {i?.brand ? i.brand : <FaMinus />}
+                    </td>
+                    <td data_lable="rangi">
+                      {i?.color ? i.color : <FaMinus />}
+                    </td>
                   </tr>
                 ))}
               </tbody>

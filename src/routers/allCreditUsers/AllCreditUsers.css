@@ -66,6 +66,7 @@
   max-height: 100%;
   overflow-y: auto;
   position: relative;
+  padding-bottom: 60px;
 }
 
 .credit_cart_table_container table {
@@ -130,4 +131,107 @@
 
 .credit_cart_table_container table tbody tr td svg:nth-child(2) {
   color: crimson;
+}
+
+/*  */
+
+@media (max-width: 1200px) {
+  .credit_cart_header {
+    padding-bottom: 10px;
+  }
+
+  .credit_cart_table_container .table thead {
+    display: none;
+  }
+
+  .allproducts_table_container,
+  .credit_cart_table_container .table,
+  .credit_cart_table_container .table tbody,
+  .credit_cart_table_container .table tbody tr,
+  .credit_cart_table_container .table tbody tr td {
+    display: block;
+    width: 100% !important;
+    height: auto;
+  }
+
+  .credit_cart_table_container .table tr {
+    margin-bottom: 15px;
+  }
+
+  .credit_cart_table_container .table tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-bottom: 1px solid #05326e;
+    height: 30px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+
+  .credit_cart_table_container .table tbody tr td:nth-child(1) {
+    text-align: right;
+  }
+
+  .credit_cart_table_container .table tbody tr td:nth-child(10) {
+    justify-content: right;
+    padding-bottom: 5px;
+    border-bottom: none;
+  }
+
+  .credit_cart_table_container .table tbody tr td::before {
+    content: attr(data_lable);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 15px;
+    font-weight: 600;
+    text-align: left;
+    color: #656262;
+    border-right: 1px solid #000;
+  }
+}
+
+@media (max-width: 1065px) {
+  .credit_cart_header {
+    flex-direction: column;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 535px) {
+  .search_container input {
+    width: 220px !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .credit_cart_header {
+    gap: 10px !important;
+  }
+  .credit_cart_header h1 {
+    font-size: 27px;
+  }
+  .search_container input {
+    width: 150px !important;
+    height: 33px !important;
+    font-size: 15px !important;
+  }
+  .search_container select {
+    width: 150px !important;
+    height: 33px !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .credit_cart_header h1 {
+    font-size: 23px;
+  }
+  .search_container input {
+    width: 120px !important;
+  }
+  .search_container select {
+    width: 120px !important;
+  }
 }
