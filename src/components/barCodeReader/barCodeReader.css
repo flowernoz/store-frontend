@@ -199,6 +199,20 @@ input::-webkit-inner-spin-button {
   color: #fff;
 }
 
+@media (max-width: 760px) {
+  .scanned {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 610px) {
+  .scanned {
+    max-height: 350px;
+    overflow-y: auto;
+  }
+}
+
 @media (max-width: 500px) {
   .scanned {
     padding: 20px;
@@ -243,5 +257,9 @@ input::-webkit-inner-spin-button {
   .scaner_item,
   .scaner_item_price {
     padding: 7px;
+  }
+  .scanned {
+    max-height: 300px;
+    overflow-y: auto;
   }
 }
