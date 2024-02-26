@@ -38,9 +38,11 @@ export default function FinishedCreditUsers() {
   let { role } = JSON.parse(sessionStorage.getItem("userInfo"));
 
   useEffect(() => {
-    setDataItem(data?.innerData.filter(item => item.creditTotalPrice > 0) || []); 
+    setDataItem(
+      data?.innerData.filter((item) => item?.creditTotalPrice > 0) || []
+    );
   }, [userUpdateData, data]);
- 
+
   const clickEye = async (id) => {
     try {
       const res = await soldCriditFintUser({ id });
@@ -69,7 +71,7 @@ export default function FinishedCreditUsers() {
       if (clientConfirm) {
         const res = await creditUserDeleteOne(id);
         if (res?.data?.msg === "credit user is deleted") {
-          setDataItem((prevData) => prevData.filter((item) => item._id !== id)); 
+          setDataItem((prevData) => prevData.filter((item) => item._id !== id));
           toast.success("malumot o'chirildi", {
             transition: Zoom,
             autoClose: 2000,
@@ -115,7 +117,6 @@ export default function FinishedCreditUsers() {
             <h1>Barcha qarzdorlar</h1>
             <div className="search_container">
               <input type="text" name="firstname" placeholder="Qidirish..." />
-           
             </div>
           </div>
           <div className="credit_cart_table_container">

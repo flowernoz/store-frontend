@@ -124,17 +124,11 @@ const CriditRegister = ({ close, totalPrice }) => {
   return (
     <div className="cridit_register_page">
       <div className="container">
-        <div
-          style={{
-            width: register ? "350px" : "",
-            margin: register ? "0 auto" : "",
-          }}
-          className="cridit_register_container"
-        >
+        <div className="cridit_register_container">
           <div className="cridit_register_form_container">
             <div className="cridit_register_form_header">
               <h2 onClick={() => setRegister(!register)}>
-                {register ? "Nasiya registiratsiya" : "Register qidirish"}
+                {register ? "Yongi odam" : " Qidirish"}
               </h2>
               <IoIosCloseCircleOutline onClick={() => close(false)} />
             </div>
@@ -202,7 +196,6 @@ const CriditRegister = ({ close, totalPrice }) => {
                     />
                     <input required type="date" name="givingDay" />
                   </div>
-                  {/* disabled={regLoader} */}
                   <button disabled={regLoader} type="submit">
                     {regLoader ? "Saqlanmoqda" : "Saqlash"}
                   </button>
