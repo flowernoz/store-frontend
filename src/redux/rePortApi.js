@@ -6,8 +6,10 @@ export const ReportApi = api.injectEndpoints({
     getreports: builder.query({
       query: () => "report/allReports",
       providesTags: ["GETREPORT"],
+      invalidatesTags: ["GETREPORT"],
     }),
-  }),
+  }
+  ),
 });
 
 export const {
