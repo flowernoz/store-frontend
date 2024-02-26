@@ -57,12 +57,12 @@
 }
 
 .form_container input {
-  height: 45px;
   border-radius: 5px;
   font-size: 16px;
   text-indent: 10px;
   font-family: "Roboto", sans-serif;
   background: #f9f9fa;
+  height: 45px;
   box-shadow: 3px 3px 5px #d6def7, -3px -3px 5px #e7ebf7;
 }
 
