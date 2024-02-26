@@ -45,10 +45,10 @@ function Sidebar({ closeSidebarFunc }) {
             <FaRegCalendarAlt />
             nasiya
           </NavLink>
-          <NavLink onClick={closeSidebarFunc} to={"/nasiyacreate"}>
+          {/* <NavLink onClick={closeSidebarFunc} to={"/nasiyacreate"}>
             <FaRegCalendarPlus />
             Nasiya qo'shish
-          </NavLink>
+          </NavLink> */}
           <NavLink onClick={closeSidebarFunc} to={"/cart"}>
             <AiOutlineShoppingCart className="service__icon" />
             Savat

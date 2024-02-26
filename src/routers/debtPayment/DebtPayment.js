@@ -7,11 +7,12 @@ import {
 } from "../../redux/creditAmountApi";
 import { Zoom, toast } from "react-toastify";
 import Empty from "../../components/empty/Empty";
-import { FaTrash } from "react-icons/fa";
+import { FaPassport, FaRegCalendarPlus, FaTrash } from "react-icons/fa";
+import { CiClock2, CiLocationOn } from "react-icons/ci";
 import { BsFillPrinterFill } from "react-icons/bs";
 import UserPrint from "../../components/userPrint/UserPrint";
 import Loader from "../../components/loader/Loader";
-import { MdOutlineUpdate } from "react-icons/md";
+import { MdOutlinePhoneForwarded, MdOutlineUpdate } from "react-icons/md";
 // Sanani va vaqtni formatlash uchun funksiya
 function formatDateTime(dateString) {
   const date = new Date(dateString);
@@ -73,6 +74,10 @@ const DebtPayment = () => {
     }
   };
 
+  const formatNumber = (number) => {
+    return new Intl.NumberFormat("uz-UZ").format(number);
+  };
+
   return (
     <div className="debt_payment_page">
       {openPrint && (
@@ -93,17 +98,27 @@ const DebtPayment = () => {
             </div>
           </div>
           <div className="debt_paymet_table_container">
-            <table>
+            <table className="table">
               <thead>
                 <tr>
                   <th>#</th>
                   <th>Ism</th>
                   <th>Familiya</th>
-                  <th>Address</th>
-                  <th>Nomer</th>
-                  <th>Pasport raqami</th>
-                  <th>Sanasi</th>
-                  <th>Soati</th>
+                  <th>
+                    <CiLocationOn />
+                  </th>
+                  <th>
+                    <MdOutlinePhoneForwarded />
+                  </th>
+                  <th>
+                    <FaPassport />
+                  </th>
+                  <th>
+                    <FaRegCalendarPlus />
+                  </th>
+                  <th>
+                    <CiClock2 />
+                  </th>
                   <th>Bergan pul</th>
                   <th>Umumiy qarz</th>
                   <th>Qolgan qarz</th>
@@ -120,18 +135,29 @@ const DebtPayment = () => {
                   const [date, time] = paymentDate.split(", ");
                   return (
                     <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{item?.usersStories?.firstname}</td>
-                      <td>{item?.usersStories?.lastname}</td>
-                      <td>{item?.usersStories?.address}</td>
-                      <td>{item?.usersStories?.phone}</td>
-                      <td>{item?.usersStories?.passport}</td>
-                      <td>{date}</td>
-                      <td>{time}</td>
-                      <td>{item?.usersStories?.pricePaid}</td>
-                      <td>{item?.usersStories?.remainingDebt}</td>
-                      <td>{item?.usersStories?.totalPrice}</td>
-                      <td>
+                      <td data_lable="#">{index + 1}</td>
+                      <td data_lable="Ism">{item?.usersStories?.firstname}</td>
+                      <td data_lable="Familiya">
+                        {item?.usersStories?.lastname}
+                      </td>
+                      <td data_lable="Manzil">{item?.usersStories?.address}</td>
+                      <td data_lable="Nomer">{item?.usersStories?.phone}</td>
+                      <td data_lable="Pasport nomer">
+                        {item?.usersStories?.passport}
+                      </td>
+                      <td data_lable="Qarz bergan kun">{date}</td>
+                      <td data_lable="Soat">{time}</td>
+                      <td data_lable="Bergan pul">
+                        {formatNumber(item?.usersStories?.pricePaid)}
+                      </td>
+                      <td data_lable="Umumiy qarz">
+                        {formatNumber(item?.usersStories?.remainingDebt)}
+                      </td>
+                      <td data_lable="Qolgan qarz">
+                        {formatNumber(item?.usersStories?.totalPrice)}
+                      </td>
+                      <td></td>
+                      <td data_lable="O'zgartirish">
                         {role === "owner" && (
                           <FaTrash onClick={() => userChackDelete(item._id)} />
                         )}

@@ -72,6 +72,7 @@
   max-height: 100%;
   overflow-y: auto;
   position: relative;
+  padding-bottom: 60px;
 }
 
 .registered_table_container table {
@@ -137,4 +138,116 @@
 .empty_cart {
   width: 100%;
   height: calc(100vh - 100px);
+}
+
+/*  */
+
+@media (max-width: 1200px) {
+  .registered_header {
+    padding-bottom: 10px;
+  }
+
+  .registered_table_container .table thead {
+    display: none;
+  }
+
+  .allproducts_table_container,
+  .registered_table_container .table,
+  .registered_table_container .table tbody,
+  .registered_table_container .table tbody tr,
+  .registered_table_container .table tbody tr td {
+    display: block;
+    width: 100% !important;
+    height: auto;
+  }
+
+  .registered_table_container .table tr {
+    margin-bottom: 15px;
+  }
+
+  .registered_table_container .table tbody tr td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-bottom: 1px solid #05326e;
+    height: 30px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+  }
+
+  .registered_table_container .table tbody tr td:nth-child(1) {
+    text-align: right;
+  }
+
+  .registered_table_container .table tbody tr td:nth-child(11) {
+    justify-content: right;
+    padding-bottom: 5px;
+    border-bottom: none;
+  }
+
+  .registered_table_container .table tbody tr td::before {
+    content: attr(data_lable);
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-left: 15px;
+    font-weight: 600;
+    text-align: left;
+    color: #656262;
+    border-right: 1px solid #000;
+  }
+}
+
+@media (max-width: 1065px) {
+  .registered_header {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+@media (max-width: 535px) {
+  .search_container input {
+    width: 220px !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .registered_header {
+    gap: 10px;
+  }
+  .registered_header h1 {
+    font-size: 27px;
+  }
+  .search_container input {
+    width: 150px !important;
+    height: 33px !important;
+    font-size: 15px !important;
+  }
+  .search_container select {
+    width: 150px !important;
+    height: 33px !important;
+    font-size: 15px !important;
+  }
+}
+
+@media (max-width: 395px) {
+  .registered_table_container .table tbody tr td {
+    height: auto !important;
+    line-height: 1, 5px;
+    padding: 10px 0;
+    padding-left: 50%;
+  }
+}
+
+@media (max-width: 350px) {
+  .registered_header h1 {
+    font-size: 23px;
+  }
+  .search_container input {
+    width: 120px !important;
+  }
+  .search_container select {
+    width: 120px !important;
+  }
 }
