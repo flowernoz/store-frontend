@@ -152,7 +152,7 @@ function Allproducts() {
                     <td data_lable="Sotuv narxi">
                       {i?.price ? formatNumber(i?.price) : <FaMinus />}
                     </td>
-                    <td
+                    <td data_lable="Soni"
                       style={{
                         backgroundColor: i?.quantity <= 5 ? 'red' : 'inherit',
                         color: i?.quantity <= 5 ? 'white' : 'inherit'
