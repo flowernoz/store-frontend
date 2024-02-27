@@ -1,4 +1,3 @@
-/* --------------------------- */
 
 .cart_page {
   width: 100%;
@@ -111,6 +110,7 @@
 .table tbody tr:nth-child(odd) {
   background: #c7defd;
 }
+
 .table tbody tr td:nth-child(12) {
   border-right: none;
 }
@@ -248,7 +248,7 @@
 
 .cart_tfoot_btn button:nth-child(2) {
   background: #9cc4fc;
-  color: #000;
+
 }
 
 .empty_cart {
@@ -298,6 +298,7 @@
 /* media */
 
 @media (max-width: 1285px) {
+
   .cart_tfoot_totall ul li h2,
   .cart_tfoot_totall ul li .li_title {
     flex: 1;
@@ -308,16 +309,19 @@
   .cart_tfoot_totall {
     width: auto;
   }
+
   .cart_tfoot_totall ul li h2 {
     width: auto;
 
     text-align: right;
     flex: none;
   }
+
   .cart_tfoot_totall ul li .li_title {
     width: auto;
   }
 }
+
 @media (max-width: 1141px) {
   .cart_tfoot_title h2 {
     font-size: 18px;
@@ -389,6 +393,7 @@
   .cart_tfoot_btn {
     padding: 8px 10px;
   }
+
   .cart_tfoot_btn button {
     padding: 10px;
   }
@@ -404,6 +409,7 @@
   .cart_tfoot {
     padding: 5px;
   }
+
   .cart_tfoot_btn {
     gap: 5px;
     padding: 3px;
@@ -484,16 +490,20 @@
   .cart_header {
     gap: 10px;
   }
+
   .cart_header h1 {
     font-size: 27px;
   }
+
   .search_container input {
     width: 150px !important;
     height: 33px !important;
     font-size: 15px !important;
   }
+
   .search_container select {
     width: 150px !important;
+
     height: 33px !important;
     font-size: 15px !important;
   }
@@ -512,9 +522,11 @@
   .cart_header h1 {
     font-size: 23px;
   }
+
   .search_container input {
     width: 120px !important;
   }
+
   .search_container select {
     width: 120px !important;
   }
