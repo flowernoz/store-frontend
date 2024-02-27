@@ -157,7 +157,7 @@ function Allproducts() {
                         backgroundColor: i?.quantity <= 5 ? 'red' : 'inherit',
                         color: i?.quantity <= 5 ? 'white' : 'inherit'
                       }}
-                      data_label="Soni">
+                      >
                       {i?.quantity ? formatNumber(i?.quantity) : <FaMinus />}
                     </td>
                     <td data_lable="Kategoriya">
