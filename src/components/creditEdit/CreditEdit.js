@@ -101,6 +101,7 @@ const CreditEdit = ({ creditEditClose, updateUserData, setDataItem }) => {
 
             <div className="form_container">
               <input
+                required
                 type="text"
                 value={price}
                 onChange={priceChange}

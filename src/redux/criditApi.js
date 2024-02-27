@@ -20,7 +20,7 @@ export const productApi = api.injectEndpoints({
     creditCreateUser: builder.mutation({
       query(body) {
         return {
-          url: `creditUser/create`,
+          url: "creditUser/create",
           method: "POST",
           body,
         };

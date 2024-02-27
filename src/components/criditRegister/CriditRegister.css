@@ -10,11 +10,12 @@
 }
 
 .cridit_register_container {
-  width: 100%;
+  width: 300px;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .cridit_register_form_container {
@@ -30,7 +31,6 @@
 
 .cridit_register_form_header {
   width: 100%;
-  height: 60px;
   border: 1px solid #fff;
   border-radius: 5px;
   display: flex;
@@ -38,6 +38,7 @@
   color: #fff;
   padding: 10px;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .cridit_register_form_header svg {
@@ -50,7 +51,7 @@
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.506);
   cursor: pointer;
-  font-size: 20px;
+  font-size: 19px;
 }
 
 .cridit_register_form {
@@ -58,6 +59,8 @@
   padding: 10px;
   border: 1px solid #fff;
   border-radius: 5px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .cridit_register_form form {
@@ -73,6 +76,8 @@
 
 .cridit_register_form form .form_inputs {
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, auto);
   padding: 0;
   margin: 10px 0;
   border: none;
@@ -144,6 +149,10 @@
 /* ?\ \\ */
 
 @media (max-width: 570px) {
+  .cridit_register_form {
+    max-height: 300px;
+    overflow: auto;
+  }
   .cridit_register_form form .form_inputs {
     display: grid;
     grid-template-columns: repeat(1, auto);

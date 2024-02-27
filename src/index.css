@@ -100,7 +100,7 @@ aside a .cart_length {
   position: absolute;
   top: 2px;
   right: 2px;
-  padding: 2px;
+  padding: 0 5px;
   background: var(--textColorLight);
   color: #033d88;
   border-radius: 50px;
