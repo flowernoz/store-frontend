@@ -8,18 +8,18 @@ import {
 } from "../../redux/cart";
 import { useDispatch } from "react-redux";
 import { FaMinus, FaPlus, FaTrash } from "react-icons/fa";
-import axios from "../../api";
 import { toast, ToastContainer } from "react-toastify";
 import empty from "../../assets/empty1.png";
 import CriditRegister from "../../components/criditRegister/CriditRegister";
 import { useState } from "react";
 import cartData from "../../static/cartIcon";
-
+import { useQuantityUpdateMutation, useSoldProductsMutation } from "../../redux/rePortApi"
 function Cart() {
   const cart = useCart();
   const dispatch = useDispatch();
   const [openRgister, setOpenRgister] = useState(false);
-
+  const [quantityUpdate] = useQuantityUpdateMutation();
+  const [soldProducts] = useSoldProductsMutation();
   // delete item
   function handleDelete(id) {
     let warning = window.confirm("Savatni bo'shatishni xohlaysizmi?");
@@ -55,25 +55,40 @@ function Cart() {
 
   let subtotal = cart.reduce((a, b) => a + b.totalPrice, 0);
 
-  function checkout() {
-    axios
-      .post("/soldPro/create", cart)
-      .then((res) => console.log(res))
-      .catch((res) => console.log(res));
-    axios
-      .patch("/pro/updateQty", cart)
-      .then((res) => {
-        console.log(res.data.status);
-        if (res.data?.status === "success") {
-          dispatch(ClearCart());
-          toast.success("Mahsulotlar sotildi!", {
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: true,
-          });
-        }
-      })
-      .catch((err) => console.log(err));
+  // function checkout() {
+  //   axios
+  //     .post("/soldPro/create", cart)
+  //     .then((res) => console.log(res))
+  //     .catch((res) => console.log(res));
+  //   axios
+  //     .patch("/pro/updateQty", cart)
+  //     .then((res) => {
+  //       console.log(res.data.status);
+  //       if (res.data?.status === "success") {
+  //         dispatch(ClearCart());
+  //         toast.success("Mahsulotlar sotildi!", {
+  //           position: "top-center",
+  //           autoClose: 2000,
+  //           hideProgressBar: true,
+  //         });
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
+  async function checkout( ) {
+    try {
+     await soldProducts(cart);
+     await quantityUpdate(cart)
+      dispatch(ClearCart());
+              toast.success("Mahsulotlar sotildi!", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+              });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   // cridit register function
@@ -94,6 +109,7 @@ function Cart() {
             <CriditRegister close={setOpenRgister} totalPrice={subtotal} />
           )}
           <div className="cart_table_container">
+            <ToastContainer/>
             <table>
               <caption>Sotiladigan Tovarlar</caption>
               <thead>

@@ -13,7 +13,6 @@ import BarCodeReader from "../barCodeReader/BarCodeReader";
 import { BiGridAlt } from "react-icons/bi";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import { useFinishedCreditQuery } from "../../redux/criditApi";
-
 function Navbar() {
   const { data } = useFinishedCreditQuery();
 
@@ -30,7 +29,7 @@ function Navbar() {
 
   useEffect(() => {
     setDataItem(data?.innerData.filter(item => item.creditTotalPrice > 0) || []); // 1. '?.' operatori qo'shildi va yuqoridagi ifoda uchun yozilgan qo'shish
-  }, [data]);
+  }, [data, dataItem]);
 
   openSidebar || openQrScanner
     ? (document.body.style.overflow = "hidden")

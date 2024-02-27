@@ -151,10 +151,12 @@ const DebtPayment = () => {
                         {formatNumber(item?.usersStories?.pricePaid)}
                       </td>
                       <td data_lable="Umumiy qarz">
-                        {formatNumber(item?.usersStories?.remainingDebt)}
+                        {formatNumber(item?.usersStories?.totalPrice)}
+
                       </td>
                       <td data_lable="Qolgan qarz">
-                        {formatNumber(item?.usersStories?.totalPrice)}
+                        {formatNumber(item?.usersStories?.remainingDebt)}
+
                       </td>
                       <td></td>
                       <td data_lable="O'zgartirish">
