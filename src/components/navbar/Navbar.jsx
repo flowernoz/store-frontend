@@ -29,7 +29,7 @@ function Navbar() {
 
   useEffect(() => {
     setDataItem(data?.innerData.filter(item => item.creditTotalPrice > 0) || []); // 1. '?.' operatori qo'shildi va yuqoridagi ifoda uchun yozilgan qo'shish
-  }, [data, dataItem]);
+  }, [data]);
 
   openSidebar || openQrScanner
     ? (document.body.style.overflow = "hidden")
