@@ -36,7 +36,7 @@ export const productApi = api.injectEndpoints({
         };
       },
 
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT", "GETFINISHEDCRIDIT"],
     }),
 
     //   POST => CREDIT FIND USER
@@ -49,7 +49,7 @@ export const productApi = api.injectEndpoints({
           body,
         };
       },
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT", "GETFINISHEDCRIDIT"],
     }),
 
     //  POST => CREDIT REGISTER FIND USER
@@ -61,7 +61,7 @@ export const productApi = api.injectEndpoints({
           body,
         };
       },
-      invalidatesTags: ["GETALLCRIDIT"],
+      invalidatesTags: ["GETALLCRIDIT", "GETFINISHEDCRIDIT"],
     }),
 
     // PUT => UPDATE CREDIT USER
