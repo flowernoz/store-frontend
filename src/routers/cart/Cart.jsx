@@ -184,7 +184,7 @@ function Cart() {
                 </ul>
               </div>
               <div className="cart_tfoot_btn">
-                <button onClick={checkout}>Naxtga sotib olish</button>
+                <button  onClick={checkout}>Naxtga sotib olish</button>
                 <button onClick={register}>Nasiyaga sotib olish</button>
               </div>
             </div>
@@ -192,7 +192,7 @@ function Cart() {
         </div>
       ) : (
         <div className="empty_cart">
-          <img src={empty} alt="" />
+          <img src={empty} alt="image" />
         </div>
       )}
     </div>

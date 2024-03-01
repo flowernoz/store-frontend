@@ -198,7 +198,7 @@ function AllCreditUsers() {
           </div>
         </div>
       ) : (
-        <div className="empty">
+        <div className="empty_cart">
           <Empty />
         </div>
       )}
