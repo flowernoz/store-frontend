@@ -15,7 +15,7 @@ const ProEdit = ({ close, data }) => {
   const [color, setColor] = useState("");
   const [orgPrice, setOrgPrice] = useState(0);
   const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const [size, setSize] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [title, setTitle] = useState("");
@@ -54,9 +54,9 @@ const ProEdit = ({ close, data }) => {
       size,
       subcategory,
       title,
-      quantity: count,
+      quantity: +count + +quantity,
     };
-
+    console.log(proData);
     await productUpdate({ _id: data?._id, updateData: proData })
       .then((res) => {
         if (res?.data?.status) {

@@ -88,7 +88,7 @@ function Cart() {
         <div className="cart_container">
           <div className="cart_header">
             <h1>Sotiladigan Tovarlar</h1>
-            <div className="search_container">
+            {/* <div className="search_container">
               <input type="text" name="firstname" placeholder="Qidirish..." />
               <select name="phone">
                 <option>Kategoriya qidirish</option>
@@ -97,7 +97,7 @@ function Cart() {
                 <option value="Smartfonlar">Smartfonlar</option>
                 <option value="Smartfonlar">Smartfonlar</option>
               </select>
-            </div>
+            </div> */}
           </div>
           <div className="cart_table_container">
             <ToastContainer/>

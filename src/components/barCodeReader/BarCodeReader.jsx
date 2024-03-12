@@ -83,7 +83,7 @@ function BarCodeReader({ setOpenQrScanner }) {
             <label>Sotiladigan narxi:</label>
             <input
               type="text"
-              disabled={true}
+              // disabled={true}
               value={price}
               onChange={(e) => {
                 setPrice(e.target.value);

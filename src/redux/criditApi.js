@@ -74,7 +74,7 @@ export const productApi = api.injectEndpoints({
           body: data,
         };
       },
-      invalidatesTags: ["GETALLCRIDIT", "GETREPORT"],
+      invalidatesTags: ["GETALLCRIDIT", "GETREPORT", "GETFINISHEDCRIDIT"],
     }),
 
     creditUserSearch: builder.mutation({

@@ -47,7 +47,7 @@ function Navbar() {
               <img src={logo} alt="logo" />
             </Link>
             {/* SEARCH BAR */}
-            <SearchBar />
+            {/* <SearchBar /> */}
             <div className="nav__btns__sm nav__btns">
               <PiBarcodeBold
                 className="scanner"
